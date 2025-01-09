@@ -1,0 +1,34 @@
+.circle{
+    width: 300px;
+    height: 290px;
+    background-color: black;
+    border-radius: 100%;
+    position: relative;
+    right: 100px;
+    filter: opacity(80%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.agoraC{
+    color: #fff;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.agoraB{
+    color: #fff;
+    font-size: 70px;
+    margin-left: 80px;
+}
+.agoraA{
+    color: #fff;
+    font-size: 40px;
+    margin-left: 60px;
+}
+.linha{
+    background-color: #fff;
+    width: 80%;
+    height: 1px;
+}
