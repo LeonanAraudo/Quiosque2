@@ -15,3 +15,8 @@ export const montserrat = Montserrat({
     subsets: ["latin",]
 })
 
+export const montserratBold = Montserrat({
+    weight: "700",
+    subsets: ["latin",]
+})
+

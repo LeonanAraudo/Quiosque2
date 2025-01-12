@@ -1,0 +1,91 @@
+.body{
+    width: 100vw;
+    height: 100vh;
+}
+.header{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 15px;
+}
+.line{
+    width: 206px;
+    height: 1px;
+    background-color: #C5C5C5;
+}
+.circle{
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    border: 1px black solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login{
+    height: 60%;
+    width: 80%;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.04)
+;
+}
+.icon{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.line2{
+    width: 30%;
+    height: 1px;
+    background-color: #000000;
+}
+.form{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+    padding-top: 20px;
+}
+.boxInput{
+    display: flex;
+    flex-direction: column;
+    padding-inline: 10%;
+}
+.input{
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    height: 30px;
+    background-color: #D8D8D8;
+    padding-left: 10px;
+}
+.eye{
+    position: relative;
+    bottom: 26px;
+    left: 210px;
+}
+.boxButton{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button{
+    width: 100px;
+    background-color: #000000;
+    color: #ffffff;
+}
