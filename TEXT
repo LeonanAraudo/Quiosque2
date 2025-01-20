@@ -1,0 +1,26 @@
+CREATE TABLE Produtos (
+    Produto_Id SERIAL PRIMARY KEY,
+    Nome VARCHAR(255),
+    Descricao TEXT,
+    Categorias VARCHAR(50),
+    Quantidade_Disponivel INTEGER,
+    Marca VARCHAR(150),
+    Preco_Venda DECIMAL(10, 2),
+    Preco_Compra DECIMAL(10, 2),
+    Fornecedor VARCHAR(255),
+    Quantidade_Minima INTEGER,
+    Data_Vencimento DATE,
+    Foto VARCHAR(255)
+)
+
+CREATE TABLE Pedidos (
+    Pedido_Id SERIAL PRIMARY KEY,
+    Produto_Id INTEGER,
+    FOREIGN KEY (Produto_Id) REFERENCES Produtos(Produto_Id) 
+)
+
+CREATE TABLE Usuario (
+    Usuario_Id SERIAL PRIMARY KEY,
+    Nome VARCHAR(255),
+    Senha VARCHAR(255)
+)

@@ -1,8 +1,40 @@
 import style from './style.module.css'
-import { junge, montserratBold } from '../../Fontes/fonts'
+import { junge, montserratBold,montserrat } from '../../Fontes/fonts'
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { createTheme } from '@mui/material';
+import { ThemeProvider } from '@emotion/react';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useRouter } from 'next/navigation'; 
+
+
+const theme = createTheme({
+    palette:{
+        primary:{
+          main:"#000000"
+      }
+    },
+    typography: {
+        fontFamily: montserrat.style.fontFamily,
+        button: {
+            textTransform: 'none',
+          },
+      },
+      components: {
+        MuiButton: {
+          styleOverrides: {
+            root: {
+              fontSize: '15px', 
+              padding: '0px 30px', 
+              minWidth: '120px', 
+            },
+          },
+        },
+      },
+    
+})
 
 export default function Login(){
     const [inputType, setInputType] = useState('password');
@@ -13,6 +45,24 @@ export default function Login(){
         setInputType('password');
         }
     };
+    const router = useRouter()
+    const { register, handleSubmit } =useForm()
+    const handleOnSubmit = async (data) => {
+        console.log('Dados enviados:', data); 
+        try {
+          const response = await axios.post('/api/login/login', {
+            nome: data.nome,
+            senha: data.senha
+          })
+          console.log('Resposta da API:', response.data);
+
+          if(response.status === 200){
+            router.push('/Telas/Main')
+          }
+        } catch (error) {
+          console.error('Erro ao enviar dados para a API:', error);
+        }
+      };
     return(
         <div className={style.body}>
             <header className={style.header}> 
@@ -28,22 +78,24 @@ export default function Login(){
                         </div>
                         <div className={style.line2}></div>
                     </div>
-                    <form className={style.form}>
+                    <form  onSubmit={handleSubmit(handleOnSubmit)} className={style.form}>
                         <div className={style.boxInput}>
                             <label htmlFor='nome'  className={`text-[13px] ${montserratBold.className}`}>Nome</label>
-                            <input type='text' id='nome' className={style.input}/>
+                            <input type='text' id='nome' {...register('nome')} className={style.input} required/>
                         </div>
                         <div className={style.boxInput}>
                             <label htmlFor='senha' className={`text-[13px] ${montserratBold.className}`}>Senha</label>
-                            <input type={inputType} id='senha' className={style.input}/>
+                            <input type={inputType} id='senha' {...register('senha')} className={style.input} required/>
                             {inputType === 'text' ? 
                             (  <img className={style.eye} width="25" onClick={toggleInputType} height="25" src="https://img.icons8.com/sf-black-filled/64/visible.png" alt="visible"/>
                             ) : ( <img className={style.eye} onClick={toggleInputType} width="25" height="25" src="https://img.icons8.com/sf-black-filled/64/invisible.png" alt="invisible"/>  )}
                         </div>
                         <div className={style.boxButton}>
-                        <Stack spacing={2} direction="row">
-                          <Button variant="contained">Entrar</Button>
-                        </Stack>
+                            <ThemeProvider theme={theme}>
+                                <Stack spacing={2} direction="row">
+                                    <Button type='submit' variant="contained" color='primary'>Entrar</Button>
+                                </Stack>
+                            </ThemeProvider>
                         </div>
                     </form>
                 </div>
