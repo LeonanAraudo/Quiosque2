@@ -8,7 +8,7 @@ import { ThemeProvider } from '@emotion/react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'; 
-
+import { ToastContainer, toast, Flip } from 'react-toastify';
 
 const theme = createTheme({
     palette:{
@@ -33,10 +33,12 @@ const theme = createTheme({
           },
         },
       },
+      
+    })
     
-})
-
-export default function Login(){
+    
+export default function Login(){ 
+    const { register , handleSubmit, formState,  } =useForm()
     const [inputType, setInputType] = useState('password');
     const toggleInputType = () => {
         if (inputType === 'password') {
@@ -46,7 +48,6 @@ export default function Login(){
         }
     };
     const router = useRouter()
-    const { register, handleSubmit } =useForm()
     const handleOnSubmit = async (data) => {
         console.log('Dados enviados:', data); 
         try {
@@ -60,15 +61,37 @@ export default function Login(){
             router.push('/Telas/Main')
           }
         } catch (error) {
-          console.error('Erro ao enviar dados para a API:', error);
+          if(error.response){
+            if(error.response.status === 404){
+             toast.error('Nome de usuário não encontrado');
+            }else if(error.response.status === 401){
+              toast.error('Senha incorreta')
+            }
+            
+          }
         }
       };
+      
     return(
         <div className={style.body}>
             <header className={style.header}> 
                 <p className={`text-2xl bold ${junge.className}`}>Quiosque 2</p>
                 <div className={style.line}></div>
             </header>
+              <ToastContainer
+              position="top-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick={false}
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+              transition={Flip}
+              />
+              
             <div className={style.container}> 
                 <div className={style.login}>
                     <div className={style.icon}>
