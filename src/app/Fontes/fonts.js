@@ -10,6 +10,12 @@ export const roboto = Roboto({
     subsets: ["latin",]
 })
 
+export const robotoBold = Roboto({
+    weight: "700",
+    subsets: ["latin",]
+})
+
+
 export const inter = Inter({
     weight: "700",
     subsets: ["latin",]
