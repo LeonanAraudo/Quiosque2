@@ -1,7 +1,36 @@
 import Header from  '../../componentes/Header/page'
 import {inter} from '../../Fontes/fonts'
 import { useState } from 'react'
-import {robotoBold} from '../../Fontes/fonts'
+import {robotoBold, roboto} from '../../Fontes/fonts'
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { createTheme } from '@mui/material';
+import { ThemeProvider } from '@emotion/react';
+
+const theme = createTheme({
+    palette:{
+        primary:{
+          main:"#000000"
+      }
+    },
+    typography: {
+            fontFamily: roboto.style.fontFamily,
+            button: {
+                textTransform: 'none',
+              },
+          },
+          components: {
+            MuiButton: {
+              styleOverrides: {
+                root: {
+                  fontSize: '15px', 
+                  padding: '5px 30px', 
+                  minWidth: '120px', 
+                },
+              },
+            },
+          },
+})
 
 export default function CadastroProduto(){
     const [backImage, setBackImage] = useState(null)
@@ -12,7 +41,7 @@ export default function CadastroProduto(){
         }
     }
     return( 
-        <div>
+        <div >
             <div className=''>
              <Header/>
             </div>
@@ -52,7 +81,7 @@ export default function CadastroProduto(){
                         </div>
                         <div className='flex flex-col '>
                             <label htmlFor="DataVenc" className={`${robotoBold.className}`}>Data venc</label>
-                            <input type="date" id='DataVenc' className='bg-gray-300 rounded h-8 border-0 focus:outline-none' />
+                            <input type="date" id='DataVenc' className='w-[120px] bg-gray-300 rounded h-8 border-0 focus:outline-none' />
                         </div>
                     </div>
                 </div>
@@ -88,10 +117,15 @@ export default function CadastroProduto(){
                     </div>
                     </div>
                 </div>
-                <div>
-                    <label>Modelo</label>
-                    <input type="text" />
+                <div className='w-full flex items-center justify-center flex-col mt-3'>
+                    <label className={` w-[85%] flex justify-start ${robotoBold.className}`}>Modelo</label>
+                    <input type="text" className='w-[85%] bg-gray-300 rounded h-8 pl-1 border-0 focus:outline-none' />
                 </div>
+                <ThemeProvider theme={theme}>
+                    <Stack spacing={2} direction="row" className='w-full flex items-center justify-center mt-10'>
+                    <Button type='submit' variant="contained">Cadastrar</Button>
+                    </Stack>
+                </ThemeProvider>
             </form>
         </div>
     )
