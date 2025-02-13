@@ -1,5 +1,5 @@
-import produto from '../../models/Produto/produto'
-import sequelize from "../../config/database"
+import produto from '../../../models/Produto/produto'
+import sequelize from "../../../config/database"
 import { v2 as cloudinary } from 'cloudinary';
 import multer from 'multer';
 // Multer é um middleware do node.js que ajuda no gerenciamento de arquivos, no caso ele e normalmente 
@@ -30,16 +30,17 @@ export default function handler(req, res) {
 
             const { 
                 Nome,
-                Descricao,
-                Categorias,
-                Quantidade_Disponivel ,
-                Marca ,
-                Preco_Venda ,
+                Preco_Venda,
                 Preco_Compra,
-                Fornecedor ,
+                Descricao,
+                Marca,
+                Fornecedor,
+                Quantidade_Disponivel,
+                Categoria,
                 Quantidade_Minima,
+                Modelo,
                 Data_Vencimento,
-                Foto 
+                
             } = req.body;
 
             try {
@@ -47,7 +48,7 @@ export default function handler(req, res) {
                     return res.status(400).json({ error: 'No file uploaded' });
                 }
                 const uploadStream = cloudinary.uploader.upload_stream({
-                    folder: 'produtos',
+                    folder: 'quiosque2',
                 }, async (error, result) => {
                     if (error) {
                         console.error('Error uploading to Cloudinary:', error);
@@ -57,11 +58,17 @@ export default function handler(req, res) {
 
                     const createProduto = await produto.create({ 
                         Nome,
-                        Preco,
                         Descricao,
+                        Categoria,
+                        Quantidade_Disponivel,
+                        Marca,
+                        Preco_Venda,
+                        Preco_Compra,
+                        Fornecedor,
+                        Data_Vencimento,
+                        Quantidade_Minima,
+                        Modelo,
                         Foto: imageUrl,
-                        Tipo_produto,
-                        Preco_Antes
                     });
 
                     res.status(201).json(createProduto);

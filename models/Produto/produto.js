@@ -47,6 +47,10 @@ const produto = sequelize.define('Produtos',{
     type: DataTypes.INTEGER,
     allowNull:true
  },
+ Modelo:{
+   type: DataTypes.STRING,
+   allowNull:true
+},
  Foto:{
     type: DataTypes.STRING,
     allowNull:true
