@@ -35,15 +35,20 @@ const theme = createTheme({
 })
 
 export default function CadastroProduto(){
-    const {register, handleSubmit, onSubmit} = useForm1()
+    const {register, handleSubmit,handleFileChange,onSubmit} = useForm1()
 
-    const [backImage, setBackImage] = useState(null)
-    function handleImageChange(event){
-        const file = event.target.files[0];
-        if(file){
-            setBackImage(URL.createObjectURL(file))
-        }
+   const [imageSrc, setImageSrc] = useState(null);
+  
+   const localHandleFileChange = (e) => {
+    // Se quiser exibir uma prévia, use o setImageSrc aqui
+    const file = e.target.files?.[0];
+    if (file) {
+      setImageSrc(URL.createObjectURL(file));
     }
+    // Chama o handleFileChange do hook
+    handleFileChange(e);
+  };
+
     return( 
         <div >
             <div className=''>
@@ -54,24 +59,27 @@ export default function CadastroProduto(){
             </div>
             <form onSubmit={handleSubmit(onSubmit)} >
                 <div className="w-full flex items-center justify-center mt-3">
-                    <label 
-                    style={{
-                        backgroundImage: backImage ? `url(${backImage})` : "none",
-                        backgroundSize: "contain",
-                        backgroundPosition: "center",
-                        backgroundRepeat:'no-repeat'
-                    }}
-                    htmlFor="image" className="w-[85%] h-40 bg-gray-300 flex items-center justify-center cursor-pointer rounded">
-                        <input {...register('Foto')} type="file" accept="image/*" id="image" className="hidden" onChange={handleImageChange}/>
-                        {!backImage && <span>Clique para enviar uma imagem</span>}
-                    </label>
+                <label htmlFor="image">
+                    {imageSrc ? <img src={imageSrc} alt="Prévia da imagem" /> : "Clique para enviar uma imagem"}
+                </label>
+                <input
+                    type="file"
+                    accept="image/*"
+                    {...register('Foto', {
+                        onChange: (e) => {
+                        localHandleFileChange(e);
+                        }
+                    })}
+                    id="image"
+                    className="hidden"
+                    />
                 </div>
                 <div className='w-full flex items-center justify-center flex-col mt-5'>
                     <label htmlFor='Nome' className={`w-[85%] flex justify-start ${robotoBold.className}`}>Nome</label>
                     <input {...register('Nome')} type='text' id='Nome' className='w-[85%] h-8 bg-gray-300 rounded pl-1 border-0 focus:outline-none'/>
                 </div>
                 <div className='w-full flex items-center justify-center mt-5'>
-                    <div className='flex items-center justify-between flex-row w-[85%] gap-[2%]'>
+                   <div className='flex items-center justify-between flex-row w-[85%] gap-[2%]'>
                         <div className='flex flex-col'>
                             <label htmlFor='quantDispo' className={`${robotoBold.className}`}>Quant.Disponivel</label>
                             <input type='number' min={1} {...register('Quantidade_Disponivel')} id='quantDispo' className='w-[100%] bg-gray-300 rounded h-8 pl-1 border-0 focus:outline-none'/>

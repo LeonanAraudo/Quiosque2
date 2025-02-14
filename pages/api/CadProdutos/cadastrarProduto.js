@@ -1,10 +1,7 @@
 import produto from '../../../models/Produto/produto'
-import sequelize from "../../../config/database"
 import { v2 as cloudinary } from 'cloudinary';
 import multer from 'multer';
-// Multer é um middleware do node.js que ajuda no gerenciamento de arquivos, no caso ele e normalmente 
-//usado para processar requisições antes que cheguem no manipulador final. Usei o upload para armazenar o arquivo(como um buffer) no servidor ao inves de salvar antes que chegue ao cloudinary
-import streamifier from 'streamifier'; // biblioteca que converte o tipo de imagem para stream
+import streamifier from 'streamifier';
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -12,7 +9,7 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const upload = multer({ storage: multer.memoryStorage() }).single('Foto'); 
+const upload = multer({ storage: multer.memoryStorage() }).single('Foto');
 
 export const config = {
     api: {
@@ -21,14 +18,26 @@ export const config = {
 };
 
 export default function handler(req, res) {
-    if (req.method === 'POST') {
-        upload(req, res, async (err) => {
-            if (err) {
-                console.error('Error processing file:', err);
-                return res.status(500).json({ error: 'Error processing file' });
-            }
+    if (req.method !== 'POST') {
+        res.setHeader('Allow', ['POST']);
+        return res.status(405).end(`Method ${req.method} Not Allowed`);
+    }
 
-            const { 
+    upload(req, res, async (err) => {
+        if (err) {
+            console.error('Error processing file:', err);
+            return res.status(500).json({ error: 'Error processing file' });
+        }
+        
+        console.log("🟡 req.file:", req.file); // Verifica se a imagem chegou
+        console.log("🟡 req.body:", req.body); // Verifica se os dados chegaram corretamente
+
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
+
+        try {
+            const {
                 Nome,
                 Preco_Venda,
                 Preco_Compra,
@@ -40,48 +49,45 @@ export default function handler(req, res) {
                 Quantidade_Minima,
                 Modelo,
                 Data_Vencimento,
-                
             } = req.body;
 
-            try {
-                if (!req.file) {
-                    return res.status(400).json({ error: 'No file uploaded' });
+            // Converte números corretamente
+            const produtoData = {
+                Nome,
+                Descricao,
+                Categoria,
+                Marca,
+                Fornecedor,
+                Modelo,
+                Data_Vencimento,
+                Preco_Venda: parseFloat(Preco_Venda),
+                Preco_Compra: parseFloat(Preco_Compra),
+                Quantidade_Disponivel: parseInt(Quantidade_Disponivel, 10),
+                Quantidade_Minima: parseInt(Quantidade_Minima, 10),
+            };
+
+            console.log("🟢 Dados antes de salvar:", produtoData);
+
+            const uploadStream = cloudinary.uploader.upload_stream({
+                folder: 'quiosque2',
+            }, async (error, result) => {
+                if (error) {
+                    console.error('Error uploading to Cloudinary:', error);
+                    return res.status(500).json({ error: 'Error uploading to Cloudinary', details: error.message });
                 }
-                const uploadStream = cloudinary.uploader.upload_stream({
-                    folder: 'quiosque2',
-                }, async (error, result) => {
-                    if (error) {
-                        console.error('Error uploading to Cloudinary:', error);
-                        return res.status(500).json({ error: 'Error uploading to Cloudinary', details: error.message });
-                    }
-                    const imageUrl = result.secure_url;
 
-                    const createProduto = await produto.create({ 
-                        Nome,
-                        Descricao,
-                        Categoria,
-                        Quantidade_Disponivel,
-                        Marca,
-                        Preco_Venda,
-                        Preco_Compra,
-                        Fornecedor,
-                        Data_Vencimento,
-                        Quantidade_Minima,
-                        Modelo,
-                        Foto: imageUrl,
-                    });
+                const imageUrl = result.secure_url;
+                produtoData.Foto = imageUrl; // Adiciona a URL da imagem ao objeto
 
-                    res.status(201).json(createProduto);
-                });
+                const createProduto = await produto.create(produtoData);
+                res.status(201).json(createProduto);
+            });
 
-                streamifier.createReadStream(req.file.buffer).pipe(uploadStream); // aqui ele ta pegando o buffer transformando em  stream e mandando pro cloudnary
-            } catch (error) {
-                console.error('Error creating produto:', error);
-                res.status(500).json({ error: 'Failed to create produto', details: error.message });
-            }
-        });
-    } else {
-        res.setHeader('Allow', ['POST']);
-        res.status(405).end(`Method ${req.method} Not Allowed`);
-    }
+            streamifier.createReadStream(req.file.buffer).pipe(uploadStream);
+
+        } catch (error) {
+            console.error('Error creating produto:', error);
+            res.status(500).json({ error: 'Failed to create produto', details: error.message });
+        }
+    });
 }
