@@ -1,62 +1,62 @@
 import { DataTypes } from "sequelize";
 import sequelize  from '../../config/database';
 
-const produto = sequelize.define('Produtos',{
- Produto_Id:{
+const produto = sequelize.define('produtos',{
+ produto_id:{
     type: DataTypes.INTEGER,
     autoIncrement:true,
     primaryKey:true
  },
- Nome:{
+ nome:{
     type: DataTypes.STRING,
     allowNull:true
  },
- Descricao:{
+ descricao:{
     type: DataTypes.STRING,
     allowNull:true
  },
- Categoria:{
+ categorias:{
     type: DataTypes.STRING,
     allowNull:true
  },
- Quantidade_Disponivel:{
+ quantidade_disponivel:{
     type: DataTypes.INTEGER,
     allowNull:true
  },
- Marca:{
+ marca:{
     type: DataTypes.STRING,
     allowNull:true
  },
- Preco_Venda:{
+ preco_venda:{
     type: DataTypes.INTEGER,
     allowNull:true
  },
- Preco_Compra:{
+ preco_compra:{
     type: DataTypes.INTEGER,
     allowNull:true
  },
- Fornecedor:{
+ fornecedor:{
     type: DataTypes.STRING,
     allowNull:true
  },
- Data_Vencimento:{
+ data_vencimento:{
     type: DataTypes.DATE,
     allowNull:true
  },
- Quantidade_Minima:{
+ quantidade_minima:{
     type: DataTypes.INTEGER,
     allowNull:true
  },
- Modelo:{
+ modelo:{
    type: DataTypes.STRING,
    allowNull:true
 },
- Foto:{
+ foto:{
     type: DataTypes.STRING,
     allowNull:true
  }
 },{
- tableName: 'produto',
+ tableName: 'produtos',
  timestamps: false
 })
 

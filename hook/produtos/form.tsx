@@ -4,18 +4,18 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 type FormDataProps = {
-  Nome: string;
-  Preco_Venda: string;
-  Preco_Compra: string;
-  Descricao: string;
-  Marca: string;
-  Fornecedor: string;
-  Quantidade_Disponivel: string;
-  Categoria: string;
-  Quantidade_Minima: string;
-  Modelo: string;
-  Data_Vencimento: string;
-  Foto: File[] | null;
+  nome: string;
+  preco_venda: string;
+  preco_compra: string;
+  descricao: string;
+  marca: string;
+  fornecedor: string;
+  quantidade_disponivel: string;
+  categorias: string;
+  quantidade_minima: string;
+  modelo: string;
+  data_vencimento: string;
+  foto: File[] | null;
 };
 
 export default function useForm1() {
@@ -30,7 +30,7 @@ export default function useForm1() {
       const file = files[0];
       console.log("🟢 Arquivo selecionado:", file);
       // Converte FileList em Array e armazena
-      setValue('Foto', Array.from(files));
+      setValue('foto', Array.from(files));
     }
   };
 
@@ -39,15 +39,15 @@ export default function useForm1() {
   
     // Adiciona os dados do formulário ao FormData
     Object.entries(data).forEach(([key, value]) => {
-      if (key === "Foto" && Array.isArray(value) && value.length > 0) {
+      if (key === "foto" && Array.isArray(value) && value.length > 0) {
         console.log("🟢 Arquivo anexado:", value[0]); // Verifica no console
-        formDataToSend.append("Foto", value[0]);
+        formDataToSend.append("foto", value[0]);
       } else if (typeof value === "string") {
         formDataToSend.append(key, value);
       }
     });
   
-    if (!data.Foto || !Array.isArray(data.Foto) || data.Foto.length === 0) {
+    if (!data.foto || !Array.isArray(data.foto) || data.foto.length === 0) {
       console.error("❌ Nenhuma imagem foi anexada!");
       setMessage({ type: "error", text: "Nenhuma imagem foi anexada!" });
       return;
@@ -59,7 +59,7 @@ export default function useForm1() {
       });
   
       setMessage({ type: "success", text: "Produto criado com sucesso!" });
-      router.push("/telas/Estoque");
+      router.push("/telas/Main");
     } catch (error) {
       if (error instanceof Error) {
         setMessage({ type: "error", text: "Erro ao criar produto: " + error.message });
