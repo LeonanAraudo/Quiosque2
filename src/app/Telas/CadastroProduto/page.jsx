@@ -76,24 +76,24 @@ export default function CadastroProduto(){
                 </div>
                 <div className='w-full flex items-center justify-center flex-col mt-5'>
                     <label htmlFor='Nome' className={`w-[85%] flex justify-start ${robotoBold.className}`}>Nome</label>
-                    <input {...register('nome')} type='text' id='Nome' className='w-[85%] h-8 bg-gray-300 rounded pl-1 border-0 focus:outline-none'/>
+                    <input {...register('nome')} type='text' id='Nome' className='w-[85%] h-9 bg-gray-300 rounded pl-1 border-0 focus:outline-none'/>
                 </div>
                 <div className='w-full flex items-center justify-center mt-5'>
                    <div className='flex items-center justify-between flex-row w-[85%] gap-[2%]'>
                         <div className='flex flex-col'>
                             <label htmlFor='quantDispo' className={`${robotoBold.className}`}>Quant.Disponivel</label>
-                            <input type='number' min={1} {...register('quantidade_disponivel')} id='quantDispo' className='w-[100%] bg-gray-300 rounded h-8 pl-1 border-0 focus:outline-none'/>
+                            <input type='number' min={1} {...register('quantidade_disponivel')} id='quantDispo' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
                         </div>
                         <div className='flex flex-col '>
                             <label htmlFor='select' className={`${robotoBold.className}`}>Categoria</label>
-                            <select {...register('categorias')} id='select' className='bg-gray-300 rounded h-8'>
+                            <select {...register('categorias')} id='select' className='bg-gray-300 rounded h-9'>
                                 <option value='opção1'>Opção 1</option>
                                 <option value='opção2'>Opção 2</option>
                             </select>
                         </div>
                         <div className='flex flex-col '>
                             <label htmlFor="DataVenc" className={`${robotoBold.className}`}>Data venc</label>
-                            <input type="date" id='DataVenc' {...register('data_vencimento')} className='w-[120px] bg-gray-300 rounded h-8 border-0 focus:outline-none' />
+                            <input type="date" id='DataVenc' {...register('data_vencimento')} className='w-[120px] bg-gray-300 rounded h-9 border-0 focus:outline-none' />
                         </div>
                     </div>
                 </div>
@@ -101,15 +101,15 @@ export default function CadastroProduto(){
                     <div className='flex items-center justify-between flex-row w-[85%] gap-[2%]'>
                         <div className='flex flex-col'>
                             <label htmlFor='precoCompra' className={`${robotoBold.className}`}>Preço Compra</label>
-                            <input {...register('preco_compra')} type='number' min={1} id='precoCompra' className='w-[100%] bg-gray-300 rounded h-8 pl-1 border-0 focus:outline-none'/>
+                            <input {...register('preco_compra')} type='number' min={1} id='precoCompra' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
                         </div>
                         <div className='flex flex-col '>
                             <label htmlFor='precoVenda' className={`${robotoBold.className}`}>Preço Venda</label>
-                            <input {...register('preco_venda')} type='number'  min={1} id='precoVenda' className='w-[100%] bg-gray-300 rounded h-8 pl-1 border-0 focus:outline-none'/>
+                            <input {...register('preco_venda')} type='number'  min={1} id='precoVenda' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
                         </div>
                         <div className='flex flex-col '>
                             <label htmlFor="marca" className={`${robotoBold.className}`}>Marca</label>
-                            <input {...register('marca')} type="text" id='marca' className='w-[100%] bg-gray-300 rounded h-8 pl-1 border-0 focus:outline-none' />
+                            <input {...register('marca')} type="text" id='marca' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none' />
                         </div>
                     </div>
                 </div>
@@ -121,17 +121,17 @@ export default function CadastroProduto(){
                     <div className='w-[85%] flex items-center justify-between'>
                     <div className='flex flex-col w-[30%] '>
                         <label htmlFor="quantiMin" className={`${robotoBold.className}`}>Quant. Min</label>
-                        <input {...register('quantidade_minima')} type="number"  min={1} id='quantiMin' className='w-[100%] flex justify-start bg-gray-300 rounded h-8 pl-1 border-0 focus:outline-none' />
+                        <input {...register('quantidade_minima')} type="number"  min={1} id='quantiMin' className='w-[100%] flex justify-start bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none' />
                     </div>
                     <div className='flex flex-col w-[68%] '>
                         <label htmlFor='fornecedor' className={`${robotoBold.className}`}>Fornecedor</label>
-                        <input {...register('fornecedor')} type="text" id='fornecedor' className='w-[100%] flex justify-end bg-gray-300 rounded h-8 pl-1 border-0 focus:outline-none'/>
+                        <input {...register('fornecedor')} type="text" id='fornecedor' className='w-[100%] flex justify-end bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
                     </div>
                     </div>
                 </div>
                 <div className='w-full flex items-center justify-center flex-col mt-5'>
                     <label className={` w-[85%] flex justify-start ${robotoBold.className}`}>Modelo</label>
-                    <input {...register('modelo')} type="text" className='w-[85%] bg-gray-300 rounded h-8 pl-1 border-0 focus:outline-none' />
+                    <input {...register('modelo')} type="text" className='w-[85%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none' />
                 </div>
                 <ThemeProvider theme={theme}>
                     <Stack spacing={2} direction="row" className='w-full flex items-center justify-center mt-10 mb-10'>

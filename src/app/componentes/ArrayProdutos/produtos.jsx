@@ -9,39 +9,15 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 
 const columns = [
-  { id: "nome", label: "Nome", minWidth: 170,    align: "left",
-  },
-  {
-    id: "categorias",
-    label: "categorias",
-    minWidth: 170,
-    align: "left",
-    format: (value) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "quantidade_disponivel",
-    label: "Quant Disponivel",
-    minWidth: 170,
-    align: "left",
-    format: (value) => value.toLocaleString("en-US"),
-  },
-  { 
-    id: "data_vencimento",
-     label: "Dat.Vencimento",
-      minWidth: 170,
-      align: "left",
-    },
-  {
-    id: "density",
-    label: "Density",
-    minWidth: 170,
-    align: "right",
-    format: (value) => value.toFixed(2),
-  },
+  { id: "nome", label: "Nome", minWidth: 170, align: "left" },
+  { id: "categorias", label: "Categorias", minWidth: 170, align: "left" },
+  { id: "quantidade_disponivel", label: "Quant. Disponível", minWidth: 170, align: "left" },
+  { id: "data_vencimento", label: "Data Vencimento", minWidth: 170, align: "left" },
+  { id: "density", label: "Density", minWidth: 170, align: "right", format: (value) => value.toFixed(2) },
 ];
 
-function createData(nome, data_vencimento, categorias, quantidade_disponivel) {
-  return { nome, data_vencimento, categorias, quantidade_disponivel };
+function createData(nome, data_vencimento, categorias, quantidade_disponivel, quantidade_minima) {
+  return { nome, data_vencimento, categorias, quantidade_disponivel, quantidade_minima }; 
 }
 
 export default function ArrayProdutos() {
@@ -54,7 +30,7 @@ export default function ArrayProdutos() {
       try {
         const response = await fetch("/api/GetProdutos/produtos");
         const data = await response.json();
-        setPosts(data.map((item) => createData(item.nome, item.data_vencimento, item.categorias, item.quantidade_disponivel)));
+        setPosts(data.map((item) => createData(item.nome, item.data_vencimento, item.categorias, item.quantidade_disponivel, item.quantidade_minima)));
       } catch (error) {
         console.error("Erro ao buscar produtos:", error);
       }
@@ -62,21 +38,18 @@ export default function ArrayProdutos() {
     fetchPost();
   }, []);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
+  const handleChangePage = (event, newPage) => setPage(newPage);
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden", padding: 2}}>
+    <Paper sx={{ width: "100%", overflow: "hidden", padding: 2 }}>
       <TableContainer sx={{ maxHeight: 440 }}>
-        <Table  stickyHeader aria-label="sticky table">
-          <TableHead >
-            <TableRow >
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
               {columns.map((column) => (
                 <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{ bgcolor: "black", color: "white" }}>
                   {column.label}
@@ -86,7 +59,18 @@ export default function ArrayProdutos() {
           </TableHead>
           <TableBody>
             {posts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
-              <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+              <TableRow
+                hover
+                role="checkbox"
+                tabIndex={-1}
+                key={index}
+                sx={{
+                  backgroundColor:
+                    row.quantidade_disponivel < row.quantidade_minima ? "#FF0000" :  
+                    row.quantidade_disponivel == row.quantidade_minima ? "#FFD700" : 
+                    "inherit",
+                }}
+              >
                 {columns.map((column) => {
                   const value = row[column.id];
                   return (
