@@ -3,6 +3,7 @@ import { v2 as cloudinary } from 'cloudinary';
 import multer from 'multer';
 import streamifier from 'streamifier';
 import 'dotenv/config';
+import dayjs from "dayjs";
 
 // 🔍 Verifica se as variáveis de ambiente estão carregadas corretamente
 if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
@@ -74,6 +75,7 @@ export default function handler(req, res) {
                 preco_compra: parseFloat(preco_compra),
                 quantidade_disponivel: parseInt(quantidade_disponivel, 10),
                 quantidade_minima: parseInt(quantidade_minima, 10),
+                data_cadastro:dayjs().format("YYYY-MM-DD")
             };
 
             console.log("🟢 Dados antes de salvar:", produtoData);
@@ -100,7 +102,6 @@ export default function handler(req, res) {
                     streamifier.createReadStream(buffer).pipe(stream);
                 });
             };
-
             const result = await uploadFromBuffer(req.file.buffer);
             console.log("🟢 Upload Successful:", result);
             produtoData.foto = result.secure_url; // Adiciona a URL da imagem ao objeto

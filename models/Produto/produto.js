@@ -43,6 +43,10 @@ const produto = sequelize.define('produtos',{
     type: DataTypes.DATE,
     allowNull:true
  },
+ data_cadastro:{
+   type: DataTypes.DATE,
+   allowNull:true
+},
  quantidade_minima:{
     type: DataTypes.INTEGER,
     allowNull:true
