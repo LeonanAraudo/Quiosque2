@@ -1,0 +1,16 @@
+.produto{
+    width: 130px;
+    height: 120px;
+    background-color: black;
+    border-radius: 20px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+.produto:hover{
+    transform: scale(1.1);
+    transition: all 0.3s;
+}
