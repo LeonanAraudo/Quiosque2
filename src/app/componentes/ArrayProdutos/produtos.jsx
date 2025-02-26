@@ -42,28 +42,40 @@ export default function ArrayProdutos() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  const sortedPost = [...posts].sort((a,b) => {
+    const prioridadeA =
+    a.quantidade_disponivel < a.quantidade_minima ? 1 :
+    a.quantidade_disponivel === a.quantidade_minima ? 2 : 3;
+
+  const prioridadeB =
+    b.quantidade_disponivel < b.quantidade_minima ? 1 :
+    b.quantidade_disponivel === b.quantidade_minima ? 2 : 3;
+
+  return prioridadeA - prioridadeB; 
+  })
 
   return (
     <Paper sx={{ width: "100%", overflow: "hidden", padding: 2 }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
+          <TableHead >
+            <TableRow sx={{ height: "5px", minHeight: "5px"}}>
               {columns.map((column) => (
-                <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{ bgcolor: "black", color: "white",fontSize:"13px" }}>
+                <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{ bgcolor: "black",padding:"1px 10px" ,color: "white",fontSize:"13px" }}>
                   {column.label}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {posts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
+            {sortedPost.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
               <TableRow
                 hover
                 role="checkbox"
                 tabIndex={-1}
                 key={index}
                 sx={{
+                  height:"50px",
                   backgroundColor:
                     row.quantidade_disponivel < row.quantidade_minima ? "#FF0000" :  
                     row.quantidade_disponivel == row.quantidade_minima ? "#FFD700" : 
@@ -73,7 +85,7 @@ export default function ArrayProdutos() {
                 {columns.map((column) => {
         const value = row[column.id];
         return (
-          <TableCell key={column.id} align={column.align} sx={{fontSize:'13px'}}>
+          <TableCell key={column.id} align={column.align} sx={{fontSize:'13px',padding:"4px 8px"}}>
              <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
                 {column.id === "quantidade_disponivel"
                   ? row.quantidade_disponivel === row.quantidade_minima
