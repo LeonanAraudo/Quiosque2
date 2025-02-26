@@ -9,11 +9,10 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 
 const columns = [
-  { id: "nome", label: "Nome", minWidth: 170, align: "left" },
-  { id: "categorias", label: "Categorias", minWidth: 170, align: "left" },
-  { id: "quantidade_disponivel", label: "Quant. Disponível", minWidth: 170, align: "left" },
-  { id: "data_vencimento", label: "Data Vencimento", minWidth: 170, align: "left" },
-  { id: "density", label: "Density", minWidth: 170, align: "right", format: (value) => value.toFixed(2) },
+  { id: "nome", label: "Nome", minWidth: 80, align: "left" },
+  { id: "categorias", label: "Categorias", minWidth: 50, align: "left" },
+  { id: "quantidade_disponivel", label: "Quant. Disponível", minWidth: 80, align: "left" },
+  { id: "data_vencimento", label: "Data Vencimento", minWidth: 80, align: "left" },
 ];
 
 function createData(nome, data_vencimento, categorias, quantidade_disponivel, quantidade_minima) {
@@ -51,7 +50,7 @@ export default function ArrayProdutos() {
           <TableHead>
             <TableRow>
               {columns.map((column) => (
-                <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{ bgcolor: "black", color: "white" }}>
+                <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{ bgcolor: "black", color: "white",fontSize:"13px" }}>
                   {column.label}
                 </TableCell>
               ))}
@@ -72,13 +71,21 @@ export default function ArrayProdutos() {
                 }}
               >
                 {columns.map((column) => {
-                  const value = row[column.id];
-                  return (
-                    <TableCell key={column.id} align={column.align}>
-                      {column.format && typeof value === "number" ? column.format(value) : value}
-                    </TableCell>
-                  );
-                })}
+        const value = row[column.id];
+        return (
+          <TableCell key={column.id} align={column.align} sx={{fontSize:'13px'}}>
+             <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                {column.id === "quantidade_disponivel"
+                  ? row.quantidade_disponivel === row.quantidade_minima
+                    ? <><span>⚠️</span> {row.quantidade_disponivel}</>
+                    : row.quantidade_disponivel < row.quantidade_minima
+                      ? <><span>🚨</span> {row.quantidade_disponivel}</>
+                      : <><span className="ml-[24px]">{row.quantidade_disponivel}</span></>
+                  : value}
+              </span>
+          </TableCell>
+        );
+      })}
               </TableRow>
             ))}
           </TableBody>
