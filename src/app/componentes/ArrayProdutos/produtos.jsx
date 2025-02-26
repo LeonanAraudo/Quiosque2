@@ -7,11 +7,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-
+import style from '../../Telas/Estoque/style.module.css'
 const columns = [
-  { id: "nome", label: "Nome", minWidth: 80, align: "left" },
-  { id: "categorias", label: "Categorias", minWidth: 50, align: "left" },
-  { id: "quantidade_disponivel", label: "Quant. Disponível", minWidth: 80, align: "left" },
+  { id: "nome", label: "Nome", minWidth: 70, align: "left" },
+  { id: "categorias", label: "Categorias", minWidth: 80, align: "left" },
+  { id: "quantidade_disponivel", label: "Quant. Disponível", minWidth: 90, align: "left" },
   { id: "data_vencimento", label: "Data Vencimento", minWidth: 80, align: "left" },
 ];
 
@@ -22,8 +22,15 @@ function createData(nome, data_vencimento, categorias, quantidade_disponivel, qu
 export default function ArrayProdutos() {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
+ const [mud,setMud] = useState(true)
+    function mudar(){
+        setMud(false)
+    }
+    function voltar(){
+        setMud(true)
+    }
   useEffect(() => {
     async function fetchPost() {
       try {
@@ -42,33 +49,51 @@ export default function ArrayProdutos() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  const sortedPost = [...posts].sort((a,b) => {
-    const prioridadeA =
-    a.quantidade_disponivel < a.quantidade_minima ? 1 :
-    a.quantidade_disponivel === a.quantidade_minima ? 2 : 3;
+  // const sortedPost = [...posts].sort((a,b) => {
+  //   const prioridadeA =
+  //   a.quantidade_disponivel < a.quantidade_minima ? 1 :
+  //   a.quantidade_disponivel === a.quantidade_minima ? 2 : 3;
 
-  const prioridadeB =
-    b.quantidade_disponivel < b.quantidade_minima ? 1 :
-    b.quantidade_disponivel === b.quantidade_minima ? 2 : 3;
+  // const prioridadeB =
+  //   b.quantidade_disponivel < b.quantidade_minima ? 1 :
+  //   b.quantidade_disponivel === b.quantidade_minima ? 2 : 3;
 
-  return prioridadeA - prioridadeB; 
-  })
-
+  // return prioridadeA - prioridadeB; 
+  // })
+  // const filtered = posts.filter((posts) => nome.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filteredPosts = posts
+  .filter((post) => post.nome.toLowerCase().includes(searchTerm.toLowerCase())) // Filtra pelos nomes
+  .sort((a, b) => {
+    const prioridadeA = a.quantidade_disponivel < a.quantidade_minima ? 1 : a.quantidade_disponivel === a.quantidade_minima ? 2 : 3;
+    const prioridadeB = b.quantidade_disponivel < b.quantidade_minima ? 1 : b.quantidade_disponivel === b.quantidade_minima ? 2 : 3;
+    return prioridadeA - prioridadeB;
+  });
   return (
+    <>
+     <div className='w-full flex items-center justify-center'>
+                <input value={searchTerm}
+                 onChange={(e) => setSearchTerm(e.target.value)} 
+                 onBlur={voltar} 
+                 onClick={mudar} 
+                 type='text' placeholder='pesquise um produto' 
+                 className={style.input}/>
+                {mud && <img className={style.lupa} width="28" height="28" src="https://img.icons8.com/ios-filled/50/search--v1.png" alt="search--v1"/>
+                }
+            </div>
     <Paper sx={{ width: "100%", overflow: "hidden", padding: 2 }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead >
             <TableRow sx={{ height: "5px", minHeight: "5px"}}>
               {columns.map((column) => (
-                <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{ bgcolor: "black",padding:"1px 10px" ,color: "white",fontSize:"13px" }}>
+                <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{ bgcolor: "black",padding:"1px 1px" ,color: "white",fontSize:"13px" }}>
                   {column.label}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {sortedPost.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
+            {filteredPosts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
               <TableRow
                 hover
                 role="checkbox"
@@ -77,8 +102,8 @@ export default function ArrayProdutos() {
                 sx={{
                   height:"50px",
                   backgroundColor:
-                    row.quantidade_disponivel < row.quantidade_minima ? "#FF0000" :  
-                    row.quantidade_disponivel == row.quantidade_minima ? "#FFD700" : 
+                    row.quantidade_disponivel < row.quantidade_minima ? "#FF6347" :  
+                    row.quantidade_disponivel == row.quantidade_minima ? "#fff94a" : 
                     "inherit",
                 }}
               >
@@ -113,5 +138,6 @@ export default function ArrayProdutos() {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
+    </>
   );
 }
