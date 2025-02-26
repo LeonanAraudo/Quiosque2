@@ -11,16 +11,13 @@ export default function Main(){
                 <img className={style.backImage} src='/comida.jpg'></img>
                 <div className={style.header}>
                     <p className={`${style.logo} ${junge.className}`}>Quiosque 2</p>
-                   <Link href={"#"}>
-                      <img width="30" height="30" src="https://img.icons8.com/ios-filled/50/FFFFFF/menu--v6.png" alt="menu--v6"/>
-                    </Link>
                 </div>
                 <div className={style.containerOptions}>
                     <div className={style.boxCircle}>
                         <Circle/>
                     </div>
                     <div className={style.containerCircleOptions}>    
-                        <Link className={`ml-[152px] ${style.boxCircleOptions}`} href={'#'}>
+                        <Link className={`ml-[140px] mt-[40px] ${style.boxCircleOptions}`} href={'/Telas/Estoque'}>
                             <div className={style.circleOptions}>
                                 <img width="38" height="38" src="https://img.icons8.com/pastel-glyph/128/FFFFFF/box--v1.png" alt="box--v1"/>
                             </div>
@@ -32,7 +29,7 @@ export default function Main(){
                             </div>
                             <p className={`${montserrat.className} ${style.optionsTitle}`}>Pedidos</p>
                         </Link>
-                        <Link href={'#'} className={`ml-[162px] ${style.boxCircleOptions}`}>
+                        <Link href={'#'} className={`ml-[142px] ${style.boxCircleOptions}`}>
                             <div className={style.circleOptions}>
                             <img width="38" height="38" src="https://img.icons8.com/glyph-neue/64/FFFFFF/combo-chart.png" alt="combo-chart"/>
                             </div>

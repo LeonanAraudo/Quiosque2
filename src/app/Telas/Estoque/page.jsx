@@ -1,3 +1,4 @@
+"use client"
 import Header from '../../componentes/Header/page'
 import ArrayProdutos from '@/app/componentes/ArrayProdutos/produtos'
 import style from './style.module.css'
@@ -6,7 +7,7 @@ export default function Estoque(){
    
     return(
         <div>
-            <Header/>
+            <Header linkDestino={'/Telas/Main'}/>
            
         <div>
             <ArrayProdutos/>
