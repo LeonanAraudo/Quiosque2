@@ -7,8 +7,7 @@ export default function Estoque(){
    
     return(
         <div>
-            <Header linkDestino={'/Telas/Main'}/>
-           
+            <Header linkDestino={'/Telas/Main'}/>    
         <div>
             <ArrayProdutos/>
         </div>

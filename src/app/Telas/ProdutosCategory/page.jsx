@@ -1,8 +1,12 @@
 import Header from '../../componentes/Header/page'
+import Card from '../../componentes/Cards/card'
 export default function ProdutosList(){
     return(
-        <>
-        <Header linkDestino={'/Telas/Pedidos'} />
-        </>
+        <div>
+            <Header linkDestino={'/Telas/Pedidos'} />
+            <div>
+                 <Card/>
+            </div>
+        </div>
     )
 }

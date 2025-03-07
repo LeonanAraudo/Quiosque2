@@ -6,11 +6,12 @@ import CadastroProduto from './Telas/CadastroProduto/page'
 import ArrayProdutos from '../app/componentes/ArrayProdutos/produtos'
 import Pedidos from './Telas/Pedidos/page'
 import Card from './componentes/Cards/card'
+import ProdutosList from './Telas/ProdutosCategory/page'
 export default function Home() {
   return (
     <div>
       <div>
-       <Card/>
+       <ProdutosList/>
       </div>
     </div>
   );
