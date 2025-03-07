@@ -23,7 +23,7 @@ export default function Main(){
                             </div>
                             <p className={`${montserrat.className} ${style.optionsTitle}`}>Estoque</p>
                         </Link>
-                        <Link href={"#"} className={`ml-[198px] ${style.boxCircleOptions}`}>
+                        <Link href={"/Telas/Pedidos"} className={`ml-[198px] ${style.boxCircleOptions}`}>
                             <div className={style.circleOptions}>
                             <img width="38" height="38" src="https://img.icons8.com/glyph-neue/64/FFFFFF/survey--v1.png" alt="survey--v1"/>
                             </div>
