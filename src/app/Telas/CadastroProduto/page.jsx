@@ -1,4 +1,5 @@
-import Header from  '../../componentes/Header/page'
+"use client"
+import Header from '../../componentes/Header/page'
 import {inter} from '../../Fontes/fonts'
 import { useState } from 'react'
 import {robotoBold, roboto} from '../../Fontes/fonts'
@@ -40,19 +41,17 @@ export default function CadastroProduto(){
    const [imageSrc, setImageSrc] = useState(null);
   
    const localHandleFileChange = (e) => {
-    // Se quiser exibir uma prévia, use o setImageSrc aqui
     const file = e.target.files?.[0];
     if (file) {
       setImageSrc(URL.createObjectURL(file));
     }
-    // Chama o handleFileChange do hook
     handleFileChange(e);
   };
 
     return( 
         <div >
             <div className=''>
-             <Header/>
+                 <Header linkDestino={'/Telas/Main'}/>    
             </div>
             <div>
              <p className={`w-full flex items-center justify-center text-xl mt-4 ${inter.className}`}>Adicionar Produto</p>
@@ -87,8 +86,10 @@ export default function CadastroProduto(){
                         <div className='flex flex-col '>
                             <label htmlFor='select' className={`${robotoBold.className}`}>Categoria</label>
                             <select {...register('categorias')} id='select' className='bg-gray-300 rounded h-9'>
-                                <option value='opção1'>Opção 1</option>
-                                <option value='opção2'>Opção 2</option>
+                                <option value='Bebidas'>Bebidas</option>
+                                <option value='Lanches'>Lanches</option>
+                                <option value='Shakes'>Shakes</option>
+                                <option value='Porcoes'>Porções</option>
                             </select>
                         </div>
                         <div className='flex flex-col '>

@@ -1,3 +1,4 @@
+"use client"
 import style from './style.module.css'
 import { junge, montserratBold,montserrat } from '../../Fontes/fonts'
 import { useState } from 'react';

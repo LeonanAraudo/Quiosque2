@@ -1,4 +1,4 @@
-import produto from '../../../models/Produto/produto';
+import produto from '../../../../models/Produto/produto'
 import { v2 as cloudinary } from 'cloudinary';
 import multer from 'multer';
 import streamifier from 'streamifier';

@@ -1,4 +1,4 @@
-import usuario from '../../../models/Usuario/usuario';
+import usuario from '../../../../models/Usuario/usuario';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {

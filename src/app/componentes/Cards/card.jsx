@@ -1,77 +1,47 @@
+"use client"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState, useEffect } from 'react';
 
-export default function Card() {
+export default function Card({categorias}) {
+    const [ produto, setProduto ] = useState([])
+
+    useEffect(() => {
+        async function fetchProdutos() {
+            const url = categorias ? `/api/GetCategory/${categorias}` : '/api/GetProdutos/produtos'
+            const response = await fetch(url)
+            const data = await response.json();
+            setProduto(data)
+        }
+        fetchProdutos();
+      }, [categorias]);
     return (
         <>
-        <div className="container-fluid p-3">
-            <div className="card d-flex flex-row" style={{ maxWidth: "100%" }}>
-                <div className="col-4 d-flex align-items-center justify-content-center">
-                    <img
-                        src="/aga.png"
-                        className="img-fluid rounded-start"
-                        alt="Imagem aleatória"
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
-                </div>
-                <div className="col-8">
-                    <div className="card-body">
-                        <h5 className="card-title">Água</h5>
-                        <p className="card-text text-success">R$ 20,00</p>
-                        <p className="card-text">
-                            <small className="text-body-secondary">Quantidade disponível: 20</small>
-                        </p>
-                        <button href="#" className="btn btn-dark btn-lg">+</button>
+       {produto.map((produto) => (  
+            <div className="container-fluid p-3">
+                    <div className="card d-flex flex-row" style={{ maxWidth: "100%" }}>
+                        <div className="col-4 d-flex align-items-center justify-content-center">
+                            <img
+                                src={produto.foto}
+                                className="img-fluid rounded-start"
+                                alt="Imagem aleatória"
+                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                            />
+                        </div>
+                        <div className="col-6.5">
+                            <div className="card-body">
+                                <h5 className="card-title">{produto.nome}</h5>
+                                <p className="card-text text-success">R${produto.preco_venda}</p>
+                                <p className="card-text">
+                                    <small className="text-body-secondary">Quantidade disponível: {produto.quantidade_disponivel}</small>
+                                </p>
+                            </div>
+                        </div>
+                        <div className='col-1.5 mt-11'>
+                        <button className="btn btn-dark">+</button>
+                        </div>
                     </div>
-                </div>
             </div>
-        </div>
-
-        <div className="container-fluid p-3">
-            <div className="card d-flex flex-row" style={{ maxWidth: "100%" }}>
-                <div className="col-4 d-flex align-items-center justify-content-center">
-                    <img
-                        src="/coca.jpg"
-                        className="img-fluid rounded-start"
-                        alt="Imagem aleatória"
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
-                </div>
-                <div className="col-8">
-                    <div className="card-body">
-                        <h5 className="card-title">Água</h5>
-                        <p className="card-text text-success">R$ 20,00</p>
-                        <p className="card-text">
-                            <small className="text-body-secondary">Quantidade disponível: 20</small>
-                        </p>
-                        <button className="btn btn-dark btn-lg">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-       
-        <div className="container-fluid p-3">
-            <div className="card d-flex flex-row" style={{ maxWidth: "100%" }}>
-                <div className="col-4 d-flex align-items-center justify-content-center">
-                    <img
-                        src="/guara.jpg"
-                        className="img-fluid rounded-start"
-                        alt="Imagem aleatória"
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
-                </div>
-                <div className="col-8">
-                    <div className="card-body">
-                        <h5 className="card-title">Água</h5>
-                        <p className="card-text text-success">R$ 20,00</p>
-                        <p className="card-text">
-                            <small className="text-body-secondary">Quantidade disponível: 20</small>
-                        </p>
-                        <button className="btn btn-dark btn-lg">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+       ))} 
         </>
     );
 }
