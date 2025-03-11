@@ -19,7 +19,7 @@ export default function Pedidos() {
                     {categorias.slice(0, 2).map((categoria, index) => (
                         <Link key={index} href={categoria.destino} className={style.produto}>
                             <img width="55" height="55" src={categoria.icone} alt={categoria.nome} />
-                            <p className={`${style.categoria} ${inter.className}`}>{categoria.nome}</p>
+                            <p className={`${style.unline} ${inter.className}`}>{categoria.nome}</p>
                         </Link>
                     ))}
                 </div>
@@ -27,7 +27,7 @@ export default function Pedidos() {
                     {categorias.slice(2).map((categoria, index) => (
                         <Link key={index} href={categoria.destino} className={style.produto}>
                             <img width="50" height="50" src={categoria.icone} alt={categoria.nome} />
-                            <p className={`${style.categoria} ${inter.className}`}>{categoria.nome}</p>
+                            <p className={`${style.unline} ${inter.className}`}>{categoria.nome}</p>
                         </Link>
                     ))}
                 </div>

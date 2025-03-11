@@ -11,7 +11,6 @@ export default function ProdutosList() {
         <div>
             <Header linkDestino={'/Telas/Pedidos'} />
             <div>
-                <h1>Produtos da categoria: {categorias}</h1>
                 <Card categorias={categorias} />
             </div>
         </div>

@@ -32,13 +32,9 @@ export default function ArrayProdutos() {
   const [page, setPage] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(10);
- const [mud,setMud] = useState(true)
-    function mudar(){
-        setMud(false)
-    }
-    function voltar(){
-        setMud(true)
-    }
+  const [mud,setMud] = useState(true)
+  const toggleMud = () => setMud((prevMud) => !prevMud);
+
   useEffect(() => {
     async function fetchPost() {
       try {
@@ -81,73 +77,73 @@ export default function ArrayProdutos() {
      <div className='w-full flex items-center justify-center'>
                 <input value={searchTerm}
                  onChange={(e) => setSearchTerm(e.target.value)} 
-                 onBlur={voltar} 
-                 onClick={mudar} 
+                 onBlur={toggleMud} 
+                 onClick={toggleMud} 
                  type='text' placeholder='pesquise um produto' 
                  className={style.input}/>
                 {mud && <img className={style.lupa} width="28" height="28" src="https://img.icons8.com/ios-filled/50/search--v1.png" alt="search--v1"/>
                 }
-            </div>
-            <ThemeProvider theme={theme}>
-              <Paper sx={{ width: "100%", overflow: "hidden", padding: 2 }}>
-                <TableContainer sx={{ maxHeight: 440 }}>
-                  <Table stickyHeader aria-label="sticky table">
-                    <TableHead >
-                      <TableRow sx={{ height: "5px", minHeight: "5px"}}>
-                        {columns.map((column) => (
-                          <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{ bgcolor: "black",padding:"1px 8px" ,color: "white",fontSize:"13px" }}>
-                            {column.label}
-                          </TableCell>
-                        ))}
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {filteredPosts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
-                        <TableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={index}
-                          sx={{
-                            height:"50px",
-                            backgroundColor:
-                              row.quantidade_disponivel < row.quantidade_minima ? "#FF6347" :  
-                              row.quantidade_disponivel == row.quantidade_minima ? "#fff94a" : 
-                              "inherit",
-                          }}
-                        >
-                          {columns.map((column) => {
-                  const value = row[column.id];
-                  return (
-                    <TableCell key={column.id} align={column.align} sx={{fontSize:'13px',padding:"4px 8px"}}>
-                      <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                          {column.id === "quantidade_disponivel"
-                            ? row.quantidade_disponivel === row.quantidade_minima
-                              ? <><span>⚠️</span> {row.quantidade_disponivel}</>
-                              : row.quantidade_disponivel < row.quantidade_minima
-                                ? <><span>🚨</span> {row.quantidade_disponivel}</>
-                                : <><span className="ml-[24px]">{row.quantidade_disponivel}</span></>
-                            : value}
-                        </span>
-                    </TableCell>
-                  );
-                })}
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-                <TablePagination
-                  rowsPerPageOptions={[10, 25, 100]}
-                  component="div"
-                  count={posts.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-              </Paper>
-            </ThemeProvider>
+    </div>
+    <ThemeProvider theme={theme}>
+      <Paper sx={{ width: "100%", overflow: "hidden", padding: 2 }}>
+        <TableContainer sx={{ maxHeight: 440 }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead >
+              <TableRow sx={{ height: "5px", minHeight: "5px"}}>
+                {columns.map((column) => (
+                  <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{ bgcolor: "black",padding:"1px 8px" ,color: "white",fontSize:"13px" }}>
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {filteredPosts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
+                <TableRow
+                  hover
+                  role="checkbox"
+                  tabIndex={-1}
+                  key={index}
+                  sx={{
+                    height:"50px",
+                    backgroundColor:
+                      row.quantidade_disponivel < row.quantidade_minima ? "#FF6347" :  
+                      row.quantidade_disponivel == row.quantidade_minima ? "#fff94a" : 
+                      "inherit",
+                  }}
+                >
+                  {columns.map((column) => {
+          const value = row[column.id];
+          return (
+            <TableCell key={column.id} align={column.align} sx={{fontSize:'13px',padding:"4px 8px"}}>
+              <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                  {column.id === "quantidade_disponivel"
+                    ? row.quantidade_disponivel === row.quantidade_minima
+                      ? <><span>⚠️</span> {row.quantidade_disponivel}</>
+                      : row.quantidade_disponivel < row.quantidade_minima
+                        ? <><span>🚨</span> {row.quantidade_disponivel}</>
+                        : <><span className="ml-[24px]">{row.quantidade_disponivel}</span></>
+                    : value}
+                </span>
+            </TableCell>
+          );
+        })}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={posts.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </ThemeProvider>
     </>
   );
 }

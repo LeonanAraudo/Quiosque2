@@ -1,10 +1,14 @@
 "use client"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
+import style from '../../Telas/Estoque/style.module.css'
 
 export default function Card({categorias}) {
     const [ produto, setProduto ] = useState([])
+    const [searchTerm, setSearchTerm] = useState("");
+    const [mud,setMud] = useState(true)
 
+    const toggleMud = () => setMud((prevMud) => !prevMud);
     useEffect(() => {
         async function fetchProdutos() {
             const url = categorias ? `/api/GetCategory/${categorias}` : '/api/GetProdutos/produtos'
@@ -14,9 +18,22 @@ export default function Card({categorias}) {
         }
         fetchProdutos();
       }, [categorias]);
+ 
+      const filteredPosts = produto.filter((produto) => produto.nome.toLowerCase().includes(searchTerm.toLowerCase()));
+
     return (
         <>
-       {produto.map((produto) => (  
+        <div className='w-full flex items-center justify-center'>
+                        <input value={searchTerm}
+                         onChange={(e) => setSearchTerm(e.target.value)} 
+                         onBlur={toggleMud} 
+                         onClick={toggleMud} 
+                         type='text' placeholder='pesquise um produto' 
+                         className={style.input}/>
+                        {mud && <img className={style.lupa} width="28" height="28" src="https://img.icons8.com/ios-filled/50/search--v1.png" alt="search--v1"/>
+                        }
+         </div>
+       {filteredPosts.map((produto) => (  
             <div className="container-fluid p-3">
                     <div className="card d-flex flex-row" style={{ maxWidth: "100%" }}>
                         <div className="col-4 d-flex align-items-center justify-content-center">
