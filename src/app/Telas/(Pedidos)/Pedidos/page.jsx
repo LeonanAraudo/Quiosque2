@@ -1,6 +1,6 @@
-import Header from '../../componentes/Header/page'
+import Header from '../../../componentes/Header/page'
 import style from './style.module.css'
-import { inter } from '../../Fontes/fonts'
+import { inter } from '../../../Fontes/fonts'
 import Link from 'next/link'
 
 export default function Pedidos() {

@@ -1,14 +1,14 @@
 "use client"
-import Header from '../../componentes/Header/page'
-import {inter} from '../../Fontes/fonts'
+import Header from '../../../componentes/Header/page'
+import {inter} from '../../../Fontes/fonts'
 import { useState } from 'react'
-import {robotoBold, roboto} from '../../Fontes/fonts'
+import {robotoBold, roboto} from '../../../Fontes/fonts'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { createTheme } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-import useForm1 from '../../../../hook/produtos/form';
+import useForm1 from '../../../../../hook/produtos/form';
 
 const theme = createTheme({
     palette:{
