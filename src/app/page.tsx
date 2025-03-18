@@ -7,11 +7,12 @@ import ArrayProdutos from '../app/componentes/ArrayProdutos/produtos'
 import Pedidos from './Telas/(Pedidos)/Pedidos/page'
 import Card from './componentes/Cards/card'
 import ProdutosList from './Telas/(Pedidos)/ProdutosCategory/page'
+import DataProduto from './Telas/(Estoque)/DadosProduto/page'
 export default function Home() {
   return (
     <div>
       <div>
-       <ProdutosList/>
+       <DataProduto/>
       </div>
     </div>
   );
