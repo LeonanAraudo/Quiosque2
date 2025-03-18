@@ -1,6 +1,8 @@
 import Header from '../../../componentes/Header/page'
 import { robotoBold, roboto } from '../../../Fontes/fonts'
 import style from './style.module.css'
+import { Button } from "@/components/ui/button"
+
 export default function DataProduto(){
     return(
             <div className={`${style.container} ${roboto.className}`}>
@@ -21,7 +23,7 @@ export default function DataProduto(){
                         </div> 
                         <div className={style.box3}>
                             <p className={`${robotoBold.className} text-lg`}>Informações do Produto</p>
-                            <div className='flex flex-col gap-2 mt-2'>
+                            <div className='flex flex-col gap-2 mt-2 ml-2'>
                                 <div>
                                     <p className={`${robotoBold.className} text-sm`}>Preço de Compra</p>
                                     <p className={`${roboto.className} text-xs`}>R$ 10,00</p>
@@ -44,6 +46,10 @@ export default function DataProduto(){
                                     <p className={`${roboto.className} text-xs`}>Jorge</p>
                                 </div>                             
                             </div>
+                        </div>
+                        <div className='flex flex-row items-center justify-between mt-4'>
+                            <Button className='w-[130px] h-[25px]' variant="destructive">Apagar</Button>
+                            <p className='text-xs'>Adicionado em: 10/10/2000</p>
                         </div>
                     </div>
                 </div>
