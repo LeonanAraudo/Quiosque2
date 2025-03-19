@@ -17,8 +17,7 @@ try{
         }
     })
 
-    return res.status(200).json(produtoId)
-
+    return res.status(200).json(produtoId);
 }catch(error){
     return res.status(500).json({error: "Erro ao buscar produtoId"})
 }
