@@ -9,6 +9,7 @@ export default function Card({categorias}) {
     const [mud,setMud] = useState(true)
 
     const toggleMud = () => setMud((prevMud) => !prevMud);
+    
     useEffect(() => {
         async function fetchProdutos() {
             const url = categorias ? `/api/GetCategory/${categorias}` : '/api/GetProdutos/produtos'

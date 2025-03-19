@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -10,6 +11,8 @@ import TableRow from "@mui/material/TableRow";
 import style from '../../Telas/(Estoque)/Estoque/style.module.css'
 import { createTheme, ThemeProvider } from "@mui/material";
 import { roboto } from '../../Fontes/fonts'
+import Link from "next/link";
+
 const columns = [
   { id: "nome", label: "Nome", minWidth: 70, align: "left" },
   { id: "categorias", label: "Categorias", minWidth: 80, align: "left" },
@@ -17,8 +20,8 @@ const columns = [
   { id: "data_vencimento", label: "Data Vencimento", minWidth: 80, align: "left" },
 ];
 
-function createData(nome, data_vencimento, categorias, quantidade_disponivel, quantidade_minima) {
-  return { nome, data_vencimento, categorias, quantidade_disponivel, quantidade_minima }; 
+function createData(nome, data_vencimento, categorias, quantidade_disponivel, quantidade_minima, produto_id) {
+  return { nome, data_vencimento, categorias, quantidade_disponivel, quantidade_minima, produto_id}; 
 }
 
 const theme = createTheme({
@@ -34,37 +37,28 @@ export default function ArrayProdutos() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [mud,setMud] = useState(true)
   const toggleMud = () => setMud((prevMud) => !prevMud);
-
+  const router = useRouter();
   useEffect(() => {
     async function fetchPost() {
       try {
         const response = await fetch("/api/GetProdutos/produtos");
         const data = await response.json();
-        setPosts(data.map((item) => createData(item.nome, item.data_vencimento, item.categorias, item.quantidade_disponivel, item.quantidade_minima)));
+        setPosts(data.map((item) => createData(item.nome, item.data_vencimento, item.categorias, item.quantidade_disponivel, item.quantidade_minima,item.produto_id)));    
       } catch (error) {
         console.error("Erro ao buscar produtos:", error);
       }
     }
     fetchPost();
   }, []);
+console.log(posts)
 
   const handleChangePage = (event, newPage) => setPage(newPage);
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  // const sortedPost = [...posts].sort((a,b) => {
-  //   const prioridadeA =
-  //   a.quantidade_disponivel < a.quantidade_minima ? 1 :
-  //   a.quantidade_disponivel === a.quantidade_minima ? 2 : 3;
 
-  // const prioridadeB =
-  //   b.quantidade_disponivel < b.quantidade_minima ? 1 :
-  //   b.quantidade_disponivel === b.quantidade_minima ? 2 : 3;
-
-  // return prioridadeA - prioridadeB; 
-  // })
-  // const filtered = posts.filter((posts) => nome.toLowerCase().includes(searchTerm.toLowerCase()))
   const filteredPosts = posts
   .filter((post) => post.nome.toLowerCase().includes(searchTerm.toLowerCase()))
   .sort((a, b) => {
@@ -72,6 +66,7 @@ export default function ArrayProdutos() {
     const prioridadeB = b.quantidade_disponivel < b.quantidade_minima ? 1 : b.quantidade_disponivel === b.quantidade_minima ? 2 : 3;
     return prioridadeA - prioridadeB;
   });
+
   return (
     <>
      <div className='w-full flex items-center justify-center'>
@@ -91,7 +86,7 @@ export default function ArrayProdutos() {
             <TableHead >
               <TableRow sx={{ height: "5px", minHeight: "5px"}}>
                 {columns.map((column) => (
-                  <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{ bgcolor: "black",padding:"1px 8px" ,color: "white",fontSize:"13px" }}>
+                  <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{padding:"1px 8px" ,fontSize:"13px" }}>
                     {column.label}
                   </TableCell>
                 ))}
@@ -115,17 +110,17 @@ export default function ArrayProdutos() {
                   {columns.map((column) => {
           const value = row[column.id];
           return (
-            <TableCell key={column.id} align={column.align} sx={{fontSize:'13px',padding:"4px 8px"}}>
-              <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                  {column.id === "quantidade_disponivel"
-                    ? row.quantidade_disponivel === row.quantidade_minima
-                      ? <><span>⚠️</span> {row.quantidade_disponivel}</>
-                      : row.quantidade_disponivel < row.quantidade_minima
-                        ? <><span>🚨</span> {row.quantidade_disponivel}</>
-                        : <><span className="ml-[24px]">{row.quantidade_disponivel}</span></>
-                    : value}
-                </span>
-            </TableCell>
+              <TableCell key={column.id} align={column.align} sx={{fontSize:'13px',padding:"4px 8px"}} onClick={() => router.push(`/Telas/DadosProduto/${row.produto_id}`)}>
+                <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                    {column.id === "quantidade_disponivel"
+                      ? row.quantidade_disponivel === row.quantidade_minima
+                        ? <><span>⚠️</span> {row.quantidade_disponivel}</>
+                        : row.quantidade_disponivel < row.quantidade_minima
+                          ? <><span>🚨</span> {row.quantidade_disponivel}</>
+                          : <><span className="ml-[24px]">{row.quantidade_disponivel}</span></>
+                      : value}
+                  </span>
+              </TableCell>
           );
         })}
                 </TableRow>
