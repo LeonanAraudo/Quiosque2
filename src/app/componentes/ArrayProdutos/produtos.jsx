@@ -50,7 +50,6 @@ export default function ArrayProdutos() {
     }
     fetchPost();
   }, []);
-console.log(posts)
 
   const handleChangePage = (event, newPage) => setPage(newPage);
 

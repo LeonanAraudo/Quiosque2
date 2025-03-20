@@ -7,63 +7,66 @@ import { useEffect, useState } from 'react';
 
 export default function DadosProduto({produto_id}){
     const [ produto, setProduto] = useState([])
-    console.log("a produto id" + produto_id)
     useEffect(() => {
         async function fetchProdutos(){
             const url = `/api/GetProdutoById/${produto_id}`
             const response = await fetch(url)
             const data = await response.json();
-            console.log("a data e esse" + data)
-            setProduto(data)
+            setProduto(data.map((item) => { return item }))
         }
         fetchProdutos();
     },[produto_id])
 
-    console.log("o produto e esse" + produto)
     return(
+        <>
+        {produto.map((row,index) => (
             <div className={`${style.container} ${roboto.className}`}>
+                {console.log(produto)}
                 <div className={style.boxImage}>
-                    <img className={style.image} src={produto.foto} alt="" />
+                    <img className={style.image} src={row.foto} alt="" />
                 </div>
                 <div className={style.dataBox}>
                         <div className={style.box1}>
-                            <p className={`text-3xl ${robotoBold.className}`}>{produto.nome}</p>
+                            <p className={`text-3xl ${robotoBold.className}`}>{row.nome}</p>
                             <img width="25" height="25" src="https://img.icons8.com/windows/32/pencil.png" alt="pencil"/>
                         </div>
                         <div className={style.box2}>
-                            <p className={style.amount}>Disponivel em estoque: {produto.quantidade_disponivel}</p>
-                            <p className={`${robotoBold.className} text-[23px]`}>R${produto.preco_venda}</p>
+                            <p className={style.amount}>Disponivel em estoque: {row.quantidade_disponivel}</p>
+                            <p className={`${robotoBold.className} text-[23px]`}>R${row.preco_venda}</p>
                         </div> 
                         <div className={style.box3}>
-                            <p className={`${robotoBold.className} text-lg`}>Informações do Produto</p>
+                            <p className={`${robotoBold.className} text-lg`}>Informações do row</p>
                             <div className='flex flex-col gap-2 mt-2 ml-2'>
                                 <div>
                                     <p className={`${robotoBold.className} text-sm`}>Preço de Compra</p>
-                                    <p className={`${roboto.className} text-xs`}>R${produto.preco_compra}</p>
+                                    <p className={`${roboto.className} text-xs`}>R${row.preco_compra}</p>
                                 </div>
                                 <div>
                                     <p className={`${robotoBold.className} text-sm`}>Descrição</p>
-                                    <p className={`${roboto.className} text-xs`}>{produto.descricao}</p>
+                                    <p className={`${roboto.className} text-xs`}>{row.descricao}</p>
                                 </div>
                                 <div>
                                     <p className={`${robotoBold.className} text-sm`}>Marca</p>
-                                    <p className={`${roboto.className} text-xs`}>{produto.marca}</p>
+                                    <p className={`${roboto.className} text-xs`}>{row.marca}</p>
                                 </div>
                                 <div>
                                     <p className={`${robotoBold.className} text-sm`}>Modelo</p>
-                                    <p className={`${roboto.className} text-xs`}>{produto.modelo}</p>
+                                    <p className={`${roboto.className} text-xs`}>{row.modelo}</p>
                                 </div>
                                 <div>
                                     <p className={`${robotoBold.className} text-sm`}>Fornecedor</p>
-                                    <p className={`${roboto.className} text-xs`}>{produto.modelo}</p>
+                                    <p className={`${roboto.className} text-xs`}>{row.modelo}</p>
                                 </div>                             
                             </div>
                         </div>
                         <div className='flex flex-row items-center justify-between mt-4'>
                             <Button className='w-[130px] h-[25px]' variant="destructive">Apagar</Button>
-                            <p className='text-xs'>Adicionado em: {produto.data_cadastro}</p>
+                            <p className='text-xs'>Adicionado em: {row.data_cadastro}</p>
                         </div>
                     </div>
                 </div>
+          ) )
+        }
+        </>
     )
 }
