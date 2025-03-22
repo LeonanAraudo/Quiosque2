@@ -1,122 +1,105 @@
-"use client"
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import { createTheme } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-import {robotoBold, roboto} from '../../Fontes/fonts'
-import { useState } from 'react';
-const theme = createTheme({
-    palette:{
-        primary:{
-          main:"#000000"
-      }
-    },
-    typography: {
-            fontFamily: roboto.style.fontFamily,
-            button: {
-                textTransform: 'none',
-              },
-          },
-          components: {
-            MuiButton: {
-              styleOverrides: {
-                root: {
-                  fontSize: '15px', 
-                  padding: '5px 35px', 
-                  minWidth: '120px', 
-                },
-              },
-            },
-          },
-})
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+    SelectGroup
+  } from "@/components/ui/select"
+  
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
 
-
-export default function PatchComponent(){
-       const [imageSrc, setImageSrc] = useState(null);
-
-    return(
-        <>
-        <div className="flex items-center justify-center">
-            <form className="bg-[#EDEDED] w-[90%] h-[70%] " >
-                            <div className="w-full flex items-center justify-center mt-3">
-                            <label htmlFor="image">
-                                {imageSrc ? <img src={imageSrc} alt="Prévia da imagem" /> : "Clique para enviar uma imagem"}
-                            </label>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                id="image"
-                                className="hidden"
-                                />
-                            </div>
-                            <div className='w-full flex items-center justify-center flex-col mt-5'>
-                                <label htmlFor='Nome' className={`w-[85%] flex justify-start ${robotoBold.className}`}>Nome</label>
-                                <input type='text' id='Nome' className='w-[85%] h-9 bg-gray-300 rounded pl-1 border-0 focus:outline-none'/>
-                            </div>
-                            <div className='w-full flex items-center justify-center mt-5'>
-                               <div className='flex items-center justify-between flex-row w-[85%] gap-[2%]'>
-                                    <div className='flex flex-col'>
-                                        <label htmlFor='quantDispo' className={`${robotoBold.className}`}>Quant.Disponivel</label>
-                                        <input type='number' min={1}  id='quantDispo' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
-                                    </div>
-                                    <div className='flex flex-col '>
-                                        <label htmlFor='select' className={`${robotoBold.className}`}>Categoria</label>
-                                        <select  id='select' className='bg-gray-300 rounded h-9'>
-                                            <option value='Bebidas'>Bebidas</option>
-                                            <option value='Lanches'>Lanches</option>
-                                            <option value='Shakes'>Shakes</option>
-                                            <option value='Porcoes'>Porções</option>
-                                        </select>
-                                    </div>
-                                    <div className='flex flex-col '>
-                                        <label htmlFor="DataVenc" className={`${robotoBold.className}`}>Data venc</label>
-                                        <input type="date" id='DataVenc'  className='w-[120px] bg-gray-300 rounded h-9 border-0 focus:outline-none' />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='w-full flex items-center justify-center mt-5' >
-                                <div className='flex items-center justify-between flex-row w-[85%] gap-[2%]'>
-                                    <div className='flex flex-col'>
-                                        <label htmlFor='precoCompra' className={`${robotoBold.className}`}>Preço Compra</label>
-                                        <input type='number' min={1} id='precoCompra' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
-                                    </div>
-                                    <div className='flex flex-col '>
-                                        <label htmlFor='precoVenda' className={`${robotoBold.className}`}>Preço Venda</label>
-                                        <input  type='number'  min={1} id='precoVenda' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
-                                    </div>
-                                    <div className='flex flex-col '>
-                                        <label htmlFor="marca" className={`${robotoBold.className}`}>Marca</label>
-                                        <input  type="text" id='marca' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none' />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='w-full flex items-center justify-center flex-col mt-5'>
-                                <label htmlFor='desc' className={`flex w-[85%] justify-start ${robotoBold.className}`}>Descrição</label>
-                                <textarea  id='desc' className='w-[85%] bg-gray-300 rounded h-20 pl-1 border-0 focus:outline-none'></textarea>
-                            </div>
-                            <div className='w-full flex items-center justify-center mt-5 '>
-                                <div className='w-[85%] flex items-center justify-between'>
-                                <div className='flex flex-col w-[30%] '>
-                                    <label htmlFor="quantiMin" className={`${robotoBold.className}`}>Quant. Min</label>
-                                    <input  type="number"  min={1} id='quantiMin' className='w-[100%] flex justify-start bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none' />
-                                </div>
-                                <div className='flex flex-col w-[68%] '>
-                                    <label htmlFor='fornecedor' className={`${robotoBold.className}`}>Fornecedor</label>
-                                    <input  type="text" id='fornecedor' className='w-[100%] flex justify-end bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
-                                </div>
-                                </div>
-                            </div>
-                            <div className='w-full flex items-center justify-center flex-col mt-5'>
-                                <label className={` w-[85%] flex justify-start ${robotoBold.className}`}>Modelo</label>
-                                <input  type="text" className='w-[85%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none' />
-                            </div>
-                            <ThemeProvider theme={theme}>
-                                <Stack spacing={2} direction="row" className='w-full flex items-center justify-center mt-10 mb-10'>
-                                <Button type='submit' variant="contained">Cadastrar</Button>
-                                </Stack>
-                            </ThemeProvider>
-                        </form>
+export default function DialogDemo() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Editar produto</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Editar Produto</DialogTitle>
+        </DialogHeader>
+        <div className=" flex flex-col gap-3">
+            <div className="">
+                <Label htmlFor="name" className="text-right">Nome</Label>
+                <Input id="name" type="text" className="col-span-3" />
             </div>
-        </>
-    )
+            <div className="flex items-center justify-center flex-row gap-10">
+                <div className=" w-[45%]">
+                    <Label htmlFor="Quantidade_disponivel" className="text-right">
+                    Quant.Disponivel
+                    </Label>
+                    <Input id="Quantidade_disponivel" type="number" className="col-span-3" />
+                </div>
+                <div className=" w-[45%]">
+                    <Label htmlFor="Quantidade_minima" className="text-right">
+                    Quant.Minima
+                    </Label>
+                    <Input id="Quantidade_minima" type="number" className="col-span-3" />
+                </div>
+            </div>
+            <div className="flex items-center justify-center flex-row gap-10">
+                <div className="w-[45%]">
+                    <Label htmlFor="date" className="text-right">Data Vencimento</Label>
+                    <Input id="date" type="date" className="col-span-3" />
+                </div>
+                <Select>
+                    <SelectTrigger className="w-[45%] mt-5">
+                        <SelectValue placeholder="Categorias" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                        <SelectItem value="apple">Apple</SelectItem>
+                        <SelectItem value="blueberry">Blueberry</SelectItem>
+                        <SelectItem value="grapes">Grapes</SelectItem>
+                        <SelectItem value="pineapple">Pineapple</SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
+            </div> 
+            <div className="flex items-center justify-center flex-row gap-10">
+                <div className="w-[45%]">
+                    <Label htmlFor="preco_compra" className="text-right">Preço Compra</Label>
+                    <Input id="preco_compra" type="number" className="col-span-3" />
+                </div>
+                <div className="w-[45%]">
+                    <Label htmlFor="preco_venda" className="text-right">Preço Venda</Label>
+                    <Input id="preco_venda" type="number" className="col-span-3" />
+                </div>
+            </div>
+            <div>
+                <Label htmlFor="descricao" className="text-right">Descrição</Label>
+                <Textarea placeholder="Type your message here." />             
+            </div>
+            <div className="">
+                <Label htmlFor="marca" className="text-right">Marca</Label>
+                <Input id="marca" type="text" className="col-span-3" />
+            </div>
+            <div className="">
+                <Label htmlFor="fornecedor" className="text-right">Fornecedor</Label>
+                <Input id="fornecedor" type="text" className="col-span-3" />
+            </div>
+            <div className="">
+                <Label htmlFor="modelo" className="text-right">Modelo</Label>
+                <Input id="modelo" type="text" className="col-span-3" />
+            </div>
+        </div>
+        <DialogFooter>
+          <Button type="submit">Salvar mudanças</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
 }

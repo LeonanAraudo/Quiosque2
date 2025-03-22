@@ -14,9 +14,9 @@ import { roboto } from '../../Fontes/fonts'
 import Link from "next/link";
 
 const columns = [
-  { id: "nome", label: "Nome", minWidth: 70, align: "left" },
+  { id: "nome", label: "Nome", minWidth: 100, align: "left" },
   { id: "categorias", label: "Categorias", minWidth: 80, align: "left" },
-  { id: "quantidade_disponivel", label: "Quant. Disponível", minWidth: 90, align: "left" },
+  { id: "quantidade_disponivel", label: "Quant. Disponível", minWidth: 70, align: "center" },
   { id: "data_vencimento", label: "Data Vencimento", minWidth: 80, align: "left" },
 ];
 
@@ -110,7 +110,7 @@ export default function ArrayProdutos() {
           const value = row[column.id];
           return (
               <TableCell key={column.id} align={column.align} sx={{fontSize:'13px',padding:"4px 8px"}} onClick={() => router.push(`/Telas/DadosProduto?produto_id=${row.produto_id}`)}>
-                <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                <span style={{ display: "flex", alignItems: "center",justifyContent:"center", gap: "4px" }}>
                     {column.id === "quantidade_disponivel"
                       ? row.quantidade_disponivel === row.quantidade_minima
                         ? <><span>⚠️</span> {row.quantidade_disponivel}</>

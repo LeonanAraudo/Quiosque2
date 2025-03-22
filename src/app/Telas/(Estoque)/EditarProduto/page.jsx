@@ -1,4 +1,4 @@
-import PatchComponent from "../../../componentes/EditProduto/patchProduto";
+import DialogDemo from "../../../componentes/EditProduto/patchProduto";
 import Header from '../../../componentes/Header/page'
 export default function PatchProdutos(){
     return(
@@ -6,7 +6,7 @@ export default function PatchProdutos(){
         <header>
             <Header linkDestino={'/Telas/Estoque'}/>
         </header>
-            <PatchComponent/>
+            <DialogDemo/>
         </>
     )
 }
