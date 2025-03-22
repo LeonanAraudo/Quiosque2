@@ -17,7 +17,7 @@ export default function Main(){
                         <Circle/>
                     </div>
                     <div className={style.containerCircleOptions}>    
-                        <Link className={`ml-[140px] mt-[40px] ${style.boxCircleOptions}`} href={'/Telas/Estoque'}>
+                        <Link className={`ml-[190px] mt-[40px] ${style.boxCircleOptions}`} href={'/Telas/Estoque'}>
                             <div className={style.circleOptions}>
                                 <img width="38" height="38" src="https://img.icons8.com/pastel-glyph/128/FFFFFF/box--v1.png" alt="box--v1"/>
                             </div>
@@ -29,7 +29,7 @@ export default function Main(){
                             </div>
                             <p className={`${montserrat.className} ${style.optionsTitle}`}>Pedidos</p>
                         </Link>
-                        <Link href={'#'} className={`ml-[142px] ${style.boxCircleOptions}`}>
+                        <Link href={'#'} className={`ml-[132px] ${style.boxCircleOptions}`}>
                             <div className={style.circleOptions}>
                             <img width="38" height="38" src="https://img.icons8.com/glyph-neue/64/FFFFFF/combo-chart.png" alt="combo-chart"/>
                             </div>

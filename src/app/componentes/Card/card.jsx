@@ -1,7 +1,7 @@
 "use client"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
-import style from '../../Telas/Estoque/style.module.css'
+import style from '../../Telas/(Estoque)/Estoque/style.module.css'
 
 export default function Card({categorias}) {
     const [ produto, setProduto ] = useState([])
@@ -9,6 +9,7 @@ export default function Card({categorias}) {
     const [mud,setMud] = useState(true)
 
     const toggleMud = () => setMud((prevMud) => !prevMud);
+    
     useEffect(() => {
         async function fetchProdutos() {
             const url = categorias ? `/api/GetCategory/${categorias}` : '/api/GetProdutos/produtos'
