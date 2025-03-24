@@ -20,7 +20,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-//Adicionar as mesma caracteristicas dessa pagina a de cadastroProduto
 export default function DialogDemo() {
   return (
     <Dialog>

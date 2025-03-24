@@ -14,7 +14,7 @@ import { roboto } from '../../Fontes/fonts'
 import Link from "next/link";
 
 const columns = [
-  { id: "nome", label: "Nome", minWidth: 100, align: "left" },
+  { id: "nome", label: "Nome", minWidth: 90, align: "left" },
   { id: "categorias", label: "Categorias", minWidth: 80, align: "left" },
   { id: "quantidade_disponivel", label: "Quant. Disponível", minWidth: 70, align: "center" },
   { id: "data_vencimento", label: "Data Vencimento", minWidth: 80, align: "left" },
