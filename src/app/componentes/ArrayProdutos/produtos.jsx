@@ -14,7 +14,7 @@ import { roboto } from '../../Fontes/fonts'
 import Link from "next/link";
 
 const columns = [
-  { id: "nome", label: "Nome", minWidth: 90, align: "left" },
+  { id: "nome", label: "Nome", minWidth: 90, align: "center" },
   { id: "categorias", label: "Categorias", minWidth: 80, align: "left" },
   { id: "quantidade_disponivel", label: "Quant. Disponível", minWidth: 70, align: "center" },
   { id: "data_vencimento", label: "Data Vencimento", minWidth: 80, align: "left" },
@@ -85,7 +85,7 @@ export default function ArrayProdutos() {
             <TableHead >
               <TableRow sx={{ height: "5px", minHeight: "5px"}}>
                 {columns.map((column) => (
-                  <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{padding:"1px 8px" ,fontSize:"13px" }}>
+                  <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{padding:"1px 8px" ,fontSize:"13px",backgroundColor:"#F8F8F8",fontWeight:"bold" }}>
                     {column.label}
                   </TableCell>
                 ))}

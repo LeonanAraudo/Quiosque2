@@ -9,6 +9,7 @@ import { createTheme } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import useForm1 from '../../../../../hook/produtos/form';
+import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 const theme = createTheme({
     palette:{
@@ -53,13 +54,26 @@ export default function CadastroProduto(){
             <div className=''>
                  <Header linkDestino={'/Telas/Main'}/>    
             </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={1000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+                transition={Zoom}
+                />
             <div>
              <p className={`w-full flex items-center justify-center text-xl mt-4 ${inter.className}`}>Adicionar Produto</p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)} >
                 <div className="w-full flex items-center justify-center mt-3">
-                <label htmlFor="image">
-                    {imageSrc ? <img src={imageSrc} alt="Prévia da imagem" /> : "Clique para enviar uma imagem"}
+                <label htmlFor="image" className='flex items-center justify-center'>
+                    {imageSrc ? <img src={imageSrc} className='bg-cover w-[85%] h-60' alt="Prévia da imagem" /> : <p className='bg-gray-300 w-[100%] h-60 rounded cursor-pointer flex items-center justify-center'>Clique para enviar uma imagem</p>}
                 </label>
                 <input
                     type="file"
@@ -78,34 +92,30 @@ export default function CadastroProduto(){
                     <input {...register('nome')} type='text' id='Nome' className='w-[85%] h-9 bg-gray-300 rounded pl-1 border-0 focus:outline-none'/>
                 </div>
                 <div className='w-full flex items-center justify-center mt-5'>
-                   <div className='flex items-center justify-between flex-row w-[85%] gap-[2%]'>
-                        <div className='flex flex-col'>
-                            <label htmlFor='quantDispo' className={`${robotoBold.className}`}>Quant.Disponivel</label>
-                            <input type='number' min={1} {...register('quantidade_disponivel')} id='quantDispo' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
-                        </div>
+                   <div className='w-[85%] flex items-center justify-between gap-[2%]'>
                         <div className='flex flex-col '>
                             <label htmlFor='select' className={`${robotoBold.className}`}>Categoria</label>
-                            <select {...register('categorias')} id='select' className='bg-gray-300 rounded h-9'>
+                            <select {...register('categorias')} id='select' className='bg-gray-300 rounded h-9 w-[207%]'>
                                 <option value='Bebidas'>Bebidas</option>
                                 <option value='Lanches'>Lanches</option>
                                 <option value='Shakes'>Shakes</option>
                                 <option value='Porcoes'>Porções</option>
                             </select>
                         </div>
-                        <div className='flex flex-col '>
-                            <label htmlFor="DataVenc" className={`${robotoBold.className}`}>Data venc</label>
-                            <input type="date" id='DataVenc' {...register('data_vencimento')} className='w-[120px] bg-gray-300 rounded h-9 border-0 focus:outline-none' />
+                        <div className='flex flex-col'>
+                            <label htmlFor="DataVenc" className={`${robotoBold.className}`}>Data Vencimento</label>
+                            <input type="date" id='DataVenc' {...register('data_vencimento')} className='w-[100%] bg-gray-300 rounded h-9 border-0 focus:outline-none' />
                         </div>
                     </div>
                 </div>
                 <div className='w-full flex items-center justify-center mt-5' >
                     <div className='flex items-center justify-between flex-row w-[85%] gap-[2%]'>
                         <div className='flex flex-col'>
-                            <label htmlFor='precoCompra' className={`${robotoBold.className}`}>Preço Compra</label>
+                            <label htmlFor='precoCompra' className={`${robotoBold.className}`}>Pre Compra</label>
                             <input {...register('preco_compra')} type='number' min={1} id='precoCompra' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
                         </div>
                         <div className='flex flex-col '>
-                            <label htmlFor='precoVenda' className={`${robotoBold.className}`}>Preço Venda</label>
+                            <label htmlFor='precoVenda' className={`${robotoBold.className}`}>Pre Venda</label>
                             <input {...register('preco_venda')} type='number'  min={1} id='precoVenda' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
                         </div>
                         <div className='flex flex-col '>
@@ -119,15 +129,23 @@ export default function CadastroProduto(){
                     <textarea {...register('descricao')} id='desc' className='w-[85%] bg-gray-300 rounded h-20 pl-1 border-0 focus:outline-none'></textarea>
                 </div>
                 <div className='w-full flex items-center justify-center mt-5 '>
+                    <div className='w-[85%] flex items-center justify-between gap-[2%]'>
+                        <div className='flex flex-col '>
+                            <label htmlFor="quantiMin" className={`${robotoBold.className}`}>Quant.Minima</label>
+                            <input {...register('quantidade_minima')} type="number"  min={1} id='quantiMin' className='w-[100%] flex justify-start bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none' />
+                        </div>
+                        <div className='flex flex-col'>
+                            <label htmlFor='quantDispo' className={`${robotoBold.className}`}>Quant.Disponivel</label>
+                            <input type='number' min={1} {...register('quantidade_disponivel')} id='quantDispo' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
+                        </div>
+                    </div>
+                </div>
+                <div className='w-full flex items-center justify-center mt-5 '>
                     <div className='w-[85%] flex items-center justify-between'>
-                    <div className='flex flex-col w-[30%] '>
-                        <label htmlFor="quantiMin" className={`${robotoBold.className}`}>Quant. Min</label>
-                        <input {...register('quantidade_minima')} type="number"  min={1} id='quantiMin' className='w-[100%] flex justify-start bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none' />
-                    </div>
-                    <div className='flex flex-col w-[68%] '>
-                        <label htmlFor='fornecedor' className={`${robotoBold.className}`}>Fornecedor</label>
-                        <input {...register('fornecedor')} type="text" id='fornecedor' className='w-[100%] flex justify-end bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
-                    </div>
+                        <div className='flex flex-col w-[100%] '>
+                            <label htmlFor='fornecedor' className={`${robotoBold.className}`}>Fornecedor</label>
+                            <input {...register('fornecedor')} type="text" id='fornecedor' className='w-[100%] flex justify-end bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
+                        </div>
                     </div>
                 </div>
                 <div className='w-full flex items-center justify-center flex-col mt-5'>
