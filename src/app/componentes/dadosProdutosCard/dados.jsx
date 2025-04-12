@@ -18,7 +18,7 @@ export default function DadosProduto({produto_id}){
     },[produto_id])
 
     return(
-        <>
+        <div>
         {produto.map((row,index) => (
             <div className={`${style.container} ${roboto.className}`}>
                 {console.log(produto)}
@@ -67,6 +67,6 @@ export default function DadosProduto({produto_id}){
                 </div>
           ) )
         }
-        </>
+        </div>
     )
 }
