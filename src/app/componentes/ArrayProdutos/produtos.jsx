@@ -85,7 +85,7 @@ export default function ArrayProdutos() {
             <TableHead >
               <TableRow sx={{ height: "5px", minHeight: "5px"}}>
                 {columns.map((column) => (
-                  <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{padding:"1px 8px" ,fontSize:"13px",backgroundColor:"#F8F8F8",fontWeight:"bold" }}>
+                  <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }} sx={{padding:"1px 8px" ,fontSize:"13px",backgroundColor:"#EAEAEA",fontWeight:"bold" }}>
                     {column.label}
                   </TableCell>
                 ))}

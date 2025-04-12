@@ -7,10 +7,9 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { createTheme } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
-import axios from 'axios';
 import useForm1 from '../../../../../hook/produtos/form';
-import { ToastContainer, toast, Zoom } from 'react-toastify';
-//update fill
+import { ToastContainer, Zoom } from 'react-toastify';
+
 const theme = createTheme({
     palette:{
         primary:{
@@ -49,9 +48,14 @@ export default function CadastroProduto(){
     handleFileChange(e);
   };
 
+  const onSubmitHandler = async (data) => {
+    await onSubmit(data);
+    setImageSrc(null); 
+  };
+
     return( 
-        <div >
-            <div className=''>
+        <div>
+            <div>
                  <Header linkDestino={'/Telas/Main'}/>    
             </div>
             <ToastContainer
@@ -70,10 +74,10 @@ export default function CadastroProduto(){
             <div>
              <p className={`w-full flex items-center justify-center text-xl mt-4 ${inter.className}`}>Adicionar Produto</p>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)} >
+            <form onSubmit={handleSubmit(onSubmitHandler)} >
                 <div className="w-full flex items-center justify-center mt-3">
                 <label htmlFor="image" className='flex items-center justify-center'>
-                    {imageSrc ? <img src={imageSrc} className='bg-cover w-[85%] h-60' alt="Prévia da imagem" /> : <p className='bg-gray-300 w-[100%] h-60 rounded cursor-pointer flex items-center justify-center'>Clique para enviar uma imagem</p>}
+                    {imageSrc ? <img src={imageSrc} className='bg-cover w-[85%] h-56' alt="Prévia da imagem" /> : <p className='bg-gray-300 w-[100%] h-56 rounded cursor-pointer flex items-center justify-center'>Clique para enviar uma imagem</p>}
                 </label>
                 <input
                     type="file"
@@ -111,11 +115,11 @@ export default function CadastroProduto(){
                 <div className='w-full flex items-center justify-center mt-5' >
                     <div className='flex items-center justify-between flex-row w-[85%] gap-[2%]'>
                         <div className='flex flex-col'>
-                            <label htmlFor='precoCompra' className={`${robotoBold.className}`}>Pre Compra</label>
+                        <label htmlFor='precoCompra' className={`${robotoBold.className}`}>Pre Compra</label>
                             <input {...register('preco_compra')} type='number' min={1} id='precoCompra' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
                         </div>
                         <div className='flex flex-col '>
-                            <label htmlFor='precoVenda' className={`${robotoBold.className}`}>Pre Venda</label>
+                        <label htmlFor='precoVenda' className={`${robotoBold.className}`}>Pre Venda</label>
                             <input {...register('preco_venda')} type='number'  min={1} id='precoVenda' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
                         </div>
                         <div className='flex flex-col '>
@@ -154,7 +158,7 @@ export default function CadastroProduto(){
                 </div>
                 <ThemeProvider theme={theme}>
                     <Stack spacing={2} direction="row" className='w-full flex items-center justify-center mt-10 mb-10'>
-                    <Button type='submit' variant="contained">Cadastrar</Button>
+                     <Button type='submit' variant="contained">Cadastrar</Button>
                     </Stack>
                 </ThemeProvider>
             </form>

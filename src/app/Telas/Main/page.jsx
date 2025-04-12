@@ -17,7 +17,7 @@ export default function Main(){
                         <Circle/>
                     </div>
                     <div className={style.containerCircleOptions}>    
-                        <Link className={`ml-[190px] mt-[40px] ${style.boxCircleOptions}`} href={'/Telas/Estoque'}>
+                        <Link className={`ml-[130px] mt-[40px] ${style.boxCircleOptions}`} href={'/Telas/Estoque'}>
                             <div className={style.circleOptions}>
                                 <img width="38" height="38" src="https://img.icons8.com/pastel-glyph/128/FFFFFF/box--v1.png" alt="box--v1"/>
                             </div>
