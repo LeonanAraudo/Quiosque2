@@ -3,15 +3,17 @@ import produto from "../../../../models/Produto/produto";
 export default async function handler(req, res) {
     if (req.method === "PATCH") {
         try {
-            const { produto_id, ...dadosAtualizados } = req.body;
-
+            const {produto_id} = req.query;
+            const dadosFormatados = req.body;
+            
+            console.log(produto_id + "ID na api")
             if (!produto_id) {
                 return res.status(400).json({ error: "O ID do produto é obrigatório" });
             }
 
             // Atualiza o produto no banco de dados
-            const [updated] = await produto.update(dadosAtualizados, {
-                where: { produto_id },
+            const [updated] = await produto.update(dadosFormatados, {
+                where: { produto_id: parseInt(produto_id) },
             });
 
             if (updated === 0) {

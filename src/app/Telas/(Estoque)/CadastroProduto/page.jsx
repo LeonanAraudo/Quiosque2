@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { createTheme } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
-import useForm1 from '../../../../../hook/produtos/form';
+import useForm1 from '../../../../../hook/CadastoProdutosHook/form';
 import { ToastContainer, Zoom } from 'react-toastify';
 
 const theme = createTheme({
@@ -89,17 +89,18 @@ export default function CadastroProduto(){
                     })}
                     id="image"
                     className="hidden"
+                    required
                     />
                 </div>
                 <div className='w-full flex items-center justify-center flex-col mt-5'>
                     <label htmlFor='Nome' className={`w-[85%] flex justify-start ${robotoBold.className}`}>Nome</label>
-                    <input {...register('nome')} type='text' id='Nome' className='w-[85%] h-9 bg-gray-300 rounded pl-1 border-0 focus:outline-none'/>
+                    <input {...register('nome')} type='text' id='Nome' className='w-[85%] h-9 bg-gray-300 rounded pl-1 border-0 focus:outline-none'required/>
                 </div>
                 <div className='w-full flex items-center justify-center mt-5'>
                    <div className='w-[85%] flex items-center justify-between gap-[2%]'>
                         <div className='flex flex-col '>
                             <label htmlFor='select' className={`${robotoBold.className}`}>Categoria</label>
-                            <select {...register('categorias')} id='select' className='bg-gray-300 rounded h-9 w-[207%]'>
+                            <select {...register('categorias')} id='select' className='bg-gray-300 rounded h-9 w-[207%]'required>
                                 <option value='Bebidas'>Bebidas</option>
                                 <option value='Lanches'>Lanches</option>
                                 <option value='Shakes'>Shakes</option>
@@ -108,7 +109,7 @@ export default function CadastroProduto(){
                         </div>
                         <div className='flex flex-col'>
                             <label htmlFor="DataVenc" className={`${robotoBold.className}`}>Data Vencimento</label>
-                            <input type="date" id='DataVenc' {...register('data_vencimento')} className='w-[100%] bg-gray-300 rounded h-9 border-0 focus:outline-none' />
+                            <input type="date" id='DataVenc' {...register('data_vencimento')} className='w-[100%] bg-gray-300 rounded h-9 border-0 focus:outline-none' required/>
                         </div>
                     </div>
                 </div>
@@ -116,11 +117,11 @@ export default function CadastroProduto(){
                     <div className='flex items-center justify-between flex-row w-[85%] gap-[2%]'>
                         <div className='flex flex-col'>
                         <label htmlFor='precoCompra' className={`${robotoBold.className}`}>Pre Compra</label>
-                            <input {...register('preco_compra')} type='number' min={1} id='precoCompra' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
+                            <input {...register('preco_compra')} type='number' min={1} id='precoCompra' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'required/>
                         </div>
                         <div className='flex flex-col '>
                         <label htmlFor='precoVenda' className={`${robotoBold.className}`}>Pre Venda</label>
-                            <input {...register('preco_venda')} type='number'  min={1} id='precoVenda' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
+                            <input {...register('preco_venda')} type='number'  min={1} id='precoVenda' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'required/>
                         </div>
                         <div className='flex flex-col '>
                             <label htmlFor="marca" className={`${robotoBold.className}`}>Marca</label>
@@ -136,11 +137,11 @@ export default function CadastroProduto(){
                     <div className='w-[85%] flex items-center justify-between gap-[2%]'>
                         <div className='flex flex-col '>
                             <label htmlFor="quantiMin" className={`${robotoBold.className}`}>Quant.Minima</label>
-                            <input {...register('quantidade_minima')} type="number"  min={1} id='quantiMin' className='w-[100%] flex justify-start bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none' />
+                            <input {...register('quantidade_minima')} type="number"  min={1} id='quantiMin' className='w-[100%] flex justify-start bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none' required/>
                         </div>
                         <div className='flex flex-col'>
                             <label htmlFor='quantDispo' className={`${robotoBold.className}`}>Quant.Disponivel</label>
-                            <input type='number' min={1} {...register('quantidade_disponivel')} id='quantDispo' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'/>
+                            <input type='number' min={1} {...register('quantidade_disponivel')} id='quantDispo' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'required/>
                         </div>
                     </div>
                 </div>

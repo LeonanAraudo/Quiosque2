@@ -3,24 +3,30 @@ import { robotoBold, roboto } from '../../Fontes/fonts'
 import style from '../../Telas/(Estoque)/DadosProduto/style.module.css'
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from 'react';
+import DialogDemo from '../EditProduto/patchProduto';
 
 
 export default function DadosProduto({produto_id}){
     const [ produto, setProduto] = useState([])
-    useEffect(() => {
-        async function fetchProdutos(){
+    const fetchProdutos = async () => {
+        try{
             const url = `/api/GetProdutoById/${produto_id}`
             const response = await fetch(url)
             const data = await response.json();
             setProduto(data.map((item) => { return item }))
+        }catch(error){
+            console.error("Erro ao buscar dados do produto:", error);
         }
-        fetchProdutos();
-    },[produto_id])
+    }
 
+    useEffect(() => {
+        fetchProdutos();
+      }, [produto_id]);
+        
     return(
         <div>
-        {produto.map((row,index) => (
-            <div className={`${style.container} ${roboto.className}`}>
+        {produto.map((row) => (
+            <div key={row.produto_id} className={`${style.container} ${roboto.className}`}>
                 {console.log(produto)}
                 <div className={style.boxImage}>
                     <img className={style.image} src={row.foto} alt="" />
@@ -33,6 +39,7 @@ export default function DadosProduto({produto_id}){
                         <div className={style.box2}>
                             <p className={style.amount}>Disponivel em estoque: {row.quantidade_disponivel}</p>
                             <p className={`${robotoBold.className} text-[23px]`}>R${row.preco_venda}</p>
+                            <DialogDemo produto_id={produto_id} refreshProdutos={fetchProdutos}/>
                         </div> 
                         <div className={style.box3}>
                             <p className={`${robotoBold.className} text-lg`}>Informações do row</p>
