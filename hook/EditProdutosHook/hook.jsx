@@ -32,7 +32,7 @@ export default function patchProdutos(produto_id,refreshProdutos ){
     const onSubmit = async (data) => {
         const dadosFormatados = formatData(data);
         try{
-            const response = await axios.patch(`/api/PatchProdutos/${produto_id}`,dadosFormatados)
+            const response = await axios.patch(`/api/PatchProdutosById/${produto_id}`,dadosFormatados)
             console.log('Produto atualizado com sucesso:', response.data);
             if (refreshProdutos) {
                 refreshProdutos();

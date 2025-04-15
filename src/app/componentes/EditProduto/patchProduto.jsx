@@ -39,7 +39,7 @@ export default function DialogDemo({produto_id,refreshProdutos}) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Editar produto</Button>
+       <img width="25" height="25" src="https://img.icons8.com/windows/32/pencil.png" alt="pencil"/>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
