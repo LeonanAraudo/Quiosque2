@@ -7,7 +7,7 @@ export default function patchProdutos(produto_id,refreshProdutos ){
 
     const formatData = (data) => {
         const dados = {
-          nome: data.nome,
+          nome: data.nome || undefined,
           quantidade_disponivel: data.quantidade_disponivel ? parseInt(data.quantidade_disponivel) : undefined,
           quantidade_minima: data.quantidade_minima ? parseInt(data.quantidade_minima) : undefined,
           preco_compra: data.preco_compra ? parseFloat(data.preco_compra) : undefined,

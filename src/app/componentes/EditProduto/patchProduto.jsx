@@ -21,19 +21,23 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import patchProdutos from "../../../../hook/EditProdutosHook/hook";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export default function DialogDemo({produto_id,refreshProdutos}) {
-  const { register,onSubmit,handleSubmit } = patchProdutos(produto_id,refreshProdutos);
-  const nameRef = useRef(null);
+  const [open, setOpen] = useState(false);
+  const { register, onSubmit, handleSubmit } = patchProdutos(produto_id, refreshProdutos);
 
   useEffect(() => {
-    if (nameRef.current) {
-      nameRef.current.blur(); // remove o foco automático
+    if (open) {
+      setTimeout(() => {
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
+      }, 50); 
     }
-  }, []);
+  }, [open]);
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">Editar produto</Button>
       </DialogTrigger>
@@ -46,7 +50,7 @@ export default function DialogDemo({produto_id,refreshProdutos}) {
           <div className=" flex flex-col gap-3">
               <div className="">
                   <Label htmlFor="name" className="text-right">Nome</Label>
-                  <Input id="name" type="text" ref={nameRef} className="col-span-3" {...register('nome')}  />
+                  <Input id="name" type="text" className="col-span-3" {...register('nome')}  />
               </div>
               <div className="flex items-center justify-center flex-row gap-10">
                   <div className=" w-[45%]">
