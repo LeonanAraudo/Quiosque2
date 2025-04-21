@@ -1,5 +1,5 @@
 import Header from "@/app/componentes/Header/page";
-import OptionsShake from '../../../../componentes/OptionsShake/optionsShake';
+import OptionsShake from '../../../../componentes/(ComponentesPedidos)/OptionsShake/optionsShake';
 
 export default function ShakeOptions() {
     return (
@@ -8,7 +8,7 @@ export default function ShakeOptions() {
                 <header>
                     <Header linkDestino={"/Telas/TelasButtons"} />
                 </header>
-                <OptionsShake/>
+                    <OptionsShake/>
             </div>
         </>
     )

@@ -8,9 +8,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import style from '../../Telas/(Estoque)/Estoque/style.module.css'
+import style from '../../../Telas/(Estoque)/Estoque/style.module.css'
 import { createTheme, ThemeProvider } from "@mui/material";
-import { roboto } from '../../Fontes/fonts'
+import { roboto } from '../../../Fontes/fonts'
 import Link from "next/link";
 
 const columns = [

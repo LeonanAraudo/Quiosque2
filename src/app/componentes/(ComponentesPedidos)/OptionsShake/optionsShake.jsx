@@ -1,14 +1,26 @@
 "use client"
 import { roboto, robotoBold } from "@/app/Fontes/fonts"
-import { useForm } from "react-hook-form"
+import createShake from "../../../../../hook/CreateShake/hook"
+import { ToastContainer, Zoom } from 'react-toastify';
 
 export default function OptionsShake() {
-    const { register, handleSubmit } = useForm()
-
-    
-
+    const { register, onSubmit, handleSubmit } = createShake()
     return (
-        <form onSubmit={handleSubmit()}>
+        <>
+        <ToastContainer
+                        position="top-center"
+                        autoClose={1000}
+                        hideProgressBar
+                        newestOnTop={false}
+                        closeOnClick={false}
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="colored"
+                        transition={Zoom}
+                        />
+        <form onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <p className={`text-[25px] text-center ${robotoBold.className}`}>Guaraná da Amazônia</p>
             </div>
@@ -125,14 +137,18 @@ export default function OptionsShake() {
                 <p className={`text-[22px] text-center ${robotoBold.className}`}>Adicionais</p>
                 <div className="flex flex-row justify-between mx-9 mt-4">
                     <div className="flex flex-col gap-3">
-                        {["Floco de Arroz", "Amendoim", "Granulado de Chocolate", "Castanha","Oreo"].map((adicionais, index) => (
+                        {["Floco de Arroz", "Amendoim", "Granulado de Chocolate", "Castanha", "Oreo"].map((adicionais, index) => (
                             <div key={index + 10} className="flex items-center gap-2">
                                 <input
-                                    type="radio"
+                                    type="checkbox"
                                     value={adicionais}
                                     {...register("adicionais")}
                                     id={`adicionais-${index + 10}`}
-                                    className="h-6 w-6 text-black accent-black"
+                                    className="appearance-none h-6 w-6 rounded-full border border-black flex items-center justify-center relative
+                                            checked:bg-white checked:before:content-[''] checked:before:absolute
+                                            checked:before:h-[15px] checked:before:w-[15px] checked:before:rounded-full
+                                            checked:before:bg-black checked:before:top-1/2 checked:before:left-1/2
+                                            checked:before:transform checked:before:-translate-x-1/2 checked:before:-translate-y-1/2"
                                 />
                                 <label htmlFor={`adicionais-${index + 10}`} className={`text-sm font-medium ${roboto.className}`}>
                                     {adicionais}
@@ -144,11 +160,15 @@ export default function OptionsShake() {
                         {["Chocobal", "M&M", "Granulado Colorido", "Granola"].map((adicionais, index) => (
                             <div key={index} className="flex items-center gap-2">
                                 <input
-                                    type="radio"
+                                    type="checkbox"
                                     value={adicionais}
                                     {...register("adicionais")}
                                     id={`adicionais-${index}`}
-                                    className="h-6 w-6 text-black accent-black"
+                                    className="appearance-none h-6 w-6 rounded-full border border-black flex items-center justify-center relative
+                                            checked:bg-white checked:before:content-[''] checked:before:absolute
+                                            checked:before:h-[15px] checked:before:w-[15px] checked:before:rounded-full
+                                            checked:before:bg-black checked:before:top-1/2 checked:before:left-1/2
+                                            checked:before:transform checked:before:-translate-x-1/2 checked:before:-translate-y-1/2"
                                 />
                                 <label htmlFor={`adicionais-${index}`} className={`text-sm font-medium ${roboto.className}`}>
                                     {adicionais}
@@ -161,9 +181,10 @@ export default function OptionsShake() {
 
             <div className="my-9 flex justify-center">
                 <button type="submit" className="bg-green-600 px-4 py-2 rounded-lg text-white">
-                     Adicionar Pedido
+                    Adicionar Pedido
                 </button>
             </div>
         </form>
+        </>
     )
 }

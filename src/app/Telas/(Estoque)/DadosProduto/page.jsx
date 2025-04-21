@@ -1,6 +1,6 @@
 "use client"
 import { useSearchParams } from "next/navigation";
-import DadosProduto from '../../../componentes/dadosProdutosCard/dados'
+import DadosProduto from '../../../componentes/(ComponentesEstoque)/dadosProdutosCard/dados'
 import Header from '../../../componentes/Header/page'
 export default function DataProduto(){
     const searchParams = useSearchParams();
