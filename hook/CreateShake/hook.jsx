@@ -5,11 +5,11 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
 export default function createShake() {
-  const {register, handleSubmit} = useForm()
+  const {register, handleSubmit,reset} = useForm()
   const router = useRouter();
 
   const onSubmit = async (formData) => {
-    const promise = axios.post("/api/CadShaje/shakeOptions", formData);
+    const promise = axios.post("/api/CadShake/shakeOptions", formData);
 
     toast.promise(
       promise,
@@ -22,6 +22,7 @@ export default function createShake() {
 
     try {
       await promise;
+      reset()
       router.push("/Telas/ShakeOptions");
     } catch (error) {
       console.error("Erro ao cadastrar o shake :", error);

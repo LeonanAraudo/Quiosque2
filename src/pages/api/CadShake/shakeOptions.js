@@ -3,12 +3,13 @@ import shakeOptions from '../../../../models/ShakeOptions/options'
 export default async function GetProdutos(req, res) {
     if (req.method === "POST") {
         try {
-            const { tamanho, sabor, cobertura, adicionais } = req.body;
+            const { tamanho, sabor, cobertura, adicionais,nome } = req.body;
 
             const postShake = await shakeOptions.create({
                 tamanho,
                 sabor,
                 cobertura,
+                nome,
                 adicionais: Array.isArray(adicionais) ? adicionais.join(", ") : adicionais
             });
 

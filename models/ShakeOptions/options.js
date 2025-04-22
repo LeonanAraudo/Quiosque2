@@ -23,6 +23,10 @@ const shakeOptions = sequelize.define('shakeOptions',{
     type: DataTypes.STRING,
     allowNull:true
  },
+ nome:{
+    type: DataTypes.STRING,
+    allowNull:true
+ },
  
 },{
  tableName: 'shakeoptions',
