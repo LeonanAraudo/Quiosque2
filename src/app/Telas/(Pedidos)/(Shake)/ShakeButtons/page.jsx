@@ -16,7 +16,7 @@ export default function ShakeOption() {
                         </span>
                     </Link>
 
-                    <Link className={`bg-black text-white w-[66%] h-[40px] flex items-center justify-between p-2 flex-row rounded-full ${roboto.className}`} href={"/"}>
+                    <Link className={`bg-black text-white w-[66%] h-[40px] flex items-center justify-between p-2 flex-row rounded-full ${roboto.className}`} href={"/Telas/ShakeComanda"}>
                         Lista de Pedidos
                         <span className="bg-white/30 rounded-full ">
                             <img width="27" height="27" src="https://img.icons8.com/dotty/80/FFFFFF/todo-list.png" alt="todo-list" />

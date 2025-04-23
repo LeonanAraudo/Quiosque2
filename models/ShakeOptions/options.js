@@ -27,6 +27,10 @@ const shakeOptions = sequelize.define('shakeOptions',{
     type: DataTypes.STRING,
     allowNull:true
  },
+ numero_comanda:{
+   type: DataTypes.INTEGER,
+   allowNull:true
+},
  
 },{
  tableName: 'shakeoptions',

@@ -1,7 +1,7 @@
 
 import produto from "../../../../models/Produto/produto";
 
-export default async function DeleteProduto(req,res){
+export default async function deleteProduto(req,res){
     if(req.method === "DELETE"){
         try{
             const {produto_id} = req.query;

@@ -1,7 +1,7 @@
 import produto from '../../../../models/Produto/produto'
 import sequelize from '../../../../config/database'
 
-export default async function GetProdutos(req,res){
+export default async function getProdutos(req,res){
     if(req.method === "GET"){
         try{
             const reqProdutos = await produto.findAll()

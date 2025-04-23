@@ -6,7 +6,7 @@ export default function ShakeOptions() {
         <>
             <div>
                 <header>
-                    <Header linkDestino={"/Telas/TelasButtons"} />
+                    <Header linkDestino={"/Telas/ShakeButtons"} />
                 </header>
                     <OptionsShake/>
             </div>

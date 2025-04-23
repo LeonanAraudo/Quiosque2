@@ -1,7 +1,7 @@
 import produto from "../../../../models/Produto/produto";
 import { Op } from "sequelize";
 
-export default async function GetProdutoById(req,res){
+export default async function getProdutoById(req,res){
 if(req.method !== "GET"){
     return res.status(405).json({error: "Método não permitido"})
 }

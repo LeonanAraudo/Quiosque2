@@ -1,7 +1,7 @@
 import sequelize from '../../../../config/database'
 import shakeOptions from '../../../../models/ShakeOptions/options'
 
-export default async function GetProdutos(req,res){
+export default async function getShakes(req,res){
     if(req.method === "GET"){
         try{
             const reqShake = await shakeOptions.findAll()
