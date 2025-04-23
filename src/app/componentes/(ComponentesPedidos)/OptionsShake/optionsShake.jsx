@@ -4,9 +4,22 @@ import createShake from "../../../../../hook/CreateShake/hook"
 import { ToastContainer, Zoom } from 'react-toastify';
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useState } from "react";
 
 export default function OptionsShake() {
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false)
     const { register, onSubmit, handleSubmit } = createShake()
+     
+    const handleFormSubmit = async (data) => {
+        setIsButtonDisabled(true)
+    
+        try {
+            await onSubmit(data) // espera o cadastro finalizar
+        } finally {
+            setIsButtonDisabled(false) // ativa o botão de novo (mesmo se der erro)
+        }
+    }
+    
     return (
         <>
             <ToastContainer
@@ -22,7 +35,7 @@ export default function OptionsShake() {
                 theme="colored"
                 transition={Zoom}
             />
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(handleFormSubmit)}>
                 <div>
                     <p className={`text-[25px] text-center ${robotoBold.className}`}>Guaraná da Amazônia</p>
                 </div>
@@ -84,7 +97,7 @@ export default function OptionsShake() {
                         </div>
 
                         <div className="flex flex-col gap-3">
-                            {[ "Abacaxi", "Ovomaltine", "Maracujá", "Maçã Verde","Leite Condensado"].map((sabor, index) => (
+                            {["Abacaxi", "Ovomaltine", "Maracujá", "Maçã Verde", "Leite Condensado"].map((sabor, index) => (
                                 <div key={index + 10} className="flex items-center gap-2">
                                     <input
                                         type="radio"
@@ -145,7 +158,7 @@ export default function OptionsShake() {
                     <p className={`text-[22px] text-center ${robotoBold.className}`}>Adicionais</p>
                     <div className="flex flex-row justify-between mx-6 mt-4">
                         <div className="flex flex-col gap-3">
-                            {["Floco de Arroz", "Amendoim", "Castanha", "Oreo","Granulado de Chocolate"].map((adicionais, index) => (
+                            {["Floco de Arroz", "Amendoim", "Castanha", "Oreo", "Granulado de Chocolate"].map((adicionais, index) => (
                                 <div key={index + 10} className="flex items-center gap-2">
                                     <input
                                         type="checkbox"
@@ -165,7 +178,7 @@ export default function OptionsShake() {
                             ))}
                         </div>
                         <div className="flex flex-col gap-3">
-                            {["Chocobal", "M&M", "Granola","Granulado Colorido"].map((adicionais, index) => (
+                            {["Chocobal", "M&M", "Granola", "Granulado Colorido"].map((adicionais, index) => (
                                 <div key={index} className="flex items-center gap-2">
                                     <input
                                         type="checkbox"
@@ -188,8 +201,12 @@ export default function OptionsShake() {
                 </div>
 
                 <div className="my-9 flex justify-center">
-                    <button type="submit" className="bg-green-600 px-4 py-2 rounded-lg text-white">
-                        Adicionar Pedido
+                    <button
+                        type="submit"
+                        className="bg-green-600 px-4 py-2 rounded-lg text-white disabled:opacity-50"
+                        disabled={isButtonDisabled}
+                    >
+                        {isButtonDisabled ? "Adicionando..." : "Adicionar Pedido"}
                     </button>
                 </div>
             </form>
