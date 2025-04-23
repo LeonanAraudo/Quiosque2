@@ -1,3 +1,4 @@
+import pg from 'pg';
 import shakeOptions from '../../../../models/ShakeOptions/options';
 
 export default async function createShakes(req, res) {
