@@ -1,5 +1,5 @@
 import Comanda from '../../../../componentes/(ComponentesPedidos)/ComandaShakes/comanda'
-import Header from '../../../../componentes/Header/page'
+import Header from '../../../../componentes/Header/header'
 export default function ShakeComanda(){
     return(
         <>

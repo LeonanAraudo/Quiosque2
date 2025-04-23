@@ -109,7 +109,7 @@ export default function ArrayProdutos() {
                   {columns.map((column) => {
           const value = row[column.id];
           return (
-              <TableCell key={column.id} align={column.align} sx={{fontSize:'13px',padding:"4px 8px"}} onClick={() => router.push(`/Telas/DadosProduto?produto_id=${row.produto_id}`)}>
+              <TableCell key={column.id} align={column.align} sx={{fontSize:'13px',padding:"4px 8px"}} onClick={() => router.push(`/Telas/DadosProdutoTable/${row.produto_id}`)}>
                 <span style={{ display: "flex", alignItems: "center",justifyContent:"center", gap: "4px" }}>
                     {column.id === "quantidade_disponivel"
                       ? row.quantidade_disponivel === row.quantidade_minima

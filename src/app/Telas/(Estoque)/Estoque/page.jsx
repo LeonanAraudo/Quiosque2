@@ -1,5 +1,5 @@
 "use client"
-import Header from '../../../componentes/Header/page'
+import Header from '../../../componentes/Header/header'
 import ArrayProdutos from '@/app/componentes/(ComponentesEstoque)/ArrayProdutos/produtos'
 import style from './style.module.css'
 import { useState } from 'react'

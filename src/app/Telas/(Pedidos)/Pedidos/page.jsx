@@ -1,14 +1,14 @@
-import Header from '../../../componentes/Header/page'
+import Header from '../../../componentes/Header/header'
 import style from './style.module.css'
 import { inter } from '../../../Fontes/fonts'
 import Link from 'next/link'
 
 export default function Pedidos() {
     const categorias = [
-        { nome: "Bebidas", icone: "https://img.icons8.com/ios/50/FFFFFF/wine-bottle.png", destino: "/Telas/ProdutosCategory?categorias=Bebidas" },
-        { nome: "Lanches", icone: "https://img.icons8.com/ios/50/FFFFFF/hamburger.png", destino: "/Telas/ProdutosCategory?categoria=lanches" },
+        { nome: "Bebidas", icone: "https://img.icons8.com/ios/50/FFFFFF/wine-bottle.png", destino: "/Telas/ProdutosCategory/Bebidas" },
+        { nome: "Lanches", icone: "https://img.icons8.com/ios/50/FFFFFF/hamburger.png", destino: "/Telas/ProdutosCategory/Lanches" },
         { nome: "Shakes", icone: "https://img.icons8.com/ios/50/FFFFFF/milkshake.png", destino: "/Telas/ShakeButtons" },
-        { nome: "Porções", icone: "https://img.icons8.com/ios/50/FFFFFF/porridge--v1.png", destino: "/Telas/ProdutosCategory?categoria=porcoes" },
+        { nome: "Porções", icone: "https://img.icons8.com/ios/50/FFFFFF/porridge--v1.png", destino: "/Telas/ProdutosCategory/Porcoes" },
     ];
 
     return (

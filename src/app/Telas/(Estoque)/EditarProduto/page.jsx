@@ -1,5 +1,5 @@
-import DialogDemo from "../../../componentes/EditProduto/patchProduto";
-import Header from '../../../componentes/Header/page'
+import DialogDemo from "../../../componentes/(ComponentesEstoque)/EditProduto/patchProduto";
+import Header from '../../../componentes/Header/header'
 export default function PatchProdutos(){
     return(
         <>

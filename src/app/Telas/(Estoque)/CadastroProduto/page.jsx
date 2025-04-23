@@ -1,5 +1,5 @@
 "use client"
-import Header from '../../../componentes/Header/page'
+import Header from '../../../componentes/Header/header'
 import {inter} from '../../../Fontes/fonts'
 import { useState } from 'react'
 import {robotoBold, roboto} from '../../../Fontes/fonts'
@@ -56,7 +56,7 @@ export default function CadastroProduto(){
     return( 
         <div>
             <div>
-                 <Header linkDestino={'/Telas/Main'}/>    
+                 <Header linkDestino={'/Telas/Estoque'}/>    
             </div>
             <ToastContainer
                 position="top-center"
@@ -89,7 +89,7 @@ export default function CadastroProduto(){
                     })}
                     id="image"
                     className="hidden"
-                    required
+                    
                     />
                 </div>
                 <div className='w-full flex items-center justify-center flex-col mt-5'>

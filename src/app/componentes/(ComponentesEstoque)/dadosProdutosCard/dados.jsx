@@ -1,6 +1,6 @@
 "use client"
 import { robotoBold, roboto } from '../../../Fontes/fonts'
-import style from '../../../Telas/(Estoque)/DadosProduto/style.module.css'
+import style from '../../../Telas/(Estoque)/DadosProdutoTable/style.module.css'
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from 'react';
 import DialogDemo from '../EditProduto/patchProduto';
