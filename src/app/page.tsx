@@ -6,7 +6,7 @@ import CadastroProduto from './Telas/(Estoque)/CadastroProduto/page'
 import ArrayProdutos from './componentes/(ComponentesEstoque)/ArrayProdutos/produtos'
 import Pedidos from './Telas/(Pedidos)/Pedidos/page'
 import Card from './componentes/(ComponentesPedidos)/Card/card'
-import ProdutosList from './Telas/(Pedidos)/ProdutosCategory/page'
+import ProdutosList from './Telas/(Pedidos)/ProdutosCategory/[categorias]/page'
 import DataProduto from './Telas/(Estoque)/DadosProdutoTable/[produto_id]/page'
 export default function Home() {
   return (
