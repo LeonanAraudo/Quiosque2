@@ -12,7 +12,7 @@ export default function Card({categorias}) {
     
     useEffect(() => {
         async function fetchProdutos() {
-            const url = categorias ? `/api/GetCategory/${categorias}` : '/api/GetProdutos/produtos'
+            const url = categorias ? `/api/getCategory/${categorias}` : '/api/GetProdutos/produtos'
             const response = await fetch(url)
             const data = await response.json();
             setProduto(data)

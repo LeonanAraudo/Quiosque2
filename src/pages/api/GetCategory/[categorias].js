@@ -1,5 +1,4 @@
 import { Op } from "sequelize";
-import pg from 'pg';
 import  produto  from "../../../../models/Produto/produto"
 
 export default async function handler(req, res) {
@@ -21,7 +20,8 @@ export default async function handler(req, res) {
 
     return res.status(200).json(produtos);
   } catch (error) {
-    return res.status(500).json({ error: "Erro ao buscar produtos" });
+    console.error("ERRO AO BUSCAR PRODUTOS:", error);
+    return res.status(500).json({ error: "Erro ao buscar produtos", detalhes: error.message });
   }
   
 }
