@@ -1,4 +1,5 @@
 import { Op } from "sequelize";
+import pg from 'pg';
 import  produto  from "../../../../models/Produto/produto"
 
 export default async function handler(req, res) {
