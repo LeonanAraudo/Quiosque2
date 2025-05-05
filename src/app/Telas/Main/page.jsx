@@ -8,7 +8,7 @@ export default function Main(){
     return(
         <div className={style.container}>
             <div className={style.box}>
-                <img className={style.backImage} src='/comida.jpg'></img>
+                <img className={style.backImage} src='/transferir.jpg'></img>
                 <div className={style.header}>
                     <p className={`${style.logo} ${junge.className}`}>Quiosque 2</p>
                 </div>
