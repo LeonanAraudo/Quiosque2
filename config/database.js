@@ -1,13 +1,12 @@
 import { Sequelize } from 'sequelize';
 
-const sequelize = new Sequelize('quiosque2_postgres', 'quiosque2_postgres_user', 'TpIL2mEMR5XUiEGl8G9fVkQERNcNvklg', {
-  host: 'dpg-d04g2lruibrs73b2h010-a.oregon-postgres.render.com',  // Host completo do Render
+const sequelize = new Sequelize('postgresql://neondb_owner:npg_oIaQ7fHWReN9@ep-falling-surf-a8ifwkt0-pooler.eastus2.azure.neon.tech/neondb?sslmode=require', {
   dialect: 'postgres',
-  port: 5432,  // Porta padrão para PostgreSQL
+  protocol: 'postgres',
   dialectOptions: {
     ssl: {
-      require: true,  // Exige uma conexão SSL
-      rejectUnauthorized: false,  // Necessário para evitar erros de conexão com SSL
+      require: true,
+      rejectUnauthorized: false,
     },
   },
 });
