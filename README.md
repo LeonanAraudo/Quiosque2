@@ -1,4 +1,5 @@
 # 🧾 Quiosque 2 – Gerenciador de Estoque
+*Em desenvolvimento utilizando o mobile-fist*
 
 Sistema completo para **gerenciamento de estoque** e **otimização de processos** em ambientes comerciais.  
 Com funcionalidades como:
