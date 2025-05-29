@@ -7,6 +7,11 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ## Getting Started
 
 First, run the development server:
+https://github.com/user-attachments/assets/d9199c62-a5ca-49ee-996f-8cfeac1e1dee
+
+
+## ⚙️ Como rodar o projeto na sua máquina
+ 40c2e30 (Update README.md)
 
 ```bash
 npm run dev
