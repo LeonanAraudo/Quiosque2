@@ -8,6 +8,9 @@ Com funcionalidades como:
 - Sistema de **comandas** para pedidos;
 - Integração com o setor de **cozinha** para envio dos pedidos.
 
+https://github.com/user-attachments/assets/d9199c62-a5ca-49ee-996f-8cfeac1e1dee
+
+
 ## ⚙️ Como rodar o projeto na sua máquina
 
 ### 1. Clone o repositório
