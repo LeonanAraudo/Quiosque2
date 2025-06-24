@@ -1,15 +1,12 @@
 import { Sequelize } from 'sequelize';
 
-const sequelize = new Sequelize('neondb', 'neondb_owner', 'npg_oIaQ7fHWReN9', {
-  host: 'ep-falling-surf-a8ifwkt0-pooler.eastus2.azure.neon.tech',  // Host completo da neon
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
   dialect: 'postgres',
-  port: 5432,  // Porta padrão para PostgreSQL
-  dialectOptions: {
-    ssl: {
-      require: true,  // Exige uma conexão SSL
-      rejectUnauthorized: false,  // Necessário para evitar erros de conexão com SSL
-    },
-  },
+  port: Number(process.env.DB_PORT),
 });
 
 export default sequelize;
