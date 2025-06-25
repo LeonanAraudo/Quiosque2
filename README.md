@@ -34,7 +34,7 @@ npm run dev
 yarn dev
 ```
 
-O projeto será iniciado em: [http://localhost:5173](http://localhost:5173)
+O projeto será iniciado em: [http://localhost:3000](http://localhost:3000)
 
 ## 🚀 Tecnologias Utilizadas
 
