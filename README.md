@@ -1,43 +1,50 @@
-HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-=======
 # 🧾 Quiosque 2 – Gerenciador de Estoque
-*Em desenvolvimento utilizando o mobile-fist*
 
-## Getting Started
+Sistema completo para **gerenciamento de estoque** e **otimização de processos** em ambientes comerciais.  
+Com funcionalidades como:
+- Organização de produtos por categoria;
+- Alerta automático de **baixo estoque**;
+- Sistema de **comandas** para pedidos;
+- Integração com o setor de **cozinha** para envio dos pedidos.
 
-First, run the development server:
-https://github.com/user-attachments/assets/d9199c62-a5ca-49ee-996f-8cfeac1e1dee
+  
+
+https://github.com/user-attachments/assets/fe7d72a3-0747-4384-a3c7-c8048be154f1
+
 
 
 ## ⚙️ Como rodar o projeto na sua máquina
- 40c2e30 (Update README.md)
 
+### 1. Clone o repositório
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/LeonanAraudo/Quiosque2
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Instale as dependências
+```bash
+npm install
+# ou
+yarn
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Inicie o servidor de desenvolvimento
+```bash
+npm run dev
+# ou
+yarn dev
+```
 
-## Learn More
+O projeto será iniciado em: [http://localhost:5173](http://localhost:5173)
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Tecnologias Utilizadas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **React** – Biblioteca principal para construção da interface.
+- **Next.js** – Framework moderno que melhora a performance e a experiência de desenvolvimento.
+- **React Query** – Gerenciamento de estado assíncrono com foco em requisições.
+- **Zod** – Validação de dados de forma segura e tipada.
+- **Tailwind CSS** – Estilização rápida e responsiva com classes utilitárias.
+- **TypeScript** – Tipagem estática para maior segurança e organização do código.
+- **Material UI** – Componentes visuais modernos e acessíveis.
+- **Bootstrap** – Framework adicional de estilização para elementos específicos.
+- **Axios** – Requisições HTTP simples e eficientes.
+- **Sequelize** – ORM para interação com banco de dados de forma estruturada.
