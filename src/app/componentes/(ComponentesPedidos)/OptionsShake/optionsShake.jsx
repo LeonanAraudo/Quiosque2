@@ -119,7 +119,7 @@ export default function OptionsShake() {
                     <p className={`text-[22px] text-center ${robotoBold.className}`}>Cobertura</p>
                     <div className="flex flex-row justify-between mx-10 mt-4">
                         <div className="flex flex-col gap-3">
-                            {["Menta", "Chocolate", "Morango", "Kiwi", "Leite Condensado,Fini Beijos"].map((cobertura, index) => (
+                            {["Menta", "Chocolate", "Morango", "Kiwi", "Leite Condensado","Fini Beijos"].map((cobertura, index) => (
                                 <div key={index} className="flex items-center gap-2">
                                     <input
                                         type="radio"
@@ -136,7 +136,7 @@ export default function OptionsShake() {
                         </div>
 
                         <div className="flex flex-col gap-3">
-                            {["Chiclete", "Açai", "Doce de Leite", "Maracujá,Fini Banana"].map((cobertura, index) => (
+                            {["Chiclete", "Açai", "Doce de Leite", "Maracujá","Fini Banana"].map((cobertura, index) => (
                                 <div key={index + 10} className="flex items-center gap-2">
                                     <input
                                         type="radio"
