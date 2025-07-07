@@ -2,7 +2,9 @@
 
 Sistema para **gerenciamento de estoque** e **otimização de processos** em ambientes comerciais.  
 
+
 https://github.com/user-attachments/assets/347f8801-31f7-4825-aadb-c2ba36884fbe
+
 
 
 ## ⚙️ Como rodar o projeto na sua máquina
