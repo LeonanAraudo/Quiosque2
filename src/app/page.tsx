@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div>
       <div>
-        <Comanda />
+        <Main />
       </div>
     </div>
   );

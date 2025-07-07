@@ -28,7 +28,6 @@ export default function DadosProduto({produto_id}){
         <div>
         {produto.map((row) => (
             <div key={row.produto_id} className={`${style.container} ${roboto.className}`}>
-                {console.log(produto)}
                 <div className={style.boxImage}>
                     <img className={style.image} src={row.foto} alt="" />
                 </div>

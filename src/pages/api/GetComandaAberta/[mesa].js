@@ -13,6 +13,10 @@ export default async function getComandas(req, res) {
         { where: { mesa } }
       );
 
+       if (!comandaEncontrada) {
+        return res.status(404).json({ message: "Comanda não encontrada" });
+      }
+
       return res.status(200).json(comandaEncontrada);
 
     } catch (error) {

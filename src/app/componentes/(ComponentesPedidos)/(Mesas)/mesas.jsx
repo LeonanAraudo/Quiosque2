@@ -37,13 +37,13 @@ export default function MesasFixas() {
             const response = await fetch(`/api/GetComandaAberta/${mesa}`)
             const data = await response.json();
             if (data.estado === "aberta") {
-                router.push(`/telas/comanda/${mesa}`)
+                router.push(`/Telas/comanda/${data.comanda_id}`)
             } else {
                 setMesaSelecionada(mesa)
                 setModalAberto(true)
             }
         } catch (error) {
-            console.log("Erro no getComanda")
+            console.log("Erro no getComanda", error)
         }
     }
     
