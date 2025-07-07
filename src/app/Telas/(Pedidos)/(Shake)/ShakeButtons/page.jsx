@@ -5,7 +5,7 @@ export default function ShakeOption() {
     return (
         <div>
             <header>
-                <Header linkDestino={"/Telas/Pedidos"} />
+                <Header linkDestino={"/Telas/Main"} />
             </header>
             <div className='flex w-full items-center justify-center mt-16'>
                 <div className='w-[100%] flex items-center justify-center flex-col gap-8'>
