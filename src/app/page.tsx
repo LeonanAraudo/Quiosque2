@@ -9,7 +9,7 @@ import ProdutosList from './Telas/(Pedidos)/ProdutosCategory/[categorias]/page'
 import DataProduto from './Telas/(Estoque)/DadosProdutoTable/[produto_id]/page'
 import Mesas from './Telas/(Pedidos)/Mesas/page'
 import MesasFixas from '../app/componentes/(ComponentesPedidos)/(Mesas)/mesas'
-import Comanda from '../app/Telas/(Pedidos)/Comanda/page'
+import Comanda from './Telas/(Pedidos)/Comanda/[comanda_id]/page'
 export default function Home() {
   return (
     <div>

@@ -37,7 +37,7 @@ export default function MesasFixas() {
             const response = await fetch(`/api/GetComandaAberta/${mesa}`)
             const data = await response.json();
             if (data.estado === "aberta") {
-                router.push(`/Telas/comanda/${data.comanda_id}`)
+                router.push(`/Telas/Comanda/${data.comanda_id}`)
             } else {
                 setMesaSelecionada(mesa)
                 setModalAberto(true)
@@ -59,10 +59,10 @@ export default function MesasFixas() {
                     estado: "aberta",
                 }),
             });
-
+            const data = await response.json();
             if (response.ok) {
                 console.log("Comanda aberta");
-                router.push("/Telas/ComandaTela");
+                router.push(`/Telas/Comanda/${data.comanda_id}`);
             } else {
                 console.error("Erro ao abrir comanda");
             }

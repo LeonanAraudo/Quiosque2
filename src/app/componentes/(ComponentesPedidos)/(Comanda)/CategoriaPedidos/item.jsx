@@ -12,19 +12,11 @@ export default function Pedidos() {
 
     return (
         <div>
-            <div className='mt-12 flex items-center justify-center flex-col'>
-                <div className='w-full flex items-center justify-around'>
-                    {categorias.slice(0, 2).map((categoria, index) => (
+            <div className='mt-12 flex items-center justify-center flex-row'>
+                <div className='w-[100%] flex items-center justify-evenly'>
+                    {categorias.slice(0, 4).map((categoria, index) => (
                         <Link key={index} href={categoria.destino} className={style.produto}>
-                            <img width="55" height="55" src={categoria.icone} alt={categoria.nome} />
-                            <p className={`${style.unline} ${inter.className}`}>{categoria.nome}</p>
-                        </Link>
-                    ))}
-                </div>
-                <div className='w-full flex items-center justify-around mt-10'>
-                    {categorias.slice(2).map((categoria, index) => (
-                        <Link key={index} href={categoria.destino} className={style.produto}>
-                            <img width="50" height="50" src={categoria.icone} alt={categoria.nome} />
+                            <img width="45" height="45" src={categoria.icone} alt={categoria.nome} />
                             <p className={`${style.unline} ${inter.className}`}>{categoria.nome}</p>
                         </Link>
                     ))}

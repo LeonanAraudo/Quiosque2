@@ -1,19 +1,13 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize } from "sequelize";
 
 const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
+  "postgres",   // nome do banco
+  "postgres",   // usuário
+  "ol65p4t5",       // senha
   {
-    host: process.env.DB_HOST,
-    dialect: 'postgres',
-    port: Number(process.env.DB_PORT),
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
+    host: "localhost",
+    dialect: "postgres",
+    port: 5432,
   }
 );
 
