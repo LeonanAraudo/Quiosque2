@@ -11,7 +11,7 @@ export default function DadosProduto({produto_id}){
     const { onSubmit} = destroyHook(produto_id)
     const fetchProdutos = async () => {
         try{
-            const url = `/api/GetProdutoById/${produto_id}`
+            const url = `/api/Gets/GetProdutoById/${produto_id}`
             const response = await fetch(url)
             const data = await response.json();
             setProduto(data.map((item) => { return item }))

@@ -9,7 +9,7 @@ export default function Comanda() {
 
   const fetchShakes = async () => {
     try {
-      const response = await axios.get("/api/GetAllShakes/getshakes");
+      const response = await axios.get("/api/Gets/GetAllShakes/getshakes");
       // Ordena os shakes por data de criação
       const sortedShakes = response.data.sort(
         (a, b) => new Date(a.created_at) - new Date(b.created_at)
@@ -26,7 +26,7 @@ export default function Comanda() {
 
   const handleEntregar = async (shakeId) => {
     try {
-      await axios.delete(`/api/DeleteShakeById/${shakeId}`);
+      await axios.delete(`/api/Delete/DeleteShakeById/${shakeId}`);
       fetchShakes(); 
     } catch (error) {
       console.error("Erro ao deletar shake:", error);

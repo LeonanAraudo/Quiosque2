@@ -8,8 +8,8 @@ export default async function Comanda({params}) {
         const comanda_id = resolvedParams.comanda_id
     return (
         <>
-            <Header linkDestino={"/"} />
-            <Pedidos />
+            <Header linkDestino={"/Telas/Mesas"} />
+            <Pedidos comanda_id={comanda_id} />
             <Infos comanda_id={comanda_id}/>
             <ProdutosComanda comanda_id={comanda_id} />
             <ButtonsComanda />

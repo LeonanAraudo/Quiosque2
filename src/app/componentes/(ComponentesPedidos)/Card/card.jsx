@@ -4,24 +4,22 @@ import { useState, useEffect } from 'react';
 import style from '../../../Telas/(Estoque)/Estoque/style.module.css'
 import DialogDemo from './modalComponentCard';
 
-
-export default function Card({ categorias }) {
+export default function Card({ categorias,comanda_id }) {
     const [produto, setProduto] = useState([])
     const [searchTerm, setSearchTerm] = useState("");
     const [mud, setMud] = useState(true)
-
     const toggleMud = () => setMud((prevMud) => !prevMud);
 
     useEffect(() => {
         async function fetchProdutos() {
-            const url = categorias ? `/api/getCategory/${categorias}` : '/api/GetProdutos/produtos'
+            const url = categorias ? `/api/Gets/getCategory/${categorias}` : '/api/Gets/GetProdutos/produtos'
             const response = await fetch(url)
             const data = await response.json();
             setProduto(data)
         }
         fetchProdutos();
     }, [categorias]);
-
+    console.log("Comanda_id no card",comanda_id)
     const filteredPosts = produto.filter((produto) => produto.nome.toLowerCase().includes(searchTerm.toLowerCase()));
     return (
         <>
@@ -58,7 +56,7 @@ export default function Card({ categorias }) {
                             </div>
                         </div>
                         <div className=' flex items-center justify-baseline w-[10%] h-auto'>
-                            <DialogDemo produto_id={produto.produto_id} />
+                            <DialogDemo produto_id={produto.produto_id} comanda_id={comanda_id} />
                         </div>
                     </div>
                 </div>

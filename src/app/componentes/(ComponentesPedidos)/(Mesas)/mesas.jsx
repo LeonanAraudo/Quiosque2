@@ -16,7 +16,7 @@ export default function MesasFixas() {
             const novosEstados = {}
             for (const mesa of mesas) {
                 try {
-                    const response = await fetch(`/api/GetComandaAberta/${mesa}`)
+                    const response = await fetch(`/api/Gets/GetComandaAberta/${mesa}`)
                     if (response.ok) {
                         const data = await response.json()
                         novosEstados[mesa] = data.estado || undefined
@@ -34,7 +34,7 @@ export default function MesasFixas() {
 
     async function getEstadoComanda(mesa) {
         try {
-            const response = await fetch(`/api/GetComandaAberta/${mesa}`)
+            const response = await fetch(`/api/Gets/GetComandaAberta/${mesa}`)
             const data = await response.json();
             if (data.estado === "aberta") {
                 router.push(`/Telas/Comanda/${data.comanda_id}`)
@@ -49,7 +49,7 @@ export default function MesasFixas() {
     
     async function aberturaComanda(mesa) {
         try {
-            const response = await fetch("/api/AberturaComanda/aberturaComanda", {
+            const response = await fetch("/api/Posts/AberturaComanda/aberturaComanda", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

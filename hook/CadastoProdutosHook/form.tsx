@@ -53,7 +53,7 @@ export default function useForm1() {
 
     // Aqui entra o toast.promise para feedback visual
     toast.promise(
-      axios.post("/api/CadProdutos/cadastrarProduto", formDataToSend, {
+      axios.post("/api/Posts/CadProdutos/cadastrarProduto", formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       }),
       {

@@ -41,7 +41,7 @@ export default function ArrayProdutos() {
   useEffect(() => {
     async function fetchPost() {
       try {
-        const response = await fetch("/api/GetProdutos/produtos");
+        const response = await fetch("/api/Gets/GetProdutos/produtos");
         const data = await response.json();
         setPosts(data.map((item) => createData(item.nome, item.data_vencimento, item.categorias, item.quantidade_disponivel, item.quantidade_minima,item.produto_id)));    
       } catch (error) {

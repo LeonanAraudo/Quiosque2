@@ -24,7 +24,7 @@ export default function ProdutosComanda({ comanda_id }) {
             setError(null)
             
             try {
-                const response = await fetch(`/api/GeTitemComanda/${comanda_id}`);
+                const response = await fetch(`/api/Gets/GeTitemComanda/${comanda_id}`);
                 const data = await response.json();
                 
                 console.log("Dados da API:", data);

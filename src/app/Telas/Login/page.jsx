@@ -52,7 +52,7 @@ export default function Login(){
     const handleOnSubmit = async (data) => {
         console.log('Dados enviados:', data); 
         try {
-          const response = await axios.post('/api/login/login', {
+          const response = await axios.post('/api/Posts/login/login', {
             nome: data.nome,
             senha: data.senha
           })

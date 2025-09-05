@@ -8,7 +8,7 @@ export default function Infos({comanda_id}) {
     useEffect(() => {
         async function fetchGet(){
             try{
-                const response = await fetch(`/api/GetComandaById/${comanda_id}`)
+                const response = await fetch(`/api/Gets/GetComandaById/${comanda_id}`)
                 const data = await response.json()
                 setComanda(data)
             }catch(error){

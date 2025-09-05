@@ -51,7 +51,7 @@ export default function patchProdutos(produto_id, refreshProdutos, onSuccess) {
       }
 
       const response = await axios.patch(
-        `/api/PatchProdutosById/${produto_id}`,
+        `/api/Patch/PatchProdutosById/${produto_id}`,
         formData,
         {
           headers: {

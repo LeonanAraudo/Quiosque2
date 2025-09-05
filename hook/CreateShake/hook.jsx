@@ -9,7 +9,7 @@ export default function createShake() {
   const router = useRouter();
 
   const onSubmit = async (formData) => {
-    const promise =  axios.post("/api/CadShake/shakeOptions", formData);
+    const promise =  axios.post("/api/Posts/CadShake/shakeOptions", formData);
 
     toast.promise(
       promise,

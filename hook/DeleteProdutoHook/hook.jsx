@@ -6,7 +6,7 @@ export default function destroyHook(produto_id){
     const onSubmit = async () => {
         console.log(produto_id + " id no hook")
             try{
-                const response = await axios.delete(`/api/DeleteProdutoById/${produto_id}`)
+                const response = await axios.delete(`/api/Delete/DeleteProdutoById/${produto_id}`)
                 router.push("/Telas/Estoque")
                 console.log('Produto deletado com sucesso:');
             }catch (error) {

@@ -10,23 +10,29 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { useState } from "react"
+import { Loader2Icon } from "lucide-react"
+import { useState, useRef } from "react"
 import { useForm } from "react-hook-form"
 
-export default function DialogDemo({ produto_id }) {
+export default function DialogDemo({ produto_id, comanda_id }) {
     const [value, setValue] = useState(1)
+    const [isLoading, setIsLoading] = useState(false)
+    const closeButtonRef = useRef(null)
+
     const increment = () => setValue((prev) => prev + 1)
     const decrement = () => setValue((prev) => (prev > 1 ? prev - 1 : 1))
-    const { register, handleSubmit } = useForm()
-
+    const { register, handleSubmit, reset } = useForm()
     const onSubmit = async (formData) => {
         const dadosParaEnviar = {
             ...formData,
             produto_id: produto_id,
+            comanda_id: comanda_id
         }
 
+        setIsLoading(true)
+
         try {
-            const response = await fetch("/api/exemplo", {
+            const response = await fetch("/api/Posts/CadItemComanda/itemComanda", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -39,23 +45,30 @@ export default function DialogDemo({ produto_id }) {
             }
 
             const data = await response.json()
+            closeButtonRef.current?.click()
+            reset()
+            setValue(1)
+
         } catch (err) {
             console.error("Erro:", err)
+        } finally {
+            setIsLoading(false)
         }
     }
+
     return (
         <Dialog>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <DialogTrigger asChild>
-                    <Button size="personal" variant="black">+</Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
+            <DialogTrigger asChild>
+                <Button size="personal" variant="black">+</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <DialogHeader>
                         <DialogTitle>Quantidade</DialogTitle>
                     </DialogHeader>
                     <div className="grid gap-4">
                         <div className="flex items-center justify-center flex-row">
-                            <Button variant="black" onClick={decrement}>-</Button>
+                            <Button variant="black" onClick={decrement} disabled={isLoading} type="button">-</Button>
                             <Input
                                 id="username-1"
                                 name="username"
@@ -63,18 +76,34 @@ export default function DialogDemo({ produto_id }) {
                                 value={value}
                                 onChange={(e) => setValue(Number(e.target.value))}
                                 {...register("quantidade")}
+                                disabled={isLoading}
                             />
-                            <Button variant="black" onClick={increment}>+</Button>
+                            <Button variant="black" onClick={increment} disabled={isLoading} type="button">+</Button>
                         </div>
                     </div>
                     <DialogFooter>
                         <DialogClose asChild>
-                            <Button variant="outline">fechar</Button>
+                            <Button
+                                ref={closeButtonRef}
+                                variant="outline"
+                                disabled={isLoading}
+                            >
+                                fechar
+                            </Button>
                         </DialogClose>
-                        <Button variant="black" type="submit">Adicionar</Button>
+                        <Button variant="black" type="submit" disabled={isLoading}>
+                            {isLoading ? (
+                                <>
+                                    <Loader2Icon className="animate-spin mr-2 h-4 w-4" />
+                                    Adicionando...
+                                </>
+                            ) : (
+                                "Adicionar"
+                            )}
+                        </Button>
                     </DialogFooter>
-                </DialogContent>
-            </form>
+                </form>
+            </DialogContent>
         </Dialog>
     )
 }
