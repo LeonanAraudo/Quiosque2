@@ -11,17 +11,18 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Loader2Icon } from "lucide-react"
-import { useState, useRef } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 
 export default function DialogDemo({ produto_id, comanda_id }) {
     const [value, setValue] = useState(1)
     const [isLoading, setIsLoading] = useState(false)
-    const closeButtonRef = useRef(null)
+    const [open, setOpen] = useState(false) // Controla o estado do Dialog
 
     const increment = () => setValue((prev) => prev + 1)
     const decrement = () => setValue((prev) => (prev > 1 ? prev - 1 : 1))
     const { register, handleSubmit, reset } = useForm()
+    
     const onSubmit = async (formData) => {
         const dadosParaEnviar = {
             ...formData,
@@ -45,7 +46,10 @@ export default function DialogDemo({ produto_id, comanda_id }) {
             }
 
             const data = await response.json()
-            closeButtonRef.current?.click()
+            console.log("Sucesso:", data)
+            
+            // Fecha o modal e reseta o formulário
+            setOpen(false)
             reset()
             setValue(1)
 
@@ -57,7 +61,7 @@ export default function DialogDemo({ produto_id, comanda_id }) {
     }
 
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button size="personal" variant="black">+</Button>
             </DialogTrigger>
@@ -84,7 +88,6 @@ export default function DialogDemo({ produto_id, comanda_id }) {
                     <DialogFooter>
                         <DialogClose asChild>
                             <Button
-                                ref={closeButtonRef}
                                 variant="outline"
                                 disabled={isLoading}
                             >
