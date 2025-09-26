@@ -19,16 +19,16 @@ export default function ProdutosComanda({ comanda_id }) {
     useEffect(() => {
         const fetchProdutos = async () => {
             if (!comanda_id) return;
-            
+
             setLoading(true)
             setError(null)
-            
+
             try {
                 const response = await fetch(`/api/Gets/GeTitemComanda/${comanda_id}`);
                 const data = await response.json();
-                
+
                 console.log("Dados da API:", data);
-                
+
                 if (data && data.success && Array.isArray(data.itens)) {
                     setProdutos(data.itens);
                 } else {
@@ -49,11 +49,18 @@ export default function ProdutosComanda({ comanda_id }) {
 
     const calcularTotal = () => {
         return produtos.reduce((total, item) => {
-            const precoVenda = parseFloat(item.produto.preco_venda) || 0;
+            let precoVenda = 0;
+            if (item.produto) {
+                precoVenda = parseFloat(item.produto.preco_venda) || 0;
+            } else if (item.shake) {
+                if (item.shake.tamanho === "400ml") precoVenda = 10;
+                else if (item.shake.tamanho === "500ml") precoVenda = 12;
+            }
             const quantidade = parseInt(item.quantidade) || 0;
-            return total + (precoVenda * quantidade);
+            return total + precoVenda * quantidade;
         }, 0);
     };
+
 
     if (loading) {
         return (
@@ -79,7 +86,7 @@ export default function ProdutosComanda({ comanda_id }) {
             </div>
         );
     }
-    
+
     return (
         <div>
             <Table>
@@ -94,18 +101,27 @@ export default function ProdutosComanda({ comanda_id }) {
                 <TableBody>
                     {produtos.length > 0 ? (
                         produtos.map((item) => {
-                            const precoVenda = parseFloat(item.produto.preco_venda) || 0;
+                            const nomeItem = item.produto?.nome || item.shake?.nome || "Sem nome";
+                            let precoVenda = 0;
+
+                            if (item.produto && item.produto.nome) {
+                                precoVenda = parseFloat(item.produto.preco_venda) || 0;
+                            } else if (item.shake && item.shake.tamanho) {
+                                const tamanho = item.shake.tamanho.toLowerCase().trim();
+
+                                if (tamanho === "400ml") precoVenda = 10;
+                                else if (tamanho === "500ml") precoVenda = 12;
+                                else precoVenda = 10; // preço padrão para shakes com tamanho diferente
+                            }
                             const quantidade = parseInt(item.quantidade) || 0;
                             const totalItem = precoVenda * quantidade;
 
                             return (
                                 <TableRow key={item.id}>
                                     <TableCell className="font-medium">{quantidade}</TableCell>
-                                    <TableCell>{item.produto.nome}</TableCell>
+                                    <TableCell>{nomeItem}</TableCell>
                                     <TableCell>R$ {precoVenda.toFixed(2)}</TableCell>
-                                    <TableCell className="text-right">
-                                        R$ {totalItem.toFixed(2)}
-                                    </TableCell>
+                                    <TableCell className="text-right">R$ {totalItem.toFixed(2)}</TableCell>
                                 </TableRow>
                             );
                         })

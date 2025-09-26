@@ -25,11 +25,10 @@ export default function DeleteComandaDialog({ comanda_id, isOpen, onClose }) {
             
             if (response.ok) {
                 alert('Comanda deletada com sucesso!');
-                onClose(); // ✅ Fechar apenas no sucesso
+                onClose(); 
                 router.push("/Telas/Mesas");
             } else {
                 alert(`Erro: ${result.error}`);
-                // ❌ NÃO fechar em caso de erro - usuário pode tentar novamente
             }
         } catch (error) {
             console.error('Erro:', error);
