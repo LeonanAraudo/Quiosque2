@@ -12,7 +12,7 @@ export default async function Comanda({params}) {
             <Pedidos comanda_id={comanda_id} />
             <Infos comanda_id={comanda_id}/>
             <ProdutosComanda comanda_id={comanda_id} />
-            <ButtonsComanda />
+            <ButtonsComanda comanda_id={comanda_id}/>
         </>
     )
 }

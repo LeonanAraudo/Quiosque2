@@ -46,7 +46,7 @@ export default function MesasFixas() {
             console.log("Erro no getComanda", error)
         }
     }
-    
+
     async function aberturaComanda(mesa) {
         try {
             const response = await fetch("/api/Posts/AberturaComanda/aberturaComanda", {
@@ -84,15 +84,15 @@ export default function MesasFixas() {
                 {mesas.map((mesa) => {
                     const estados = estadoMesa[mesa]
                     const corBotao = estados === "aberta" ? "bg-[#1AA2A7]" : "bg-[#36A71A]"
-                    return(
-                    <button
-                        key={mesa}
-                        onClick={() => getEstadoComanda(mesa)}
-                        className={`${corBotao} text-white p-6 rounded-lg flex items-center justify-center`}
-                    >
-                        <p className="text-[27px]">{mesa}</p>
-                    </button>
-                )
+                    return (
+                        <button
+                            key={mesa}
+                            onClick={() => getEstadoComanda(mesa)}
+                            className={`${corBotao} text-white p-6 rounded-lg flex items-center justify-center`}
+                        >
+                            <p className="text-[27px]">{mesa}</p>
+                        </button>
+                    )
                 })}
             </div>
             {
@@ -100,18 +100,20 @@ export default function MesasFixas() {
                     <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-40 flex items-center justify-center z-50">
                         <div className="bg-white p-6 rounded-lg shadow-lg text-black text-center">
                             <p className="mb-4">Deseja abrir a comanda número {mesaSelecionada}?</p>
-                            <button
-                                onClick={handleConfirmar}
-                                className="bg-green-600 text-white px-4 py-2 rounded mr-2"
-                            >
-                                Confirmar
-                            </button>
-                            <button
-                                onClick={() => setModalAberto(false)}
-                                className="bg-red-600 text-white px-4 py-2 rounded"
-                            >
-                                Cancelar
-                            </button>
+                            <div className="flex w-full items-center justify-between">
+                                <button
+                                    onClick={() => setModalAberto(false)}
+                                    className="bg-red-600 text-white px-4 py-2 rounded"
+                                >
+                                    Cancelar
+                                </button>
+                                <button
+                                    onClick={handleConfirmar}
+                                    className="bg-green-600 text-white px-4 py-2 rounded mr-2"
+                                >
+                                    Confirmar
+                                </button>
+                            </div>
                         </div>
                     </div>
                 )

@@ -83,7 +83,6 @@ export default function ProdutosComanda({ comanda_id }) {
     return (
         <div>
             <Table>
-                <TableCaption>Lista de produtos da comanda</TableCaption>
                 <TableHeader>
                     <TableRow>
                         <TableHead className="w-[100px]">Qtd</TableHead>

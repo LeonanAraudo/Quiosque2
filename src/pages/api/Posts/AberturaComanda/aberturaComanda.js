@@ -17,7 +17,7 @@ export default async function abrirComanda(req, res) {
       const novaComanda = await comanda.create({  
           estado,
           mesa,
-          tempo: dayjs().toISOString(),
+          tempo: new Date().toISOString(),
           numerocomanda: proximoNumero, 
       });
 

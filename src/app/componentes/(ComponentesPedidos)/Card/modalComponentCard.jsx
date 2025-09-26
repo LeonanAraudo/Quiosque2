@@ -15,14 +15,16 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 
 export default function DialogDemo({ produto_id, comanda_id }) {
-    const [value, setValue] = useState(1)
     const [isLoading, setIsLoading] = useState(false)
-    const [open, setOpen] = useState(false) // Controla o estado do Dialog
+    const [open, setOpen] = useState(false)
+    const { register, handleSubmit, reset, setValue, watch } = useForm({
+        defaultValues: { quantidade: 1 }
+    })
 
-    const increment = () => setValue((prev) => prev + 1)
-    const decrement = () => setValue((prev) => (prev > 1 ? prev - 1 : 1))
-    const { register, handleSubmit, reset } = useForm()
-    
+
+    const increment = () => setValue("quantidade", watch("quantidade") + 1)
+    const decrement = () => setValue("quantidade", Math.max(1, watch("quantidade") - 1))
+
     const onSubmit = async (formData) => {
         const dadosParaEnviar = {
             ...formData,
@@ -47,11 +49,9 @@ export default function DialogDemo({ produto_id, comanda_id }) {
 
             const data = await response.json()
             console.log("Sucesso:", data)
-            
-            // Fecha o modal e reseta o formulário
+
             setOpen(false)
             reset()
-            setValue(1)
 
         } catch (err) {
             console.error("Erro:", err)
@@ -66,7 +66,7 @@ export default function DialogDemo({ produto_id, comanda_id }) {
                 <Button size="personal" variant="black">+</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
                     <DialogHeader>
                         <DialogTitle>Quantidade</DialogTitle>
                     </DialogHeader>
@@ -77,7 +77,6 @@ export default function DialogDemo({ produto_id, comanda_id }) {
                                 id="username-1"
                                 name="username"
                                 type="number"
-                                value={value}
                                 onChange={(e) => setValue(Number(e.target.value))}
                                 {...register("quantidade")}
                                 disabled={isLoading}
@@ -85,15 +84,8 @@ export default function DialogDemo({ produto_id, comanda_id }) {
                             <Button variant="black" onClick={increment} disabled={isLoading} type="button">+</Button>
                         </div>
                     </div>
-                    <DialogFooter>
-                        <DialogClose asChild>
-                            <Button
-                                variant="outline"
-                                disabled={isLoading}
-                            >
-                                fechar
-                            </Button>
-                        </DialogClose>
+                    <DialogFooter className="flex flex-col gap-8">
+                        
                         <Button variant="black" type="submit" disabled={isLoading}>
                             {isLoading ? (
                                 <>
@@ -104,6 +96,14 @@ export default function DialogDemo({ produto_id, comanda_id }) {
                                 "Adicionar"
                             )}
                         </Button>
+                        <DialogClose asChild>
+                            <Button
+                                variant="outline"
+                                disabled={isLoading}
+                            >
+                                fechar
+                            </Button>
+                        </DialogClose>
                     </DialogFooter>
                 </form>
             </DialogContent>
