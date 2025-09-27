@@ -15,6 +15,7 @@ import PostAddIcon from '@mui/icons-material/PostAdd';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import AssessmentIcon from '@mui/icons-material/Assessment';
+import BlenderIcon from '@mui/icons-material/Blender';
 
 export default function Header({ linkDestino }) {
   const [state, setState] = React.useState({
@@ -85,6 +86,18 @@ export default function Header({ linkDestino }) {
               <ListItemText>
                 <Link href={"/"}>
                   Resultados
+                </Link>
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <BlenderIcon/>
+              </ListItemIcon>
+              <ListItemText>
+                <Link href={"/Telas/ComandasCozinha"}>
+                  Cozinha
                 </Link>
               </ListItemText>
             </ListItemButton>
