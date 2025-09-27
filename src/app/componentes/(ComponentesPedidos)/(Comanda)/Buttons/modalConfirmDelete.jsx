@@ -24,18 +24,16 @@ export default function DeleteComandaDialog({ comanda_id, isOpen, onClose }) {
             const result = await response.json();
             
             if (response.ok) {
-                alert('Comanda deletada com sucesso!');
-                onClose(); 
                 router.push("/Telas/Mesas");
+                onClose(); 
             } else {
                 alert(`Erro: ${result.error}`);
+                setLoading(false); 
             }
         } catch (error) {
             console.error('Erro:', error);
             alert('Erro ao deletar comanda');
-            // ❌ NÃO fechar em caso de erro - usuário pode tentar novamente
-        } finally {
-            setLoading(false); // ✅ Sempre parar o loading
+            setLoading(false); 
         }
     };
 
@@ -44,21 +42,27 @@ export default function DeleteComandaDialog({ comanda_id, isOpen, onClose }) {
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>Deletar Comanda</AlertDialogTitle>
-                    <AlertDialogDescription>
-                        Tem certeza que deseja deletar esta comanda? Esta ação não pode ser desfeita 
-                        e todos os itens da comanda também serão removidos.
-                    </AlertDialogDescription>
+                   
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                    <AlertDialogCancel onClick={onClose} disabled={loading}>
+                    <AlertDialogCancel 
+                        onClick={onClose} 
+                        disabled={loading}
+                        className={loading ? 'opacity-50 cursor-not-allowed' : ''}
+                    >
                         Cancelar
                     </AlertDialogCancel>
                     <AlertDialogAction 
                         onClick={deletarComanda}
                         disabled={loading}
-                        className="bg-red-600 hover:bg-red-700"
+                        className={`bg-red-600 hover:bg-red-700 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                     >
-                        {loading ? 'Deletando...' : 'Deletar'}
+                        {loading ? (
+                            <div className="flex items-center gap-2">
+                                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                Deletando...
+                            </div>
+                        ) : 'Deletar'}
                     </AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>

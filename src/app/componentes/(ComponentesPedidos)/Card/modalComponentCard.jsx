@@ -21,7 +21,6 @@ export default function DialogDemo({ produto_id, comanda_id }) {
         defaultValues: { quantidade: 1 }
     })
 
-
     const increment = () => setValue("quantidade", watch("quantidade") + 1)
     const decrement = () => setValue("quantidade", Math.max(1, watch("quantidade") - 1))
 
@@ -31,9 +30,7 @@ export default function DialogDemo({ produto_id, comanda_id }) {
             produto_id: produto_id,
             comanda_id: comanda_id
         }
-
         setIsLoading(true)
-
         try {
             const response = await fetch("/api/Posts/CadItemComanda/itemComanda", {
                 method: "POST",
@@ -42,24 +39,19 @@ export default function DialogDemo({ produto_id, comanda_id }) {
                 },
                 body: JSON.stringify(dadosParaEnviar),
             })
-
             if (!response.ok) {
                 throw new Error(`Erro HTTP: ${response.status}`)
             }
-
             const data = await response.json()
             console.log("Sucesso:", data)
-
             setOpen(false)
             reset()
-
         } catch (err) {
             console.error("Erro:", err)
         } finally {
             setIsLoading(false)
         }
     }
-
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>

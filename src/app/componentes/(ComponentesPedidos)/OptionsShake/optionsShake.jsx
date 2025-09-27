@@ -6,13 +6,13 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react";
 
-export default function OptionsShake() {
+export default function OptionsShake({comanda_id}) {
     const [isButtonDisabled, setIsButtonDisabled] = useState(false)
-    const { register, onSubmit, handleSubmit } = createShake()
+    console.log("comanda id recebido no options shake: " + comanda_id)
+    const { register, onSubmit, handleSubmit } = createShake({comanda_id})
      
     const handleFormSubmit = async (data) => {
         setIsButtonDisabled(true)
-    
         try {
             await onSubmit(data) // espera o cadastro finalizar
         } finally {

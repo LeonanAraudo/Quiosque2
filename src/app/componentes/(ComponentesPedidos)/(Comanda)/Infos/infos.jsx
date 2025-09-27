@@ -1,52 +1,72 @@
 "use client"
 import { useEffect, useState } from "react"
 import { roboto } from "../../../../Fontes/fonts"
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+import 'dayjs/locale/pt-br';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.locale('pt-br');
+
 export default function Infos({ comanda_id }) {
     const [comanda, setComanda] = useState(null);
     const [tempoAberto, setTempoAberto] = useState("");
+
     useEffect(() => {
         async function fetchGet() {
             try {
                 const response = await fetch(`/api/Gets/GetComandaById/${comanda_id}`)
                 const data = await response.json()
+                console.log('Data da comanda:', data.tempo); // Para debug
                 setComanda(data)
             } catch (error) {
-                console.log('Error ao buscar comanda', error)
+                console.log('Erro ao buscar comanda', error)
             }
         }
         fetchGet();
     }, [comanda_id]);
 
-    useEffect(() => {
-        if (!comanda) return;
+   useEffect(() => {
+    if (!comanda) return;
 
-        const intervalo = setInterval(() => {
-            const agora = dayjs();
-            const inicio = dayjs(new Date(comanda.tempo));
-            const diffMinutos = agora.diff(inicio, "minute");
-            const minutosPositivos = Math.max(0, diffMinutos);
-            const horas = Math.floor(minutosPositivos / 60);
-            const minutos = minutosPositivos % 60;
+    const interval = setInterval(() => {
+        // Converter para o fuso horário do Brasil
+        const criadoEm = dayjs(comanda.tempo).tz('America/Sao_Paulo'); 
+        const agora = dayjs().tz('America/Sao_Paulo'); 
+        const diff = agora.diff(criadoEm, "second");
 
-            setTempoAberto(`${horas}h:${minutos}m`);
-        }, 1000);
+        const horas = Math.floor(diff / 3600);
+        const minutos = Math.floor((diff % 3600) / 60);
+        const segundos = diff % 60;
 
-        return () => clearInterval(intervalo);
-    }, [comanda]);
+        const formatado =
+            (horas > 0 ? `${horas}h ` : "") +
+            `${minutos}m ${segundos}s`;
+
+        setTempoAberto(formatado);
+
+        // DEBUG
+        console.log("Agora Brasil:", agora.format());
+        console.log("Criado em Brasil:", criadoEm.format());
+        console.log("Diff em segundos:", diff);
+    }, 1000);
+
+    return () => clearInterval(interval);
+}, [comanda]);
+
     return (
-        <>
-            <div className={`${roboto.className} flex items-start justify-around flex-row w-full my-6`}>
-                <div className="flex w-full flex-col items-center gap-3">
-                    <div className="flex flex-col items-start gap-4">
-                        <p className="text-xl" ><strong>Comanda: {comanda?.numerocomanda} </strong></p>
-                        <p className="text-xl" ><strong>Mesa: {comanda?.mesa}</strong></p>
-                    </div>
-                </div>
-                <div className="flex w-full flex-row items-center">
-                    <p className="text-xl" ><strong>Tempo: {tempoAberto} </strong></p>
+        <div className={`${roboto.className} flex items-start justify-around flex-row w-full my-6`}>
+            <div className="flex w-full flex-col items-center gap-3">
+                <div className="flex flex-col items-start gap-4">
+                    <p className="text-xl"><strong>Comanda: {comanda?.numerocomanda} </strong></p>
+                    <p className="text-xl"><strong>Mesa: {comanda?.mesa}</strong></p>
                 </div>
             </div>
-        </>
+            <div className="flex w-full flex-row items-center">
+                <p className="text-xl"><strong>Tempo: {tempoAberto}</strong></p>
+            </div>
+        </div>
     )
 }

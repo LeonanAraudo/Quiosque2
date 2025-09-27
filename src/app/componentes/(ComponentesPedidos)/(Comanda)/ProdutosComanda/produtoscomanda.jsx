@@ -50,17 +50,19 @@ export default function ProdutosComanda({ comanda_id }) {
     const calcularTotal = () => {
         return produtos.reduce((total, item) => {
             let precoVenda = 0;
-            if (item.produto) {
+            if (item.produto && item.produto.nome) {
                 precoVenda = parseFloat(item.produto.preco_venda) || 0;
-            } else if (item.shake) {
-                if (item.shake.tamanho === "400ml") precoVenda = 10;
-                else if (item.shake.tamanho === "500ml") precoVenda = 12;
+            }
+            else if (item.shake && item.shake.tamanho) {
+                const tamanho = item.shake.tamanho.toLowerCase().trim();
+                if (tamanho === "400ml") precoVenda = 10;
+                else if (tamanho === "500ml") precoVenda = 12;
+                else precoVenda = 10; 
             }
             const quantidade = parseInt(item.quantidade) || 0;
             return total + precoVenda * quantidade;
         }, 0);
     };
-
 
     if (loading) {
         return (
@@ -111,7 +113,7 @@ export default function ProdutosComanda({ comanda_id }) {
 
                                 if (tamanho === "400ml") precoVenda = 10;
                                 else if (tamanho === "500ml") precoVenda = 12;
-                                else precoVenda = 10; // preço padrão para shakes com tamanho diferente
+                                else precoVenda = 10;
                             }
                             const quantidade = parseInt(item.quantidade) || 0;
                             const totalItem = precoVenda * quantidade;

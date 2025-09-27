@@ -6,7 +6,7 @@ export default function Pedidos({comanda_id}) {
     const categorias = [
         { nome: "Bebidas", icone: "https://img.icons8.com/ios/50/FFFFFF/wine-bottle.png", destino: `/Telas/ProdutosCategory/Bebidas/${comanda_id}` },
         { nome: "Lanches", icone: "https://img.icons8.com/ios/50/FFFFFF/hamburger.png", destino: `/Telas/ProdutosCategory/Lanches/${comanda_id}` },
-        { nome: "Shakes", icone: "https://img.icons8.com/ios/50/FFFFFF/milkshake.png", destino: "/Telas/ShakeOptions" },
+        { nome: "Shakes", icone: "https://img.icons8.com/ios/50/FFFFFF/milkshake.png", destino: `/Telas/ShakeOptions/${comanda_id}` },
         { nome: "Porções", icone: "https://img.icons8.com/ios/50/FFFFFF/porridge--v1.png", destino: `/Telas/ProdutosCategory/Porcoes/${comanda_id}`},
     ];
 

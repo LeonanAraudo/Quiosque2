@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import style from '../../../Telas/(Estoque)/Estoque/style.module.css'
 import DialogDemo from './modalComponentCard';
 
-export default function Card({ categorias,comanda_id }) {
+export default function Card({ categorias, comanda_id }) {
     const [produto, setProduto] = useState([])
     const [searchTerm, setSearchTerm] = useState("");
     const [mud, setMud] = useState(true)
@@ -19,7 +19,7 @@ export default function Card({ categorias,comanda_id }) {
         }
         fetchProdutos();
     }, [categorias]);
-    console.log("Comanda_id no card",comanda_id)
+    console.log("Comanda_id no card", comanda_id)
     const filteredPosts = produto.filter((produto) => produto.nome.toLowerCase().includes(searchTerm.toLowerCase()));
     return (
         <>
