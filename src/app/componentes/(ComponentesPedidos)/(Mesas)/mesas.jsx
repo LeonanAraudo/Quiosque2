@@ -1,7 +1,8 @@
 "use client"
 import { roboto } from "@/app/Fontes/fonts"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { useMesaEstados, useEstadoComanda, useAberturaComanda } from "../../../../../hook"
 
 export default function MesasFixas() {
     const router = useRouter()
@@ -9,73 +10,33 @@ export default function MesasFixas() {
 
     const [modalAberto, setModalAberto] = useState(false)
     const [mesaSelecionada, setMesaSelecionada] = useState(null)
-    const [estadoMesa, setEstadoMesa] = useState({})
+    
+    const { estadoMesa, isLoading: loadingEstados } = useMesaEstados(mesas)
+    const { getEstadoComanda } = useEstadoComanda()
+    const { abrirComanda, isLoading: loadingAbertura } = useAberturaComanda()
 
-    useEffect(() => {
-        async function getEstados() {
-            const novosEstados = {}
-            for (const mesa of mesas) {
-                try {
-                    const response = await fetch(`/api/Gets/GetComandaAberta/${mesa}`)
-                    if (response.ok) {
-                        const data = await response.json()
-                        novosEstados[mesa] = data.estado || undefined
-                    } else {
-                        novosEstados[mesa] = undefined
-                    }
-                } catch {
-                    novosEstados[mesa] = undefined
-                }
-            }
-            setEstadoMesa(novosEstados)
-        }
-        getEstados()
-    }, [])
-
-    async function getEstadoComanda(mesa) {
-        try {
-            const response = await fetch(`/api/Gets/GetComandaAberta/${mesa}`)
-            const data = await response.json();
-            if (data.estado === "aberta") {
-                router.push(`/Telas/Comanda/${data.comanda_id}`)
-            } else {
-                setMesaSelecionada(mesa)
-                setModalAberto(true)
-            }
-        } catch (error) {
-            console.log("Erro no getComanda", error)
+    async function handleMesaClick(mesa) {
+        const result = await getEstadoComanda(mesa);
+        if (result.success && result.estado === "aberta") {
+            router.push(`/Telas/Comanda/${result.comanda_id}`);
+        } else {
+            setMesaSelecionada(mesa);
+            setModalAberto(true);
         }
     }
 
-    async function aberturaComanda(mesa) {
-        try {
-            const response = await fetch("/api/Posts/AberturaComanda/aberturaComanda", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    mesa,
-                    estado: "aberta",
-                }),
-            });
-            const data = await response.json();
-            if (response.ok) {
-                console.log("Comanda aberta");
-                router.push(`/Telas/Comanda/${data.comanda_id}`);
-            } else {
-                console.error("Erro ao abrir comanda");
-            }
-        } catch (error) {
-            console.error("Erro na requisição:", error);
+    async function handleAberturaComanda(mesa) {
+        const result = await abrirComanda(mesa);
+        if (result.success) {
+            router.push(`/Telas/Comanda/${result.comanda_id}`);
         }
     }
 
     function handleConfirmar() {
         if (mesaSelecionada !== null) {
-            aberturaComanda(mesaSelecionada)
+            handleAberturaComanda(mesaSelecionada);
         }
-        setModalAberto(false)
+        setModalAberto(false);
     }
 
     return (
@@ -87,8 +48,9 @@ export default function MesasFixas() {
                     return (
                         <button
                             key={mesa}
-                            onClick={() => getEstadoComanda(mesa)}
+                            onClick={() => handleMesaClick(mesa)}
                             className={`${corBotao} text-white p-6 rounded-lg flex items-center justify-center`}
+                            disabled={loadingEstados || loadingAbertura}
                         >
                             <p className="text-[27px]">{mesa}</p>
                         </button>

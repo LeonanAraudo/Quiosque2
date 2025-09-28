@@ -15,9 +15,6 @@ export default async function getComandaById(req, res) {
         where: { comanda_id },
       });
 
-      if (!comandaEncontrada || comandaEncontrada.length === 0) {
-        return res.status(404).json({ message: "Comanda não encontrada" });
-      }
 
       // Extrai os IDs dos produtos e shakes
       const produtoIds = comandaEncontrada
@@ -27,15 +24,19 @@ export default async function getComandaById(req, res) {
         .filter(item => item.shake_id)
         .map(item => item.shake_id);
 
-      // Busca os produtos correspondentes
-      const produtosEncontrados = await produto.findAll({
-        where: { produto_id: produtoIds },
-      });
+      // Busca os produtos correspondentes (só se houver IDs)
+      const produtosEncontrados = produtoIds.length > 0 
+        ? await produto.findAll({
+            where: { produto_id: produtoIds },
+          })
+        : [];
 
-      // Busca os shakes correspondentes
-      const shakesEncontrados = await shakeOptions.findAll({
-        where: { shake_id: shakeIds },
-      });
+      // Busca os shakes correspondentes (só se houver IDs)
+      const shakesEncontrados = shakeIds.length > 0
+        ? await shakeOptions.findAll({
+            where: { shake_id: shakeIds },
+          })
+        : [];
 
       // Mescla os dados do item_comanda com os detalhes do produto ou shake
       const itensFormatados = comandaEncontrada.map(item => {

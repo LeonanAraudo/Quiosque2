@@ -4,7 +4,6 @@ import OptionsShake from '../../../../../componentes/(ComponentesPedidos)/Option
 export default async function ShakeOptions({params}) {
     const resolvedParams = await params;
     const { comanda_id } = resolvedParams;
-    console.log("comanda id recebido na página: " + comanda_id)
     return (
         <>
             <div>

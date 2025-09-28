@@ -1,45 +1,10 @@
 "use client"
-import { useEffect, useState } from "react"
 import { Checkbox } from "@/components/ui/checkbox"
+import Link from "next/link"
+import { useItensComanda } from "../../../../../../hook/ItensComanda/useItensComanda"
 
 export default function ItensComanda({ comanda_id }){
-    const [itens, setItens] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-    const [isMounted, setIsMounted] = useState(false)
-
-    useEffect(() => {
-        setIsMounted(true)
-    }, [])
-
-    useEffect(() => {
-        if (!isMounted || !comanda_id) return
-
-        async function fetchItens() {
-            try {
-                setIsLoading(true)
-                const response = await fetch(`/api/Gets/GeTitemComanda/${comanda_id}`)
-                const data = await response.json()
-
-                if (data && data.success && Array.isArray(data.itens)) {
-                    console.log("Dados dos itens:", data.itens)
-                    setItens(data.itens)
-                } else {
-                    console.log("Dados inválidos:", data)
-                    setItens([])
-                }
-            } catch (error) {
-                console.error('Erro ao buscar itens:', error)
-                setItens([])
-            } finally {
-                setIsLoading(false)
-            }
-        }
-
-        fetchItens()
-        // Atualizar a cada 30 segundos
-        const interval = setInterval(fetchItens, 30000)
-        return () => clearInterval(interval)
-    }, [isMounted, comanda_id])
+    const { itens, isLoading } = useItensComanda(comanda_id)
 
     return(
         <div className="w-full h-full flex flex-col items-center justify-start p-4">
@@ -74,6 +39,11 @@ export default function ItensComanda({ comanda_id }){
                                                 <div>
                                                     <p className="text-lg font-semibold">{item.shake.nome}</p>
                                                     <p className="text-sm opacity-90">Quantidade: {item.quantidade}</p>
+                                                    <div>
+                                                        <Link href={`/Telas/ShakeComanda/${item.shake.shake_id}`}>
+                                                            Detalhes
+                                                        </Link>
+                                                    </div>
                                                 </div>
                                                     <Checkbox className="h-6 w-6 border-white" />
                                             </div>

@@ -1,39 +1,10 @@
 "use client"
-import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import { useComandas } from "../../../../../../hook/Comandas/useComandas"
 
 export default function ComandaCozinha() {
     const router = useRouter()
-    const [comandas, setComandas] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-    const [isMounted, setIsMounted] = useState(false)
-
-    useEffect(() => {
-        setIsMounted(true)
-    }, [])
-
-    useEffect(() => {
-        if (!isMounted) return
-
-        async function fetchComandas() {
-            try {
-                setIsLoading(true)
-                const response = await fetch('/api/Gets/GetAllComandas/getAllComandas')
-                const data = await response.json()
-
-                setComandas(data)
-            } catch (error) {
-                console.error('Erro ao buscar comandas:', error)
-            } finally {
-                setIsLoading(false)
-            }
-        }
-
-        fetchComandas()
-        // Atualizar a cada 30 segundos
-        const interval = setInterval(fetchComandas, 30000)
-        return () => clearInterval(interval)
-    }, [isMounted])
+    const { comandas, isLoading } = useComandas()
 
     const handleComandaClick = (comanda_id) => {
         router.push(`/Telas/ItensComandaCozinha/${comanda_id}`)

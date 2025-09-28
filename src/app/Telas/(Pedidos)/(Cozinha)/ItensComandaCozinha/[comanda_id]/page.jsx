@@ -1,8 +1,8 @@
 import Header from "@/app/componentes/Header/header";
 import ItensComandaCozinha from "../../../../../componentes/(ComponentesPedidos)/(Cozinha)/ItensComandaCozinha/itensComandaCozinha";
 
-export default function ItensComandaCozinhaPage({ params }) {
-    const resolvedParams = params;
+export default async function ItensComandaCozinhaPage({ params }) {
+    const resolvedParams = await params;
     const comanda_id = resolvedParams.comanda_id;
 
     return (

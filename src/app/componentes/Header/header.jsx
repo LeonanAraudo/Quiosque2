@@ -13,9 +13,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import InventoryIcon from '@mui/icons-material/Inventory';
-import ChecklistIcon from '@mui/icons-material/Checklist';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import BlenderIcon from '@mui/icons-material/Blender';
+import TableRestaurantIcon from '@mui/icons-material/TableRestaurant';
 
 export default function Header({ linkDestino }) {
   const [state, setState] = React.useState({
@@ -69,11 +69,11 @@ export default function Header({ linkDestino }) {
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <ChecklistIcon/>
+                <TableRestaurantIcon/>
               </ListItemIcon>
               <ListItemText>
-                <Link href={"/Telas/Pedidos"}>
-                Pedidos
+                <Link href={"/Telas/Mesas"}>
+                  Mesas
                 </Link>
               </ListItemText>
             </ListItemButton>

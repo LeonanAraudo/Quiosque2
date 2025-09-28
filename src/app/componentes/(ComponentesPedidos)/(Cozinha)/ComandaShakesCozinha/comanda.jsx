@@ -1,37 +1,41 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { roboto, robotoBold } from "@/app/Fontes/fonts";
-import axios from "axios";
+import { useShakeById } from "../../../../../../hook/Shakes/useShakeById";
 
-export default function Comanda() {
-  const [shakes, setShakes] = useState([]);
-
-  const fetchShakes = async () => {
-    try {
-      const response = await axios.get("/api/Gets/GetAllShakes/getshakes");
-      // Ordena os shakes por data de criação
-      const sortedShakes = response.data.sort(
-        (a, b) => new Date(a.created_at) - new Date(b.created_at)
-      );
-      setShakes(sortedShakes);
-    } catch (error) {
-      console.error("Erro ao buscar shakes:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchShakes();
-  }, []);
+export default function Comanda({shake_id}) {
+  const { shake, isLoading } = useShakeById(shake_id);
+  
+  // Converter shake único em array para o map funcionar
+  const shakes = shake ? [shake] : [];
 
   const handleEntregar = async (shakeId) => {
     try {
-      await axios.delete(`/api/Delete/DeleteShakeById/${shakeId}`);
-      fetchShakes(); 
+      console.log("Shake entregue:", shakeId);
     } catch (error) {
-      console.error("Erro ao deletar shake:", error);
+      console.error("Erro ao entregar shake:", error);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-auto mt-14 flex flex-col items-center justify-center gap-4">
+        <div className="bg-gray-200 w-[95%] h-32 rounded-[5px] flex items-center justify-center">
+          <p className="text-lg">Carregando shake...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (shakes.length === 0) {
+    return (
+      <div className="w-full h-auto mt-14 flex flex-col items-center justify-center gap-4">
+        <div className="bg-gray-200 w-[95%] h-32 rounded-[5px] flex items-center justify-center">
+          <p className="text-lg">Nenhum shake encontrado</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-auto mt-14 flex flex-col items-center justify-center gap-4">

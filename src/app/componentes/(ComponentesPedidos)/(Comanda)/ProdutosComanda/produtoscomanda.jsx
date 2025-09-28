@@ -1,5 +1,4 @@
 "use client"
-import { useEffect, useState } from "react"
 import {
     Table,
     TableBody,
@@ -10,42 +9,10 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import { useItensComanda } from "../../../../../../hook/ItensComanda/useItensComanda"
 
 export default function ProdutosComanda({ comanda_id }) {
-    const [produtos, setProdutos] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null)
-
-    useEffect(() => {
-        const fetchProdutos = async () => {
-            if (!comanda_id) return;
-
-            setLoading(true)
-            setError(null)
-
-            try {
-                const response = await fetch(`/api/Gets/GeTitemComanda/${comanda_id}`);
-                const data = await response.json();
-
-                console.log("Dados da API:", data);
-
-                if (data && data.success && Array.isArray(data.itens)) {
-                    setProdutos(data.itens);
-                } else {
-                    console.warn("API não retornou dados válidos:", data);
-                    setProdutos([]);
-                }
-            } catch (error) {
-                console.error("Erro ao buscar produtos:", error);
-                setError(error.message);
-                setProdutos([]);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProdutos();
-    }, [comanda_id]);
+    const { itens: produtos, isLoading: loading } = useItensComanda(comanda_id)
 
     const calcularTotal = () => {
         return produtos.reduce((total, item) => {
@@ -66,7 +33,7 @@ export default function ProdutosComanda({ comanda_id }) {
 
     if (loading) {
         return (
-            <div>
+            <div className="w-[90%] mx-auto"> 
                 <Table>
                     <TableCaption>Carregando produtos...</TableCaption>
                     <TableHeader>
@@ -90,7 +57,7 @@ export default function ProdutosComanda({ comanda_id }) {
     }
 
     return (
-        <div>
+        <div  className="w-[90%] mx-auto">
             <Table>
                 <TableHeader>
                     <TableRow>

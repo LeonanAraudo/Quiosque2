@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 export default function createShake({comanda_id}) {
   const {register, handleSubmit,reset} = useForm()
   const router = useRouter();
-  console.log("comanda id recebido no hook: " + comanda_id)
   const onSubmit = async (formData) => {
     const payload = {...formData,comanda_id}
     const promise =  axios.post("/api/Posts/CadShakeItemComanda/cadShakeComanda", payload);

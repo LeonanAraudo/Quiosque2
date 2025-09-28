@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useProdutos } from '../../../../hook/Produtos/useProdutos';
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -38,18 +39,13 @@ export default function ArrayProdutos() {
   const [mud,setMud] = useState(true)
   const toggleMud = () => setMud((prevMud) => !prevMud);
   const router = useRouter();
+  const { produtos, isLoading } = useProdutos();
+  
   useEffect(() => {
-    async function fetchPost() {
-      try {
-        const response = await fetch("/api/Gets/GetProdutos/produtos");
-        const data = await response.json();
-        setPosts(data.map((item) => createData(item.nome, item.data_vencimento, item.categorias, item.quantidade_disponivel, item.quantidade_minima,item.produto_id)));    
-      } catch (error) {
-        console.error("Erro ao buscar produtos:", error);
-      }
+    if (produtos.length > 0) {
+      setPosts(produtos.map((item) => createData(item.nome, item.data_vencimento, item.categorias, item.quantidade_disponivel, item.quantidade_minima, item.produto_id)));
     }
-    fetchPost();
-  }, []);
+  }, [produtos]);
 
   const handleChangePage = (event, newPage) => setPage(newPage);
 

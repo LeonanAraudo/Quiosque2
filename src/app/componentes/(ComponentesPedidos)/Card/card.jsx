@@ -1,24 +1,16 @@
 "use client"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import style from '../../../Telas/(Estoque)/Estoque/style.module.css'
 import DialogDemo from './modalComponentCard';
+import { useProdutosByCategoria } from '../../../../../hook/Produtos/useProdutosByCategoria';
 
 export default function Card({ categorias, comanda_id }) {
-    const [produto, setProduto] = useState([])
     const [searchTerm, setSearchTerm] = useState("");
     const [mud, setMud] = useState(true)
     const toggleMud = () => setMud((prevMud) => !prevMud);
-
-    useEffect(() => {
-        async function fetchProdutos() {
-            const url = categorias ? `/api/Gets/getCategory/${categorias}` : '/api/Gets/GetProdutos/produtos'
-            const response = await fetch(url)
-            const data = await response.json();
-            setProduto(data)
-        }
-        fetchProdutos();
-    }, [categorias]);
+    
+    const { produtos: produto, isLoading } = useProdutosByCategoria(categorias);
     console.log("Comanda_id no card", comanda_id)
     const filteredPosts = produto.filter((produto) => produto.nome.toLowerCase().includes(searchTerm.toLowerCase()));
     return (

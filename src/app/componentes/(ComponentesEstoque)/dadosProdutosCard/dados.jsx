@@ -5,23 +5,17 @@ import { Button } from "@/components/ui/button"
 import { useEffect, useState } from 'react';
 import DialogDemo from '../EditProduto/patchProduto';
 import destroyHook from '../../../../../hook/DeleteProdutoHook/hook'
+import { useProdutoById } from '../../../../hook/Produtos/useProdutoById'
 
 export default function DadosProduto({produto_id}){
-    const [ produto, setProduto] = useState([])
+    const { produto: produtoData, isLoading } = useProdutoById(produto_id)
+    const [produto, setProduto] = useState([])
     const { onSubmit} = destroyHook(produto_id)
-    const fetchProdutos = async () => {
-        try{
-            const url = `/api/Gets/GetProdutoById/${produto_id}`
-            const response = await fetch(url)
-            const data = await response.json();
-            setProduto(data.map((item) => { return item }))
-        }catch(error){
-            console.error("Erro ao buscar dados do produto:", error);
-        }
-    }
-
+    
     useEffect(() => {
-        fetchProdutos();
+        if (produtoData) {
+            setProduto([produtoData])
+        }
       }, [produto_id]);
         
     return(
