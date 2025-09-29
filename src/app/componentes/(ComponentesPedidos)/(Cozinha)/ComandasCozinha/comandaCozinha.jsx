@@ -17,7 +17,7 @@ export default function ComandaCozinha() {
             </div>
             {isLoading ? (
                 <div className="w-full h-[90%] flex flex-col items-center justify-center">
-                    <div className="bg-gray-200 w-[90%] h-16 rounded flex items-center justify-center mx-6">
+                    <div className=" w-[90%] h-16 rounded flex items-center justify-center mx-6">
                         <p>Carregando...</p>
                     </div>
                 </div>

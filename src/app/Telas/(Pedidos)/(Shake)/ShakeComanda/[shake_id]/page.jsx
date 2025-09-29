@@ -6,7 +6,7 @@ export default async function ShakeComanda({params}){
     return(
         <>
         <header>
-            <Header linkDestino={"/Telas/ShakeButtons"}/>
+            <Header linkDestino={"/Telas/ComandasCozinha"}/>
         </header>
         <div>
             <Comanda shake_id={shake_id}/>

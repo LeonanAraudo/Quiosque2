@@ -6,21 +6,12 @@ import { useShakeById } from "../../../../../../hook/Shakes/useShakeById";
 export default function Comanda({shake_id}) {
   const { shake, isLoading } = useShakeById(shake_id);
   
-  // Converter shake único em array para o map funcionar
   const shakes = shake ? [shake] : [];
-
-  const handleEntregar = async (shakeId) => {
-    try {
-      console.log("Shake entregue:", shakeId);
-    } catch (error) {
-      console.error("Erro ao entregar shake:", error);
-    }
-  };
 
   if (isLoading) {
     return (
       <div className="w-full h-auto mt-14 flex flex-col items-center justify-center gap-4">
-        <div className="bg-gray-200 w-[95%] h-32 rounded-[5px] flex items-center justify-center">
+        <div className=" w-[95%] h-32 rounded-[5px] flex items-center justify-center">
           <p className="text-lg">Carregando shake...</p>
         </div>
       </div>
@@ -30,7 +21,7 @@ export default function Comanda({shake_id}) {
   if (shakes.length === 0) {
     return (
       <div className="w-full h-auto mt-14 flex flex-col items-center justify-center gap-4">
-        <div className="bg-gray-200 w-[95%] h-32 rounded-[5px] flex items-center justify-center">
+        <div className=" w-[95%] h-32 rounded-[5px] flex items-center justify-center">
           <p className="text-lg">Nenhum shake encontrado</p>
         </div>
       </div>
@@ -42,7 +33,7 @@ export default function Comanda({shake_id}) {
       {shakes.map((shake, index) => (
         <div
           key={shake.shake_id}
-          className="bg-[#FFD0B7] w-[95%] h-full flex items-center justify-center rounded-[5px] flex-col gap-2 px-2"
+          className="bg-[#FFD0B7] w-[95%] pb-7 h-full flex items-center justify-center rounded-[5px] flex-col gap-2 px-2"
         >
           <div className="w-full flex items-center justify-between">
             <p className={`text-[30px] text-[#780000] ${robotoBold.className}`}>
@@ -82,15 +73,6 @@ export default function Comanda({shake_id}) {
               roboto={roboto}
               robotoBold={robotoBold}
             />
-          </div>
-
-          <div className="w-full h-5 pr-2 flex items-center justify-end flex-row my-6">
-            <button
-              className={`active:bg-[#7eec68] bg-[#21BA03] w-[180px] h-10 rounded-[5px] text-[19px] text-white ${roboto.className}`}
-              onClick={() => handleEntregar(shake.shake_id)}
-            >
-              Entregar
-            </button>
           </div>
         </div>
       ))}

@@ -10,26 +10,35 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { useItensComanda } from "../../../../../../hook/ItensComanda/useItensComanda"
+import { useEffect, useState } from "react";
 
 export default function ProdutosComanda({ comanda_id }) {
     const { itens: produtos, isLoading: loading } = useItensComanda(comanda_id)
+    const [total, setTotal] = useState(0);
 
-    const calcularTotal = () => {
+     const calcularTotal = () => {
         return produtos.reduce((total, item) => {
             let precoVenda = 0;
+
             if (item.produto && item.produto.nome) {
                 precoVenda = parseFloat(item.produto.preco_venda) || 0;
-            }
-            else if (item.shake && item.shake.tamanho) {
+            } else if (item.shake && item.shake.tamanho) {
                 const tamanho = item.shake.tamanho.toLowerCase().trim();
                 if (tamanho === "400ml") precoVenda = 10;
                 else if (tamanho === "500ml") precoVenda = 12;
                 else precoVenda = 10;
             }
+
             const quantidade = parseInt(item.quantidade) || 0;
             return total + precoVenda * quantidade;
         }, 0);
     };
+
+    useEffect(() => {
+        const totalAtual = calcularTotal();
+        setTotal(totalAtual);
+        localStorage.setItem(`total_comanda_${comanda_id}`, totalAtual);
+    }, [produtos]);
 
     if (loading) {
         return (

@@ -6,20 +6,25 @@ import { useComandaActions } from "../../../../../../hook/Comandas/useComandaAct
 import { useComandaCozinha } from "../../../../../../hook/Comandas/useComandaCozinha";
 import { ToastContainer, toast, Zoom } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from "next/navigation";
 
 export default function ButtonsComanda({comanda_id}) {
     const [showConfirm, setShowConfirm] = useState(false);
     const { enviarParaCozinha, finalizarComanda, isLoading } = useComandaActions();
     const { fetchComandas } = useComandaCozinha(comanda_id);
-
+    const router = useRouter()
     const handleEnviarCozinha = async () => {
         try {
-            await fetchComandas(); // chama o PATCH
-            toast.success("Enviado para a cozinha!"); // alerta do Toastify
+            await fetchComandas(); 
+            toast.success("Enviado para a cozinha!"); 
         } catch (error) {
             console.error(error);
             toast.error("Erro ao enviar para a cozinha");
         }
+    };
+
+      const handlePagamento = async () => {
+       router.push(`/Telas/Pagamento/${comanda_id}`)
     };
 
     return (
@@ -52,7 +57,7 @@ export default function ButtonsComanda({comanda_id}) {
                     {isLoading ? "Enviando..." : "Enviar para cozinha"}
                 </button>
                 <button 
-                    // onClick={handleFinalizar}
+                    onClick={handlePagamento}
                     disabled={isLoading}
                     className="bg-[#2FD520] w-20 h-8 text-white text-xl rounded-sm disabled:opacity-50"
                 >

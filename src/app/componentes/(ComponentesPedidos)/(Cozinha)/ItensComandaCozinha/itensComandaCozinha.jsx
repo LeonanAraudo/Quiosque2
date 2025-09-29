@@ -13,7 +13,7 @@ export default function ItensComanda({ comanda_id }) {
             </div>
             {isLoading ? (
                 <div key={''} className="w-full h-[90%] flex flex-col items-center justify-center">
-                    <div className="bg-gray-200 w-[90%] h-16 rounded flex items-center justify-center mx-6">
+                    <div className=" w-[90%] h-16 rounded flex items-center justify-center mx-6">
                         <p>Carregando itens...</p>
                     </div>
                 </div>
@@ -21,7 +21,7 @@ export default function ItensComanda({ comanda_id }) {
                 <div className="w-full h-[90%] flex flex-col items-center justify-start space-y-4 overflow-y-auto">
                     {itens.length === 0 ? (
                         <div className="w-full flex flex-col items-center justify-center">
-                            <div className="bg-gray-200 w-[90%] h-16 rounded flex items-center justify-center mx-6">
+                            <div className=" w-[90%] h-16 rounded flex items-center justify-center mx-6">
                                 <p>Nenhum item encontrado para esta comanda</p>
                             </div>
                         </div>
@@ -40,12 +40,15 @@ export default function ItensComanda({ comanda_id }) {
                                                     <p className="text-lg font-semibold">{item.shake.nome}</p>
                                                     <p className="text-sm opacity-90">Quantidade: {item.quantidade}</p>
                                                     <div>
-                                                        <Link href={`/Telas/ShakeComanda/${item.shake.shake_id}`}>
+                                                        <Link 
+                                                        className="bg-blue"
+                                                        href={`/Telas/ShakeComanda/${item.shake.shake_id}`}>
                                                             Detalhes
                                                         </Link>
                                                     </div>
                                                 </div>
                                                 <Checkbox
+                                                className="border-white"
                                                     checked={item.entregue}
                                                     onCheckedChange={async (checked) => {
                                                         try {
