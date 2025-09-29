@@ -53,6 +53,7 @@ export default async function getComandaById(req, res) {
           produto_id: item.produto_id,
           shake_id: item.shake_id,
           quantidade: item.quantidade,
+          entregue:item.entregue,
           produto: produtoCorrespondente || {},
           shake: shakeCorrespondente || {},
         };

@@ -41,12 +41,13 @@ export default function ProdutosComanda({ comanda_id }) {
                             <TableHead className="w-[100px]">Qtd</TableHead>
                             <TableHead>Nome</TableHead>
                             <TableHead>Preço Unit.</TableHead>
+                            <TableHead>Feito</TableHead> 
                             <TableHead className="text-right">Total</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         <TableRow>
-                            <TableCell colSpan={4} className="text-center">
+                            <TableCell colSpan={5} className="text-center">
                                 Carregando...
                             </TableCell>
                         </TableRow>
@@ -57,11 +58,11 @@ export default function ProdutosComanda({ comanda_id }) {
     }
 
     return (
-        <div className="w-[90%] mx-auto">
+        <div className="w-[95%] mx-auto">
             <Table>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="w-[100px]">Qtd</TableHead>
+                        <TableHead className="w-[50px]">Qtd</TableHead>
                         <TableHead>Nome</TableHead>
                         <TableHead>Preço Unit.</TableHead>
                         <TableHead>Feito</TableHead> 
@@ -110,7 +111,7 @@ export default function ProdutosComanda({ comanda_id }) {
                 <TableFooter>
                     <TableRow>
                         <TableCell colSpan={4} className="font-medium">Total Geral</TableCell>
-                        <TableCell className="text-right font-medium">
+                        <TableCell className="text-right w-[150px] font-medium">
                             R$ {calcularTotal().toFixed(2)}
                         </TableCell>
                     </TableRow>

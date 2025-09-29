@@ -41,5 +41,5 @@ export const useItensComanda = (comanda_id) => {
         return () => clearInterval(interval);
     }, [isMounted, comanda_id]);
 
-    return { itens, isLoading };
+    return { itens,setItens, isLoading };
 };

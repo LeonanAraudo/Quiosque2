@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useItensComanda } from "../../../../../../hook/ItensComanda/useItensComanda"
 import { useEntregarProduto } from "../../../../../../hook/ItensComanda/useEntregarProduto"
 export default function ItensComanda({ comanda_id }) {
-    const { itens, isLoading } = useItensComanda(comanda_id)
+    const { itens,setItens, isLoading } = useItensComanda(comanda_id)
     const { fetchItemComanda } = useEntregarProduto()
     return (
         <div className="w-full h-full flex flex-col items-center justify-start p-4">
@@ -45,7 +45,22 @@ export default function ItensComanda({ comanda_id }) {
                                                         </Link>
                                                     </div>
                                                 </div>
-                                                <Checkbox className="h-6 w-6 border-white" />
+                                                <Checkbox
+                                                    checked={item.entregue}
+                                                    onCheckedChange={async (checked) => {
+                                                        try {
+                                                            // Atualiza o estado local imediatamente
+                                                            setItens((prev) =>
+                                                                prev.map((i) =>
+                                                                    i.id === item.id ? { ...i, entregue: checked } : i
+                                                                )
+                                                            );
+                                                            await fetchItemComanda(item.id, checked);
+                                                        } catch (error) {
+                                                            console.error(error);
+                                                        }
+                                                    }}
+                                                />
                                             </div>
 
                                         </div>
@@ -61,8 +76,15 @@ export default function ItensComanda({ comanda_id }) {
                                                     checked={item.entregue}
                                                     onCheckedChange={async (checked) => {
                                                         try {
-                                                            await fetchItemComanda(item.id, checked); // envia true ou false
+                                                            // Atualiza o estado local imediatamente
+                                                            setItens((prev) =>
+                                                                prev.map((i) =>
+                                                                    i.id === item.id ? { ...i, entregue: checked } : i
+                                                                )
+                                                            );
+                                                            await fetchItemComanda(item.id, checked);
                                                         } catch (error) {
+                                                            console.error(error);
                                                         }
                                                     }}
                                                 />
