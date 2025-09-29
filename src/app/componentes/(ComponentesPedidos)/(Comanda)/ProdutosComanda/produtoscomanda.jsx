@@ -24,7 +24,7 @@ export default function ProdutosComanda({ comanda_id }) {
                 const tamanho = item.shake.tamanho.toLowerCase().trim();
                 if (tamanho === "400ml") precoVenda = 10;
                 else if (tamanho === "500ml") precoVenda = 12;
-                else precoVenda = 10; 
+                else precoVenda = 10;
             }
             const quantidade = parseInt(item.quantidade) || 0;
             return total + precoVenda * quantidade;
@@ -33,7 +33,7 @@ export default function ProdutosComanda({ comanda_id }) {
 
     if (loading) {
         return (
-            <div className="w-[90%] mx-auto"> 
+            <div className="w-[90%] mx-auto">
                 <Table>
                     <TableCaption>Carregando produtos...</TableCaption>
                     <TableHeader>
@@ -57,16 +57,18 @@ export default function ProdutosComanda({ comanda_id }) {
     }
 
     return (
-        <div  className="w-[90%] mx-auto">
+        <div className="w-[90%] mx-auto">
             <Table>
                 <TableHeader>
                     <TableRow>
                         <TableHead className="w-[100px]">Qtd</TableHead>
                         <TableHead>Nome</TableHead>
                         <TableHead>Preço Unit.</TableHead>
+                        <TableHead>Feito</TableHead> 
                         <TableHead className="text-right">Total</TableHead>
                     </TableRow>
                 </TableHeader>
+
                 <TableBody>
                     {produtos.length > 0 ? (
                         produtos.map((item) => {
@@ -90,13 +92,16 @@ export default function ProdutosComanda({ comanda_id }) {
                                     <TableCell className="font-medium">{quantidade}</TableCell>
                                     <TableCell>{nomeItem}</TableCell>
                                     <TableCell>R$ {precoVenda.toFixed(2)}</TableCell>
+                                    <TableCell> 
+                                        {item.entregue ? "✅" : "❌"}
+                                    </TableCell>
                                     <TableCell className="text-right">R$ {totalItem.toFixed(2)}</TableCell>
                                 </TableRow>
                             );
                         })
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={4} className="text-center">
+                            <TableCell colSpan={5} className="text-center"> 
                                 Nenhum produto encontrado
                             </TableCell>
                         </TableRow>
@@ -104,7 +109,7 @@ export default function ProdutosComanda({ comanda_id }) {
                 </TableBody>
                 <TableFooter>
                     <TableRow>
-                        <TableCell colSpan={3} className="font-medium">Total Geral</TableCell>
+                        <TableCell colSpan={4} className="font-medium">Total Geral</TableCell>
                         <TableCell className="text-right font-medium">
                             R$ {calcularTotal().toFixed(2)}
                         </TableCell>

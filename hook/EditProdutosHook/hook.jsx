@@ -37,7 +37,6 @@ export default function patchProdutos(produto_id, refreshProdutos, onSuccess) {
       appendIfExists("quantidade_disponivel", data.quantidade_disponivel);
       appendIfExists("quantidade_minima", data.quantidade_minima);
 
-      // Valida a data antes de enviar
       if (
         data.data_vencimento &&
         !isNaN(Date.parse(data.data_vencimento))

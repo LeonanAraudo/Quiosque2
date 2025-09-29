@@ -8,7 +8,6 @@ import { useState } from "react";
 
 export default function OptionsShake({comanda_id}) {
     const [isButtonDisabled, setIsButtonDisabled] = useState(false)
-    console.log("comanda id recebido no options shake: " + comanda_id)
     const { register, onSubmit, handleSubmit } = createShake({comanda_id})
      
     const handleFormSubmit = async (data) => {

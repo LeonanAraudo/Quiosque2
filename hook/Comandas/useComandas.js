@@ -15,7 +15,7 @@ export const useComandas = () => {
         async function fetchComandas() {
             try {
                 setIsLoading(true);
-                const response = await fetch('/api/Gets/GetAllComandas/getAllComandas');
+                const response = await fetch('/api/Gets/GetComandaByCozinha/getComandaCozinha');
                 const data = await response.json();
                 setComandas(data);
             } catch (error) {

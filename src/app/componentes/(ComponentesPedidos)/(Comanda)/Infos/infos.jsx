@@ -19,10 +19,8 @@ export default function Infos({ comanda_id }) {
             try {
                 const response = await fetch(`/api/Gets/GetComandaById/${comanda_id}`)
                 const data = await response.json()
-                console.log('Data da comanda:', data.tempo); // Para debug
                 setComanda(data)
             } catch (error) {
-                console.log('Erro ao buscar comanda', error)
             }
         }
         fetchGet();
@@ -46,11 +44,6 @@ export default function Infos({ comanda_id }) {
             `${minutos}m ${segundos}s`;
 
         setTempoAberto(formatado);
-
-        // DEBUG
-        console.log("Agora Brasil:", agora.format());
-        console.log("Criado em Brasil:", criadoEm.format());
-        console.log("Diff em segundos:", diff);
     }, 1000);
 
     return () => clearInterval(interval);

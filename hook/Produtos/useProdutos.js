@@ -16,7 +16,7 @@ export const useProdutos = () => {
         async function fetchProdutos() {
             try {
                 setIsLoading(true);
-                const response = await axios.get('/api/Gets/GetAllProdutos/getAllProdutos');
+                const response = await axios.get('/api/Gets/GetProdutos/produtos');
                 setProdutos(response.data);
             } catch (error) {
                 console.error('Erro ao buscar produtos:', error);

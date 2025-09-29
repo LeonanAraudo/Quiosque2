@@ -16,6 +16,11 @@ const comanda = sequelize.define('comanda', {
     type: DataTypes.INTEGER,
     allowNull: true
   },
+  nacozinha: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
+  },
   numerocomanda: {
     type: DataTypes.INTEGER,
     allowNull: true

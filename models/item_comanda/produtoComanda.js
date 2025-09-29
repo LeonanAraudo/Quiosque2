@@ -28,6 +28,11 @@ const item_comanda = sequelize.define('item_comanda', {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
     },
+    entregue: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
     shake_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

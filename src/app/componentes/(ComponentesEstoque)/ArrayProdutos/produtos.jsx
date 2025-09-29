@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useProdutos } from '../../../../hook/Produtos/useProdutos';
+import { useProdutos } from '../../../../../hook/Produtos/useProdutos';
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";

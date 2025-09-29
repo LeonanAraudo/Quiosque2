@@ -3,35 +3,40 @@ import { roboto } from "@/app/Fontes/fonts"
 import { useState } from "react";
 import AlertDialogDemo from './modalConfirmDelete'
 import { useComandaActions } from "../../../../../../hook/Comandas/useComandaActions"
+import { useComandaCozinha } from "../../../../../../hook/Comandas/useComandaCozinha";
+import { ToastContainer, toast, Zoom } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ButtonsComanda({comanda_id}) {
     const [showConfirm, setShowConfirm] = useState(false);
     const { enviarParaCozinha, finalizarComanda, isLoading } = useComandaActions();
+    const { fetchComandas } = useComandaCozinha(comanda_id);
 
     const handleEnviarCozinha = async () => {
-        const result = await enviarParaCozinha(comanda_id);
-        if (result.success) {
-            console.log(result.message);
-            // Aqui você pode adicionar notificação de sucesso
-        } else {
-            console.error(result.message);
-            // Aqui você pode adicionar notificação de erro
-        }
-    };
-
-    const handleFinalizar = async () => {
-        const result = await finalizarComanda(comanda_id);
-        if (result.success) {
-            console.log(result.message);
-            // Aqui você pode adicionar notificação de sucesso
-        } else {
-            console.error(result.message);
-            // Aqui você pode adicionar notificação de erro
+        try {
+            await fetchComandas(); // chama o PATCH
+            toast.success("Enviado para a cozinha!"); // alerta do Toastify
+        } catch (error) {
+            console.error(error);
+            toast.error("Erro ao enviar para a cozinha");
         }
     };
 
     return (
         <div className={`${roboto.className}`}>
+            <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+                transition={Zoom}
+            />
             <div className="w-full flex flex-row items-center justify-around">
                 <button
                     onClick={() => setShowConfirm(true)}
@@ -47,7 +52,7 @@ export default function ButtonsComanda({comanda_id}) {
                     {isLoading ? "Enviando..." : "Enviar para cozinha"}
                 </button>
                 <button 
-                    onClick={handleFinalizar}
+                    // onClick={handleFinalizar}
                     disabled={isLoading}
                     className="bg-[#2FD520] w-20 h-8 text-white text-xl rounded-sm disabled:opacity-50"
                 >
@@ -55,13 +60,11 @@ export default function ButtonsComanda({comanda_id}) {
                 </button>
             </div>
             {showConfirm && (
-                <>
                 <AlertDialogDemo 
-                comanda_id={comanda_id}
-                isOpen={showConfirm}
-                onClose={() => setShowConfirm(false)}
+                    comanda_id={comanda_id}
+                    isOpen={showConfirm}
+                    onClose={() => setShowConfirm(false)}
                 />
-                </>
             )}
         </div>
     )

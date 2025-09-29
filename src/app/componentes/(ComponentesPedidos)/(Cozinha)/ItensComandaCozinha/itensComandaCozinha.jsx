@@ -2,11 +2,11 @@
 import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
 import { useItensComanda } from "../../../../../../hook/ItensComanda/useItensComanda"
-
-export default function ItensComanda({ comanda_id }){
+import { useEntregarProduto } from "../../../../../../hook/ItensComanda/useEntregarProduto"
+export default function ItensComanda({ comanda_id }) {
     const { itens, isLoading } = useItensComanda(comanda_id)
-
-    return(
+    const { fetchItemComanda } = useEntregarProduto()
+    return (
         <div className="w-full h-full flex flex-col items-center justify-start p-4">
             <div className="w-full h-[10%] flex items-center justify-start my-6">
                 <h1 className="text-2xl font-bold text-gray-800">Itens da Comanda</h1>
@@ -29,7 +29,7 @@ export default function ItensComanda({ comanda_id }){
                         itens.map((item) => {
                             const isShake = item.shake_id !== null && Object.keys(item.shake).length > 0;
                             const isProduto = item.produto_id !== null && Object.keys(item.produto).length > 0;
-                            
+
                             return (
                                 <div key={item.id} className="w-full flex flex-col items-center justify-center">
                                     {isShake ? (
@@ -45,9 +45,9 @@ export default function ItensComanda({ comanda_id }){
                                                         </Link>
                                                     </div>
                                                 </div>
-                                                    <Checkbox className="h-6 w-6 border-white" />
+                                                <Checkbox className="h-6 w-6 border-white" />
                                             </div>
-                                            
+
                                         </div>
                                     ) : (
                                         // Div para Produto
@@ -57,7 +57,16 @@ export default function ItensComanda({ comanda_id }){
                                                     <p className="text-lg font-semibold text-gray-800">{item.produto.nome}</p>
                                                     <p className="text-sm text-gray-600">Quantidade: {item.quantidade}</p>
                                                 </div>
-                                                    <Checkbox className="h-6 w-6" />
+                                                <Checkbox
+                                                    checked={item.entregue}
+                                                    onCheckedChange={async (checked) => {
+                                                        try {
+                                                            await fetchItemComanda(item.id, checked); // envia true ou false
+                                                        } catch (error) {
+                                                        }
+                                                    }}
+                                                />
+
                                             </div>
                                         </div>
                                     )}
