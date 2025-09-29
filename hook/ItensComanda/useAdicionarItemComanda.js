@@ -13,12 +13,13 @@ export const useAdicionarItemComanda = () => {
                 },
                 body: JSON.stringify(dados),
             });
+            
+            const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(`Erro HTTP: ${response.status}`);
+                return { success: false, error: data.message || "Erro ao adicionar item" };
             }
 
-            const data = await response.json();
             return { success: true, data };
         } catch (error) {
             console.error("Erro ao adicionar item:", error);

@@ -48,7 +48,7 @@ export default function Card({ categorias, comanda_id }) {
                             </div>
                         </div>
                         <div className=' flex items-center justify-baseline w-[10%] h-auto'>
-                            <DialogDemo produto_id={produto.produto_id} comanda_id={comanda_id} />
+                            <DialogDemo produto_id={produto.produto_id} comanda_id={comanda_id} quantidade_disponivel={produto.quantidade_disponivel} />
                         </div>
                     </div>
                 </div>
