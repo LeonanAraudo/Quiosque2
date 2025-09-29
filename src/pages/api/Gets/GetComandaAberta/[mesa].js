@@ -13,15 +13,14 @@ export default async function getComandas(req, res) {
         { where: { mesa } }
       );
 
-       if (!comandaEncontrada) {
-        return res.status(404).json({ message: "Comanda não encontrada" });
+      if (!comandaEncontrada) {
+        return res.status(200).json({ estado: "fechada", comanda_id: null });
       }
 
       return res.status(200).json(comandaEncontrada);
 
     } catch (error) {
       console.error('Erro ao buscar comanda:', error);
-      return res.status(500).json({ message: 'Erro no servidor' });
     }
   } else {
     return res.status(405).json({ message: 'Método não permitido' });
