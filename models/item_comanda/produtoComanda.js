@@ -12,18 +12,17 @@ const item_comanda = sequelize.define('item_comanda', {
         primaryKey: true,
         references: {
             model: 'comanda',
-            key: 'id'
+            key: 'comanda_id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
     },
     produto_id: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
         allowNull: true,
         references: {
-            model: 'produto',
-            key: 'id'
+            model: 'produtos',
+            key: 'produto_id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
@@ -35,11 +34,10 @@ const item_comanda = sequelize.define('item_comanda', {
       },
     shake_id: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
         allowNull: true,
         references: {
-            model: 'shakeOptions',
-            key: 'id'
+            model: 'shakeoptions',
+            key: 'shake_id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'

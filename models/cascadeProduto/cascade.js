@@ -1,5 +1,5 @@
-const Produto = require("../Produto/produto");
-const ItemComanda = require("../item_comanda/produtoComanda");
+import Produto from "../Produto/produto.js"
+import ItemComanda from "../item_comanda/produtoComanda.js"
 
 Produto.hasMany(ItemComanda, { 
     foreignKey: 'produto_id', 

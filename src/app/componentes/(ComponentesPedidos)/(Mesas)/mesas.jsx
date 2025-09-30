@@ -1,24 +1,24 @@
 "use client"
 import { roboto } from "@/app/Fontes/fonts"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { useMesaEstados, useEstadoComanda, useAberturaComanda } from "../../../../../hook"
+import { useState, useMemo } from "react"
+import { useEstadosMesasOtimizado, useAberturaComanda } from "../../../../../hook"
 
 export default function MesasFixas() {
     const router = useRouter()
-    const mesas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    const mesas = useMemo(() => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [])
 
     const [modalAberto, setModalAberto] = useState(false)
     const [mesaSelecionada, setMesaSelecionada] = useState(null)
-    
-    const { estadoMesa, isLoading: loadingEstados } = useMesaEstados(mesas)
-    const { getEstadoComanda } = useEstadoComanda()
+
+    const { estadosMesas, isLoading: loadingEstados } = useEstadosMesasOtimizado(mesas)
     const { abrirComanda, isLoading: loadingAbertura } = useAberturaComanda()
 
-    async function handleMesaClick(mesa) {
-        const result = await getEstadoComanda(mesa);
-        if (result.success && result.estado === "aberta") {
-            router.push(`/Telas/Comanda/${result.comanda_id}`);
+    function handleMesaClick(mesa) {
+        const estadoMesa = estadosMesas[mesa];
+        
+        if (estadoMesa && estadoMesa.estado === "aberta") {
+            router.push(`/Telas/Comanda/${estadoMesa.comanda_id}`);
         } else {
             setMesaSelecionada(mesa);
             setModalAberto(true);
@@ -43,8 +43,8 @@ export default function MesasFixas() {
         <div className={`${roboto.className}`}>
             <div className="grid grid-cols-2 gap-4 p-4">
                 {mesas.map((mesa) => {
-                    const estados = estadoMesa[mesa]
-                    const corBotao = estados === "aberta" ? "bg-[#1AA2A7]" : "bg-[#36A71A]"
+                    const estadoMesa = estadosMesas[mesa];
+                    const corBotao = estadoMesa?.estado === "aberta" ? "bg-[#1AA2A7]" : "bg-[#36A71A]"
                     return (
                         <button
                             key={mesa}
@@ -80,7 +80,6 @@ export default function MesasFixas() {
                     </div>
                 )
             }
-
         </div>
     );
 }

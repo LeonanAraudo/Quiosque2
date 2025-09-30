@@ -15,7 +15,7 @@ export default function ButtonsComanda({comanda_id}) {
     const router = useRouter()
     const handleEnviarCozinha = async () => {
         try {
-            await fetchComandas(); 
+            await fetchComandas(comanda_id); 
             toast.success("Enviado para a cozinha!"); 
         } catch (error) {
             console.error(error);

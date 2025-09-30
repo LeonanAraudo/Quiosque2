@@ -2,7 +2,6 @@
 export { useComandas } from './Comandas/useComandas';
 export { useComandaById } from './Comandas/useComandaById';
 export { useAberturaComanda } from './Comandas/useAberturaComanda';
-export { useEstadoComanda } from './Comandas/useEstadoComanda';
 export { useComandaActions } from './Comandas/useComandaActions';
 
 // Itens Comanda
@@ -19,8 +18,7 @@ export { useProdutoById } from './Produtos/useProdutoById';
 export { useProdutosByCategoria } from './Produtos/useProdutosByCategoria';
 
 // Mesas
-export { useMesaStatus } from './Mesas/useMesaStatus';
-export { useMesaEstados } from './Mesas/useMesaEstados';
+export { useEstadosMesasOtimizado } from './Mesas/useEstadosMesasOtimizado';
 
 // Categorias
 export { useCategorias } from './Categorias/useCategorias';

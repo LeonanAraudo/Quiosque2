@@ -31,8 +31,8 @@ export default function PagamentoComponent({ comanda_id }) {
             <p className={`font-bold text-[20px] mt-3 ${roboto.className}`}>Total da Comanda</p>
             <p className={`font-bold text-[40px] mt-2 ${robotoBold.className}`}> {totalSalvo ? `R$ ${totalSalvo}` : "carregando..."}</p>
           </div>
-          <div>
-            <img />
+          <div className="w-full flex items-center justify-center">
+            <img src="/image.png" alt="pix" className="w-[90%] h-[90%]" />
           </div>
         </div>
         <div className="w-full flex items-start justify-start">

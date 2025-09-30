@@ -2,7 +2,10 @@ import sequelize from '../config/database.js';
 import '../models/Produto/produto.js'
 import '../models/ShakeOptions/options.js'
 import '../models/Usuario/usuario.js'
-
+import '../models/comanda/comanda.js'
+import  '../models/item_comanda/produtoComanda.js'
+import '../models/cascadeComanda/cascade.js'
+import '../models/cascadeProduto/cascade.js'
 const syncDb = async () => {
   try {
     await sequelize.authenticate();

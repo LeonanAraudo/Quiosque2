@@ -11,6 +11,13 @@ export default function DadosProduto({produto_id}){
     const { produto, isLoading, fetchProduto } = useProdutoById(produto_id)
     const { onSubmit } = destroyHook(produto_id)
 
+    // Função para formatar data
+    const formatarData = (data) => {
+        if (!data) return '';
+        const dataObj = new Date(data);
+        return dataObj.toLocaleDateString('pt-BR');
+    };
+
     if (isLoading) {
         return <p>Carregando produto...</p>
     }
@@ -61,7 +68,7 @@ export default function DadosProduto({produto_id}){
                     </div>
                     <div className='flex flex-row items-center justify-between mt-4'>
                         <Button onClick={onSubmit} className='w-[130px] h-[25px]' type='button' variant="destructive">Apagar</Button>
-                        <p className='text-xs'>Adicionado em: {produto.data_cadastro}</p>
+                        <p className='text-xs'>Adicionado em: {formatarData(produto.data_cadastro)}</p>
                     </div>
                 </div>
             </div>

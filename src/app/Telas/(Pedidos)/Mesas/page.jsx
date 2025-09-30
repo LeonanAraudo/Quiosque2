@@ -3,7 +3,7 @@ import MesasFixas from "@/app/componentes/(ComponentesPedidos)/(Mesas)/mesas"
 export default function Mesas() {
     return (
         <>
-            <Header linkDestino={"/"} />
+            <Header linkDestino={"/Telas/Main"} />
             <MesasFixas />
         </>
     )

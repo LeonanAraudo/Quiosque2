@@ -13,14 +13,13 @@ export default async function abrirComanda(req, res) {
       const comandasMesa = await comanda.findAll();
       const proximoNumero = comandasMesa.length + 1;
 
-      // Criar data no fuso horário do Brasil (UTC-3)
+      // Usar o horário atual do sistema
       const agora = new Date();
-      const tempoBrasil = new Date(agora.getTime() - (3 * 60 * 60 * 1000)); // Subtrai 3 horas para ajustar ao Brasil
       
       const novaComanda = await comanda.create({  
           estado,
           mesa,
-          tempo: tempoBrasil.toISOString(), 
+          tempo: agora.toISOString(), 
           numerocomanda: proximoNumero, 
       });
 

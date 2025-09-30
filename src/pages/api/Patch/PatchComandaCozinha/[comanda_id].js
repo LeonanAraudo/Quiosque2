@@ -5,13 +5,17 @@ export default async function comandaCozinha(req, res) {
     try {
       const { comanda_id } = req.query;
 
-      if (!comanda_id) {
-        return res.status(400).json({ message: "Id da comanda não informado" });
+      // Validar se comanda_id existe e é um número válido
+      if (!comanda_id || comanda_id === 'undefined' || isNaN(parseInt(comanda_id))) {
+        return res.status(400).json({ message: "Id da comanda inválido ou não informado" });
       }
+
+      // Converter para número
+      const comandaIdNumber = parseInt(comanda_id);
 
       const [updated] = await comanda.update(
         { nacozinha: true },
-        { where: { comanda_id } }
+        { where: { comanda_id: comandaIdNumber } }
       );
 
       if (updated === 0) {

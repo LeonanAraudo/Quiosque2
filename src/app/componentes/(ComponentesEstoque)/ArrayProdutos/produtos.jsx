@@ -40,6 +40,13 @@ export default function ArrayProdutos() {
   const toggleMud = () => setMud((prevMud) => !prevMud);
   const router = useRouter();
   const { produtos, isLoading } = useProdutos();
+
+  // Função para formatar data
+  const formatarData = (data) => {
+    if (!data) return '';
+    const dataObj = new Date(data);
+    return dataObj.toLocaleDateString('pt-BR');
+  };
   
   useEffect(() => {
     if (produtos.length > 0) {
@@ -113,7 +120,9 @@ export default function ArrayProdutos() {
                         : row.quantidade_disponivel < row.quantidade_minima
                           ? <><span>🚨</span> {row.quantidade_disponivel}</>
                           : <><span className="ml-[24px]">{row.quantidade_disponivel}</span></>
-                      : value}
+                      : column.id === "data_vencimento"
+                        ? formatarData(value)
+                        : value}
                   </span>
               </TableCell>
           );
