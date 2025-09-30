@@ -1,4 +1,4 @@
-import Header from "@/app/componentes/Header/header";
+import Header from "../../../../../componentes/Header/header";
 import ItensComandaCozinha from "../../../../../componentes/(ComponentesPedidos)/(Cozinha)/ItensComandaCozinha/itensComandaCozinha";
 
 export default async function ItensComandaCozinhaPage({ params }) {

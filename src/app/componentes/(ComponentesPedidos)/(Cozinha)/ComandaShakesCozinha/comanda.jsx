@@ -1,6 +1,6 @@
 "use client";
 
-import { roboto, robotoBold } from "@/app/Fontes/fonts";
+import { roboto, robotoBold } from "../../../../Fontes/fonts";
 import { useShakeById } from "../../../../../../hook/Shakes/useShakeById";
 
 export default function Comanda({shake_id}) {

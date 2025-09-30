@@ -1,6 +1,6 @@
 "use client"
 import Header from "../../../../componentes/Header/header";
-import DadosProduto from "@/app/componentes/(ComponentesEstoque)/dadosProdutosCard/dados";
+import DadosProduto from "../../../../componentes/(ComponentesEstoque)/dadosProdutosCard/dados";
 import { useParams } from "next/navigation";
 import { Suspense } from "react";
 

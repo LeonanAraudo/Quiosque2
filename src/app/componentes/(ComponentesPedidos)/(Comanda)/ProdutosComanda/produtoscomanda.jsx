@@ -8,7 +8,7 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/components/ui/table"
+} from "../../../../../components/ui/table"
 import { useItensComanda } from "../../../../../../hook/ItensComanda/useItensComanda"
 import { useEffect, useState } from "react";
 

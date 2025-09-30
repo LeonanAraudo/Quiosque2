@@ -1,5 +1,5 @@
 "use client"
-import { roboto } from "@/app/Fontes/fonts"
+import { roboto } from "../../../../Fontes/fonts"
 import { useState } from "react";
 import AlertDialogDemo from './modalConfirmDelete'
 import { useComandaActions } from "../../../../../../hook/Comandas/useComandaActions"

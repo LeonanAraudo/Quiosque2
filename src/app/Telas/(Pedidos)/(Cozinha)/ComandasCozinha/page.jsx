@@ -1,4 +1,4 @@
-import Header from "@/app/componentes/Header/header";
+import Header from "../../../../componentes/Header/header";
 import ComandaCozinha from "../../../../componentes/(ComponentesPedidos)/(Cozinha)/ComandasCozinha/comandaCozinha";
 
 export default function ComandasCozinha(){

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Header from '../../../../componentes/Header/header'
-import { roboto, robotoBold } from '@/app/Fontes/fonts'
+import { roboto, robotoBold } from '../../../../Fontes/fonts'
 export default function ShakeOption() {
     return (
         <div>

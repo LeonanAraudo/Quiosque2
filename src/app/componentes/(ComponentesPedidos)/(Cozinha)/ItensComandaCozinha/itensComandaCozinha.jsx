@@ -1,5 +1,5 @@
 "use client"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "../../../../../components/ui/checkbox"
 import Link from "next/link"
 import { useItensComanda } from "../../../../../../hook/ItensComanda/useItensComanda"
 import { useEntregarProduto } from "../../../../../../hook/ItensComanda/useEntregarProduto"
