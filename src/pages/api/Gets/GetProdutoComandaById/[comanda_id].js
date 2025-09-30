@@ -19,7 +19,6 @@ export default async function getProdutoById(req, res) {
         }
 
         const data = await response.json();
-        console.log("Isso aqui e a data", data)
         if (!data.produto_id && !data.length) {
             return res.status(404).json({ error: "Produto não encontrado para esta comanda" });
         }

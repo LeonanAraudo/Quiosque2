@@ -5,7 +5,6 @@ export default async function deleteShake(req,res){
     if(req.method === "DELETE"){
         try{
             const {shake_id} = req.query;
-            console.log("shake id recebido: " + shake_id)
             if (!shake_id) {
                 return res.status(400).json({ error: "O ID do shake é obrigatório" });
             }

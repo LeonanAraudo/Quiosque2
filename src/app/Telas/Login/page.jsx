@@ -50,13 +50,11 @@ export default function Login(){
     };
     const router = useRouter()
     const handleOnSubmit = async (data) => {
-        console.log('Dados enviados:', data); 
         try {
           const response = await axios.post('/api/Posts/login/login', {
             nome: data.nome,
             senha: data.senha
           })
-          console.log('Resposta da API:', response.data);
 
           if(response.status === 200){
             router.push('/Telas/Main')

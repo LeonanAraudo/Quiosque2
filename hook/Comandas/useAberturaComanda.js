@@ -20,7 +20,6 @@ export const useAberturaComanda = () => {
             const data = await response.json();
             
             if (response.ok) {
-                console.log("Comanda aberta");
                 return { success: true, comanda_id: data.comanda_id };
             } else {
                 console.error("Erro ao abrir comanda");

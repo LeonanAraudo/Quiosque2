@@ -29,7 +29,6 @@ export default function useForm1() {
     const files = event.target.files;
     if (files && files.length > 0) {
       const file = files[0];
-      console.log("🟢 Arquivo selecionado:", file);
       setValue('foto', Array.from(files));
     }
   };

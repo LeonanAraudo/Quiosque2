@@ -40,9 +40,6 @@ export default function handler(req, res) {
             return res.status(500).json({ error: 'Error processing file' });
         }
 
-        console.log("🟡 req.file:", req.file); // Verifica se a imagem chegou
-        console.log("🟡 req.body:", req.body); // Verifica se os dados chegaram corretamente
-
         if (!req.file) {
             return res.status(400).json({ error: 'No file uploaded' });
         }
@@ -78,10 +75,8 @@ export default function handler(req, res) {
                 data_cadastro:dayjs().format("YYYY-MM-DD")
             };
 
-            console.log("🟢 Dados antes de salvar:", produtoData);
 
             // ✅ Upload da imagem usando stream
-            console.log("📤 Iniciando upload da imagem...");
 
             const uploadFromBuffer = (buffer) => {
                 return new Promise((resolve, reject) => {
@@ -103,7 +98,6 @@ export default function handler(req, res) {
                 });
             };
             const result = await uploadFromBuffer(req.file.buffer);
-            console.log("🟢 Upload Successful:", result);
             produtoData.foto = result.secure_url; // Adiciona a URL da imagem ao objeto
 
             // ✅ Salvar no banco de dados

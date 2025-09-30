@@ -11,7 +11,6 @@ export default function Card({ categorias, comanda_id }) {
     const toggleMud = () => setMud((prevMud) => !prevMud);
     
     const { produtos: produto, isLoading } = useProdutosByCategoria(categorias);
-    console.log("Comanda_id no card", comanda_id)
     const filteredPosts = produto.filter((produto) => produto.nome.toLowerCase().includes(searchTerm.toLowerCase()));
     return (
         <>

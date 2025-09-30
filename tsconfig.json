@@ -19,9 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]  
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/Telas/Main/page.jsx", "src/app/Telas/(Estoque)/CadastroProduto/page.jsx", "src/app/componentes/(ComponentesEstoque)/EditProduto/patchProduto.jsx", "hook/EditProdutosHook/hook.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.d.ts", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

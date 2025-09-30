@@ -43,7 +43,6 @@ export default function DialogDemo({ produto_id, comanda_id, quantidade_disponiv
         const result = await adicionarItem(dadosParaEnviar)
 
         if (result.success) {
-            console.log("Sucesso:", result.data)
             setOpen(false)
             reset()
         } else {

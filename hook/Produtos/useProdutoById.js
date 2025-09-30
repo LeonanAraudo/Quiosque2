@@ -15,13 +15,11 @@ export const useProdutoById = (produto_id) => {
       setIsLoading(true);
       const response = await axios.get(`/api/Gets/GetProdutoById/${produto_id}`);
       
-      console.log("Resposta da API:", response.data);
       
       const produtoData = Array.isArray(response.data) 
         ? response.data[0] 
         : response.data;    
       
-      console.log("Produto extraído:", produtoData);
       setProduto(produtoData);
       
     } catch (error) {

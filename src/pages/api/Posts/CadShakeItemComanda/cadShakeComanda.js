@@ -5,7 +5,6 @@ export default async function cadShakeComanda(req, res) {
     if (req.method === "POST") {
         let { tamanho, sabor, cobertura, adicionais, nome } = req.body;
         const { comanda_id } = req.body;
-        console.log("comanda id recebido: " + comanda_id)
         try {
             const shakeResponse = await axios.post(
                 `http://localhost:3000/api/Posts/CadShake/shakeOptions`,

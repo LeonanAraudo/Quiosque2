@@ -59,7 +59,6 @@ export default function patchProdutos(produto_id, refreshProdutos, onSuccess) {
         }
       );
 
-      console.log("Produto atualizado com sucesso:", response.data);
       refreshProdutos?.();
       onSuccess?.();
     } catch (error) {
