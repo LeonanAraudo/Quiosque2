@@ -23,7 +23,7 @@ export default function createShake({comanda_id}) {
     try {
       await promise;
       reset()
-      router.push(`Telas/Comanda/${comanda_id}`);
+      router.push(`/Telas/Comanda/${comanda_id}`);  // Adicionei a barra no início
     } catch (error) {
       console.error("Erro ao cadastrar o shake :", error);
     }
