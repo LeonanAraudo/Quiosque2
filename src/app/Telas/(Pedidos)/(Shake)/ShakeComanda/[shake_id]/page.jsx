@@ -2,7 +2,7 @@ import Comanda from '../../../../../componentes/(ComponentesPedidos)/(Cozinha)/C
 import Header from '../../../../../componentes/Header/header'
 export default async function ShakeComanda({params}){
     const resolvedParams = await params;
-    const shake_id = resolvedParams.shake_id;
+    const shake_id = parseInt(resolvedParams.shake_id, 10); 
     return(
         <>
         <header>

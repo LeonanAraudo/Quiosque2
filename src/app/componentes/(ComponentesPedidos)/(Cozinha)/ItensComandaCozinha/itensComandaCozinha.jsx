@@ -42,7 +42,7 @@ export default function ItensComanda({ comanda_id }) {
                                                     <div className="flex items-center justify-center mt-2">
                                                         <Link 
                                                         className="w-full py-2 px-4 text-center hover:underline cursor-pointer transition-colors duration-200 ease-in-out rounded-md hover:bg-white/10"
-                                                        href={`/Telas/ShakeComanda/${item.shake.shake_id}`}>
+                                                        href={`/Telas/ShakeComanda/${Number(item.shake.shake_id)}`}>
                                                             Detalhes
                                                         </Link>
                                                     </div>
