@@ -6,13 +6,14 @@ export default async function getShakesById(req,res){
         
         console.log('API GetShakeById - Recebido shake_id:', shake_id);
         
-        if (!shake_id) {
-            console.log('API GetShakeById - Erro: shake_id não informado');
-            return res.status(400).json({ error: "shake_id não informado" });
+        if (!shake_id || isNaN(shake_id)) {
+            console.log('API GetShakeById - Erro: shake_id inválido:', shake_id);
+            return res.status(400).json({ error: "shake_id inválido" });
         }
         
         try{
-            const reqShake = await shakeOptions.findByPk(shake_id)
+            const numericShakeId = parseInt(shake_id, 10);
+            const reqShake = await shakeOptions.findByPk(numericShakeId)
             console.log('API GetShakeById - Resultado da busca:', reqShake);
             
             if(reqShake){

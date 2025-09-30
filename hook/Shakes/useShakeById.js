@@ -5,12 +5,15 @@ export const useShakeById = (shake_id) => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if (!shake_id) {
+        if (!shake_id || isNaN(shake_id)) {
+            console.error('useShakeById - shake_id inválido:', shake_id);
             setIsLoading(false);
+            setShake(null);
             return;
         }
 
         async function fetchShake() {
+            console.log('useShakeById - Buscando shake:', shake_id);
             try {
                 setIsLoading(true);
                 const response = await fetch(`/api/Gets/GetShakeById/${shake_id}`);
