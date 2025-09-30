@@ -39,9 +39,9 @@ export default function ItensComanda({ comanda_id }) {
                                                 <div>
                                                     <p className="text-lg font-semibold">{item.shake.nome}</p>
                                                     <p className="text-sm opacity-90">Quantidade: {item.quantidade}</p>
-                                                    <div className="flex h-[30px] items-center justify-center mt-2">
+                                                    <div className="flex items-center justify-center mt-2">
                                                         <Link 
-                                                        className="w-full h-[30px]"
+                                                        className="w-full py-2 px-4 text-center hover:underline cursor-pointer transition-colors duration-200 ease-in-out rounded-md hover:bg-white/10"
                                                         href={`/Telas/ShakeComanda/${item.shake.shake_id}`}>
                                                             Detalhes
                                                         </Link>

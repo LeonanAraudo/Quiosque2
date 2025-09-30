@@ -39,68 +39,58 @@ export default function Header({ linkDestino }) {
     >
       <List>
           <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-              <PostAddIcon/>
-              </ListItemIcon>
-              <ListItemText>
-                <Link href={"/Telas/CadastroProduto"}>
-                Cadastrar Produto
-                </Link>
-              </ListItemText>
-            </ListItemButton>
+            <Link href={"/Telas/CadastroProduto"} style={{ width: '100%' }}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <PostAddIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Cadastrar Produto" />
+              </ListItemButton>
+            </Link>
           </ListItem>
 
       </List>
       <Divider />
       <List>
           <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <InventoryIcon/>
-              </ListItemIcon>
-              <ListItemText>
-                <Link href={"/Telas/Estoque"}>
-                  Estoque
-                </Link>
-              </ListItemText>
-            </ListItemButton>
+            <Link href={"/Telas/Estoque"} style={{ width: '100%' }}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InventoryIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Estoque" />
+              </ListItemButton>
+            </Link>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <TableRestaurantIcon/>
-              </ListItemIcon>
-              <ListItemText>
-                <Link href={"/Telas/Mesas"}>
-                  Mesas
-                </Link>
-              </ListItemText>
-            </ListItemButton>
+            <Link href={"/Telas/Mesas"} style={{ width: '100%' }}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <TableRestaurantIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Mesas" />
+              </ListItemButton>
+            </Link>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <AssessmentIcon/>
-              </ListItemIcon>
-              <ListItemText>
-                <Link href={"/"}>
-                  Resultados
-                </Link>
-              </ListItemText>
-            </ListItemButton>
+            <Link href={"/"} style={{ width: '100%' }}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <AssessmentIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Resultados" />
+              </ListItemButton>
+            </Link>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <BlenderIcon/>
-              </ListItemIcon>
-              <ListItemText>
-                <Link href={"/Telas/ComandasCozinha"}>
-                  Cozinha
-                </Link>
-              </ListItemText>
-            </ListItemButton>
+            <Link href={"/Telas/ComandasCozinha"} style={{ width: '100%' }}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <BlenderIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Cozinha" />
+              </ListItemButton>
+            </Link>
           </ListItem>
       </List>
     </Box>
