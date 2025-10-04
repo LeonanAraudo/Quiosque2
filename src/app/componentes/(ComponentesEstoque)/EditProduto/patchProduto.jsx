@@ -60,7 +60,7 @@ export default function DialogDemo({ produto_id, refreshProdutos }) {
           alt="pencil"
         />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Editar Produto</DialogTitle>
         </DialogHeader>

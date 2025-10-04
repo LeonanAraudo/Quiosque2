@@ -82,8 +82,8 @@ export default function ArrayProdutos() {
                 }
     </div>
     <ThemeProvider theme={theme}>
-      <Paper sx={{ width: "100%", overflow: "hidden", padding: 2 }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
+      <Paper sx={{ width: "100%", overflow: "hidden", padding: 2, marginTop: 6}}>
+        <TableContainer sx={{ maxHeight: 600 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead >
               <TableRow sx={{ height: "5px", minHeight: "5px"}}>

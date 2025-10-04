@@ -117,11 +117,11 @@ export default function CadastroProduto(){
                     <div className='flex items-center justify-between flex-row w-[85%] gap-[2%]'>
                         <div className='flex flex-col'>
                         <label htmlFor='precoCompra' className={`${robotoBold.className}`}>Pre Compra</label>
-                            <input {...register('preco_compra')} type='number' min={1} id='precoCompra' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'required/>
+                            <input {...register('preco_compra')} type='number' step='0.01' min={1} id='precoCompra' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'required/>
                         </div>
                         <div className='flex flex-col '>
                         <label htmlFor='precoVenda' className={`${robotoBold.className}`}>Pre Venda</label>
-                            <input {...register('preco_venda')} type='number'  min={1} id='precoVenda' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'required/>
+                            <input {...register('preco_venda')} type='number'  step='0.01'  min={1} id='precoVenda' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'required/>
                         </div>
                         <div className='flex flex-col '>
                             <label htmlFor="marca" className={`${robotoBold.className}`}>Marca</label>
@@ -137,11 +137,11 @@ export default function CadastroProduto(){
                     <div className='w-[85%] flex items-center justify-between gap-[2%]'>
                         <div className='flex flex-col '>
                             <label htmlFor="quantiMin" className={`${robotoBold.className}`}>Quant.Minima</label>
-                            <input {...register('quantidade_minima')} type="number"  min={1} id='quantiMin' className='w-[100%] flex justify-start bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none' required/>
+                            <input {...register('quantidade_minima')} type="number"  min={0} id='quantiMin' className='w-[100%] flex justify-start bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none' required/>
                         </div>
                         <div className='flex flex-col'>
                             <label htmlFor='quantDispo' className={`${robotoBold.className}`}>Quant.Disponivel</label>
-                            <input type='number' min={1} {...register('quantidade_disponivel')} id='quantDispo' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'required/>
+                            <input type='number' min={0} {...register('quantidade_disponivel')} id='quantDispo' className='w-[100%] bg-gray-300 rounded h-9 pl-1 border-0 focus:outline-none'required/>
                         </div>
                     </div>
                 </div>
