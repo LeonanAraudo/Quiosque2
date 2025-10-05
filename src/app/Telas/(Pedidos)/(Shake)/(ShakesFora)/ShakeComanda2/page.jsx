@@ -5,7 +5,7 @@ export default async function ShakeComanda(){
     return(
         <>
         <header>
-            <Header linkDestino={"/Telas/ComandasCozinha"}/>
+            <Header linkDestino={"/Telas/Options"}/>
         </header>
         <div>
             <Comanda />

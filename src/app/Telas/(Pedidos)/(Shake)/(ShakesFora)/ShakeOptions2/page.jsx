@@ -7,7 +7,7 @@ export default async function ShakeOptions() {
         <>
             <div>
                 <header>
-                    <Header linkDestino={`/Telas/Mesas`} />
+                    <Header linkDestino={`/Telas/Options`} />
                 </header>
                     <OptionsShake2/>
             </div>
