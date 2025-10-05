@@ -4,13 +4,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
-export default function createShake({comanda_id}) {
+export default function useCreateShake() {
   const {register, handleSubmit,reset} = useForm()
   const router = useRouter();
   
   const onSubmit = async (formData) => {
-    const payload = {...formData,comanda_id}
-    const promise =  axios.post("/api/Posts/CadShakeItemComanda/cadShakeComanda", payload);
+    const payload = {...formData}
+    const promise =  axios.post("/api/Posts/CadShakeTrue/shakeTrue", payload);
 
     toast.promise(
       promise,
@@ -24,7 +24,7 @@ export default function createShake({comanda_id}) {
     try {
       await promise;
       reset()
-      router.push(`/Telas/Comanda/${comanda_id}`);  // Adicionei a barra no início
+      router.push(`/Telas/ShakeOptions2`);  
     } catch (error) {
       console.error("Erro ao cadastrar o shake :", error);
     }
@@ -32,3 +32,4 @@ export default function createShake({comanda_id}) {
 
   return { onSubmit,register,handleSubmit };
 }
+ 

@@ -16,7 +16,7 @@ export const useAllShakes = () => {
         async function fetchShakes() {
             try {
                 setIsLoading(true);
-                const response = await axios.get('/api/Gets/GetAllShakes/getshakes');
+                const response = await axios.get('/api/Gets/GetTrueShakes/getTruesShakes');
                 setShakes(response.data);
             } catch (error) {
                 console.error('Erro ao buscar shakes:', error);

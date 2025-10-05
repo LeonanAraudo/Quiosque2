@@ -1,10 +1,10 @@
 import Header from "../../../componentes/Header/header"
-import MesasFixas from "../../../componentes/(ComponentesPedidos)/(Mesas)/MesasFixas/mesas"
+import OptionsPedidos from "../../../componentes/(ComponentesPedidos)/(Mesas)/ButtonsPedidos/optionsPedidos"
 export default function Mesas() {
     return (
         <>
             <Header linkDestino={"/Telas/Main"} />
-            <MesasFixas />
+            <OptionsPedidos />
         </>
     )
 }

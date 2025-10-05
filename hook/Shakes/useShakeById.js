@@ -13,7 +13,6 @@ export const useShakeById = (shake_id) => {
         }
 
         async function fetchShake() {
-            console.log('useShakeById - Buscando shake:', shake_id);
             try {
                 setIsLoading(true);
                 const response = await fetch(`/api/Gets/GetShakeById/${shake_id}`);

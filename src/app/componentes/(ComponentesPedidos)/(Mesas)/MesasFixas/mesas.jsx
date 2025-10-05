@@ -1,8 +1,8 @@
 "use client"
-import { roboto } from "../../../Fontes/fonts"
+import { roboto, robotoBold } from "../../../../Fontes/fonts"
 import { useRouter } from "next/navigation"
 import { useState, useMemo } from "react"
-import { useEstadosMesasOtimizado, useAberturaComanda } from "../../../../../hook"
+import { useEstadosMesasOtimizado, useAberturaComanda } from "../../../../../../hook"
 
 export default function MesasFixas() {
     const router = useRouter()
@@ -41,6 +41,7 @@ export default function MesasFixas() {
 
     return (
         <div className={`${roboto.className}`}>
+            <p className={`${robotoBold.className} text-[23px] m-4`}>Comandas</p>
             <div className="grid grid-cols-2 gap-4 p-4">
                 {mesas.map((mesa) => {
                     const estadoMesa = estadosMesas[mesa];

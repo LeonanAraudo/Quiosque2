@@ -31,6 +31,11 @@ const shakeOptions = sequelize.define('shakeOptions',{
    type: DataTypes.INTEGER,
    allowNull:true
 },
+ nacozinha: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
+  },
  
 },{
  tableName: 'shakeoptions',

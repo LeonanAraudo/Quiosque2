@@ -1,15 +1,14 @@
 "use client"
 import { roboto, robotoBold } from "../../../Fontes/fonts"
-import createShake from "../../../../../hook/CreateShake/hook"
 import { ToastContainer, Zoom } from 'react-toastify';
 import { Input } from "../../../../components/ui/input"
 import { Label } from "../../../../components/ui/label"
 import { useState } from "react";
+import useCreateShake from "../../../../../hook/Shakes/useShakes"
 
-export default function OptionsShake({comanda_id}) {
+export default function OptionsShake() {
     const [isButtonDisabled, setIsButtonDisabled] = useState(false)
-    const { register, onSubmit, handleSubmit } = createShake({comanda_id})
-     
+    const { onSubmit, register, handleSubmit } = useCreateShake()
     const handleFormSubmit = async (data) => {
         setIsButtonDisabled(true)
         try {
@@ -18,7 +17,6 @@ export default function OptionsShake({comanda_id}) {
             setIsButtonDisabled(false) // ativa o botão de novo (mesmo se der erro)
         }
     }
-    
     return (
         <>
             <ToastContainer
@@ -34,7 +32,7 @@ export default function OptionsShake({comanda_id}) {
                 theme="colored"
                 transition={Zoom}
             />
-            <form onSubmit={handleSubmit(handleFormSubmit)}>
+            <form onSubmit={handleSubmit(handleFormSubmit )}>
                 <div>
                     <p className={`text-[25px] text-center ${robotoBold.className}`}>Guaraná da Amazônia</p>
                 </div>
