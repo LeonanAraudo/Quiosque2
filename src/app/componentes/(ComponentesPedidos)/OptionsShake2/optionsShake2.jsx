@@ -195,6 +195,8 @@ export default function OptionsShake() {
                             ))}
                         </div>
                     </div>
+                    <div className="mt-5 mb-3">  
+                       <p className={`text-[22px] text-center ${robotoBold.className}`}>Para Levar</p>
                         <div className="w-full flex flex-row items-center justify-around mt-4">
                         <div className="flex items-center justify-center flex-col gap-1">
                             <input
@@ -219,6 +221,7 @@ export default function OptionsShake() {
                             <label htmlFor="não-paralevar" className={`text-[18px] text-center  ${roboto.className}`}>
                                 Não
                             </label>
+                        </div>
                         </div>
                     </div>
                 </div>
