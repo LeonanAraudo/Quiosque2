@@ -194,6 +194,7 @@ export default function OptionsShake() {
                                 </div>
                             ))}
                         </div>
+                    </div>
                         <div className="w-full flex flex-row items-center justify-around mt-4">
                         <div className="flex items-center justify-center flex-col gap-1">
                             <input
@@ -219,7 +220,6 @@ export default function OptionsShake() {
                                 Não
                             </label>
                         </div>
-                    </div>
                     </div>
                 </div>
 
