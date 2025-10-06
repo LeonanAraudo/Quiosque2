@@ -33,7 +33,7 @@ export default function Comanda() {
       {shakes.map((shake, index) => (
         <div
           key={shake.shake_id}
-          className="bg-[#FFD0B7] w-[95%] pb-7 h-full flex items-center justify-center rounded-[5px] flex-col gap-2 px-2"
+          className="bg-[#FFD0B7] w-[95%] pb-7 mb-5  h-full flex items-center justify-center rounded-[5px] flex-col gap-2 px-2"
         >
           <div className="w-full flex items-center justify-between">
             <p className={`text-[30px] text-[#780000] ${robotoBold.className}`}>
@@ -76,7 +76,7 @@ export default function Comanda() {
           </div>
           <div className="w-full h-5 pr-2 flex items-center justify-between flex-row my-6">
             {shake.paralevar && (
-              <div className="flex items-center justify-center flex-col ml-3">
+              <div className="flex items-center justify-center flex-col ml-2">
                 <img width="39" height="39" src="https://img.icons8.com/ios-filled/50/truck.png"/>
                 <p className={`${robotoBold.className}`}>Para levar</p>
               </div>
