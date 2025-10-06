@@ -76,11 +76,9 @@ export default function Comanda() {
           </div>
           <div className="w-full h-5 pr-2 flex items-center justify-between flex-row my-6">
             {shake.paralevar && (
-              <div>
-                <p className={`text-[19px] text-[#780000] ${roboto.className}`}>
-                  Para levar
-                </p>
-                <img src="https://img.icons8.com/ios-filled/50/truck.png" alt="" srcset="" />
+              <div className="flex items-center justify-center flex-col ml-3">
+                <img width="39" height="39" src="https://img.icons8.com/ios-filled/50/truck.png"/>
+                <p className={`${robotoBold.className}`}>Para levar</p>
               </div>
             )}
             <button
@@ -99,8 +97,8 @@ export default function Comanda() {
 function InfoItem({ icon, titulo, valor, roboto, robotoBold }) {
   return (
     <div className="bg-[#FFE8DB] w-full h-18 rounded-[5px] shadow-lg flex flex-row">
-      <div className="w-[15%] h-full flex items-center justify-center">
-        <img width="30" height="30" src={icon} alt={titulo} />
+      <div className="w-[15%] flex items-center justify-center">
+        <img width="35" height="35" src={icon} alt={titulo} />
       </div>
       <div className="h-full w-[85%] flex items-center justify-center flex-col text-center">
         <p className={`text-[19px] ${robotoBold.className}`}>{titulo}</p>
