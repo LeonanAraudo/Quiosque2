@@ -36,7 +36,7 @@ export default function Comanda() {
           className="bg-[#FFD0B7] w-[95%] pb-7 mb-5  h-full flex items-center justify-center rounded-[5px] flex-col gap-2 px-2"
         >
           <div className="w-full flex items-center justify-between">
-            <p className={`text-[30px] text-[#780000] ${robotoBold.className}`}>
+            <p className={`text-[39px] text-[#780000] ${robotoBold.className}`}>
               {index + 1}
             </p>
             <p className={`text-[50px] text-[#780000] ${robotoBold.className}`}>
