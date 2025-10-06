@@ -37,10 +37,10 @@ export default function Comanda() {
         >
           <div className="w-full flex items-center justify-between">
             <p className={`text-[30px] text-[#780000] ${robotoBold.className}`}>
-              {shake.nome}
+              {index + 1}
             </p>
             <p className={`text-[50px] text-[#780000] ${robotoBold.className}`}>
-              {shake.numero_comanda}
+              {shake.nome}
             </p>
           </div>
 
@@ -74,7 +74,15 @@ export default function Comanda() {
               robotoBold={robotoBold}
             />
           </div>
-          <div className="w-full h-5 pr-2 flex items-center justify-end flex-row my-6">
+          <div className="w-full h-5 pr-2 flex items-center justify-between flex-row my-6">
+            {shake.paralevar && (
+              <div>
+                <p className={`text-[19px] text-[#780000] ${roboto.className}`}>
+                  Para levar
+                </p>
+                <img src="https://img.icons8.com/ios-filled/50/truck.png" alt="" srcset="" />
+              </div>
+            )}
             <button
               className={`active:bg-[#7eec68] bg-[#21BA03] w-[180px] h-10 rounded-[5px] text-[19px] text-white ${roboto.className}`}
               onClick={() => handleEntregar(shake.shake_id)}
@@ -90,7 +98,7 @@ export default function Comanda() {
 
 function InfoItem({ icon, titulo, valor, roboto, robotoBold }) {
   return (
-    <div className="bg-[#FFE8DB] w-full h-16 rounded-[5px] shadow-lg flex flex-row">
+    <div className="bg-[#FFE8DB] w-full h-18 rounded-[5px] shadow-lg flex flex-row">
       <div className="w-[15%] h-full flex items-center justify-center">
         <img width="30" height="30" src={icon} alt={titulo} />
       </div>

@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
     "/api/login",
     "/api/Posts/login",
     "/api/Gets/GetTrueShakes/getTruesShakes",
-    
+  
   ];
 
   // Verifica se é exatamente a rota de login ou suas variações de API

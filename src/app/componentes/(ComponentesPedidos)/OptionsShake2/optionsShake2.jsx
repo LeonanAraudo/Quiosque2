@@ -194,6 +194,32 @@ export default function OptionsShake() {
                                 </div>
                             ))}
                         </div>
+                        <div className="w-full flex flex-row items-center justify-around mt-4">
+                        <div className="flex items-center justify-center flex-col gap-1">
+                            <input
+                                type="radio"
+                                id="sim-paralevar"
+                                value={true}
+                                {...register("paralevar")}
+                                className="h-7 w-7 text-black accent-black"
+                            />
+                            <label htmlFor="sim-paralevar" className={`text-[18px] text-center  ${roboto.className}`}>
+                                Sim
+                            </label>
+                        </div>
+                        <div className="flex items-center justify-center flex-col gap-1">
+                            <input
+                                type="radio"
+                                id="não-paralevar"
+                                value={false}
+                                {...register("paralevar")}
+                                className="h-7 w-7 text-black accent-black"
+                            />
+                            <label htmlFor="não-paralevar" className={`text-[18px] text-center  ${roboto.className}`}>
+                                Não
+                            </label>
+                        </div>
+                    </div>
                     </div>
                 </div>
 

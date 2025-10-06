@@ -4,7 +4,7 @@ import shakeOptions from '../../../../../models/ShakeOptions/options';
 export default async function createShakes(req, res) {
   if (req.method === "POST") {
     try {
-      let { tamanho, sabor, cobertura, adicionais, nome } = req.body;
+      let { tamanho, sabor, cobertura, adicionais, nome, paralevar } = req.body;
 
       if (!nome || nome.trim() === "") {
         nome = "Guaraná da Amazônia";
@@ -24,6 +24,7 @@ export default async function createShakes(req, res) {
         nome,
         numero_comanda,
         nacozinha: true,
+        paralevar,
         adicionais: Array.isArray(adicionais) ? adicionais.join(", ") : adicionais,
       });
 
