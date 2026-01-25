@@ -3,6 +3,7 @@ export { useComandas } from './Comandas/useComandas';
 export { useComandaById } from './Comandas/useComandaById';
 export { useAberturaComanda } from './Comandas/useAberturaComanda';
 export { useComandaActions } from './Comandas/useComandaActions';
+export { useComandasAbertas } from './Comandas/useComandasAbertas';
 
 // Itens Comanda
 export { useItensComanda } from './ItensComanda/useItensComanda';
