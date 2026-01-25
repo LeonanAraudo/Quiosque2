@@ -6,7 +6,7 @@ import { useEstadosMesasOtimizado, useAberturaComanda, useComandasAbertas } from
 
 export default function MesasFixas() {
     const router = useRouter()
-    const mesas = useMemo(() => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [])
+    const mesas = useMemo(() => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], [])
 
     const [modalAberto, setModalAberto] = useState(false)
     const [modalNovaComanda, setModalNovaComanda] = useState(false)
@@ -17,7 +17,6 @@ export default function MesasFixas() {
     const { abrirComanda, isLoading: loadingAbertura } = useAberturaComanda()
     const { comandasAbertas, isLoading: loadingComandasAbertas, refetch: refetchComandasAbertas } = useComandasAbertas()
 
-    // Limpa mensagens de erro após 5 segundos
     useEffect(() => {
         if (errorMessage) {
             const timer = setTimeout(() => setErrorMessage(""), 5000)
@@ -26,7 +25,6 @@ export default function MesasFixas() {
     }, [errorMessage])
 
     const handleMesaClick = useCallback((mesa) => {
-        // Validação de segurança
         if (typeof mesa !== 'number' || mesa < 1 || mesa > 10) {
             setErrorMessage("Mesa inválida")
             return
@@ -43,7 +41,6 @@ export default function MesasFixas() {
     }, [estadosMesas, router])
 
     const handleComandaAbertaClick = useCallback((comandaId) => {
-        // Validação de segurança
         if (!comandaId) {
             setErrorMessage("ID de comanda inválido")
             return
@@ -56,7 +53,6 @@ export default function MesasFixas() {
             const result = await abrirComanda(mesa)
             
             if (result?.success && result?.comanda_id) {
-                // Atualiza a lista de comandas abertas
                 refetchComandasAbertas()
                 router.push(`/Telas/Comanda/${result.comanda_id}`)
             } else {
@@ -70,7 +66,6 @@ export default function MesasFixas() {
 
     const handleAbrirNovaComanda = useCallback(async () => {
         try {
-            // Abre comanda sem mesa fixa (mesa = null ou 0)
             const result = await abrirComanda(null)
             
             if (result?.success && result?.comanda_id) {
@@ -95,21 +90,18 @@ export default function MesasFixas() {
 
     return (
         <div className={`${roboto.className} min-h-screen bg-gray-50 pb-6`}>
-            {/* Header */}
             <div className="sticky top-0 bg-white shadow-sm z-10 p-4">
                 <h1 className={`${robotoBold.className} text-2xl md:text-3xl`}>
                     Comandas
                 </h1>
             </div>
 
-            {/* Mensagem de Erro */}
             {errorMessage && (
                 <div className="mx-4 mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
                     <p className="font-semibold">⚠️ {errorMessage}</p>
                 </div>
             )}
 
-            {/* Mesas Fixas */}
             <section className="p-4">
                 <h2 className={`${robotoBold.className} text-xl md:text-2xl mb-4`}>
                     Mesas Fixas
@@ -138,7 +130,6 @@ export default function MesasFixas() {
                 </div>
             </section>
 
-            {/* Comandas em Aberto (Dinâmicas) */}
             <section className="p-4 mt-6">
                 <div className="flex justify-between items-center mb-4">
                     <h2 className={`${robotoBold.className} text-xl md:text-2xl`}>
@@ -190,7 +181,6 @@ export default function MesasFixas() {
                 )}
             </section>
 
-            {/* Modal - Confirmar Abertura de Mesa */}
             {modalAberto && (
                 <div 
                     className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
@@ -228,7 +218,6 @@ export default function MesasFixas() {
                 </div>
             )}
 
-            {/* Modal - Nova Comanda */}
             {modalNovaComanda && (
                 <div 
                     className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"

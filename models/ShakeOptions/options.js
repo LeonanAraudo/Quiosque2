@@ -36,6 +36,11 @@ const shakeOptions = sequelize.define('shakeOptions',{
     allowNull: false,
     defaultValue: false
   },
+  entregue: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
+  },
   paralevar:{
       type: DataTypes.BOOLEAN,
       allowNull:false,

@@ -3,7 +3,7 @@ import OptionsShake from '../../../../../componentes/(ComponentesPedidos)/Option
 
 export default async function ShakeOptions({params}) {
     const resolvedParams = await params;
-    const { comanda_id } = resolvedParams;
+    const comanda_id = parseInt(resolvedParams.comanda_id, 10);
     return (
         <>
             <div>

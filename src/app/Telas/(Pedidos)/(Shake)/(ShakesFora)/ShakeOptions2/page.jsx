@@ -1,15 +1,14 @@
 import Header from "../../../../../componentes/Header/header";
-import OptionsShake2 from '../../../../../componentes/(ComponentesPedidos)/OptionsShake2/optionsShake2';
+import OptionsShake from '../../../../../componentes/(ComponentesPedidos)/OptionsShake/optionsShake';
 
 export default async function ShakeOptions() {
-    
     return (
         <>
             <div>
                 <header>
                     <Header linkDestino={`/Telas/Options`} />
                 </header>
-                    <OptionsShake2/>
+                <OptionsShake />
             </div>
         </>
     )

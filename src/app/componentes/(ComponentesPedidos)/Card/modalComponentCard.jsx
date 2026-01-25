@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form"
 import { useAdicionarItemComanda } from "../../../../../hook/ItensComanda/useAdicionarItemComanda"
 import { toast } from "react-toastify"
 
-export default function DialogDemo({ produto_id, comanda_id, quantidade_disponivel }) {
+export default function DialogDemo({ produto_id, comanda_id, quantidade_disponivel, disabled }) {
     const [open, setOpen] = useState(false)
     const { register, handleSubmit, reset, setValue, watch } = useForm({
         defaultValues: { quantidade: 1 }
@@ -54,7 +54,7 @@ export default function DialogDemo({ produto_id, comanda_id, quantidade_disponiv
         <>
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
-                    <Button size="personal" variant="black">+</Button>
+                    <Button size="personal" variant="black" disabled={disabled}>+</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
@@ -77,7 +77,7 @@ export default function DialogDemo({ produto_id, comanda_id, quantidade_disponiv
                         </div>
                         <DialogFooter className="flex flex-col gap-8">
 
-                            <Button variant="black" type="submit" disabled={isLoading}>
+                            <Button variant="black" type="submit" disabled={isLoading || quantidade_disponivel === 0}>
                                 {isLoading ? (
                                     <>
                                         <Loader2Icon className="animate-spin mr-2 h-4 w-4" />

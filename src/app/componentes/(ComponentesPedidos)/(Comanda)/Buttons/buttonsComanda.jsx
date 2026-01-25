@@ -47,7 +47,7 @@ export default function ButtonsComanda({comanda_id}) {
                     onClick={() => setShowConfirm(true)}
                     className="bg-[#E20A0A] w-24 h-8 text-white text-xl rounded-sm"
                 >
-                    Apagar
+                    Fechar
                 </button>
                 <button 
                     onClick={handleEnviarCozinha}

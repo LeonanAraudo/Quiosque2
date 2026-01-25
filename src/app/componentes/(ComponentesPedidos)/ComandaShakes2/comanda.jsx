@@ -1,10 +1,10 @@
 "use client";
 import { roboto, robotoBold } from "../../../Fontes/fonts";
 import { useAllShakes } from "../../../../../hook/Shakes/useAllShakes";
-import useDeleteShake from "../../ ../../../../../hook/Shakes/useDeleteShake";
+import useEntregarShake from "../../../../../hook/Shakes/useDeleteShake";
 export default function Comanda() {
   const { shakes, isLoading } = useAllShakes();
-  const { onSubmit } = useDeleteShake();
+  const { onSubmit } = useEntregarShake();
   const handleEntregar = (shake_id) => {
     onSubmit({ shake_id });
   }

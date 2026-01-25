@@ -1,10 +1,13 @@
 import shakeOptions from '../../../../../models/ShakeOptions/options'
 export default async function getShakes(req,res){
     if(req.method === "GET"){
-        console.log('GET /api/Gets/GetAllShakes - Buscando todos os shakes');
+        console.log('GET /api/Gets/GetTrueShakes - Buscando shakes na cozinha');
         try{
             const reqShake = await shakeOptions.findAll({
-                where: { nacozinha: true }  
+                where: { 
+                    nacozinha: true,
+                    entregue: false
+                }  
             })
 
             console.log('Shakes encontrados:', reqShake ? reqShake.length : 0);

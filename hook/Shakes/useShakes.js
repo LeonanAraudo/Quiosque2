@@ -1,35 +1,4 @@
-"use client";
-import { useRouter } from "next/navigation";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { useForm } from "react-hook-form";
-
-export default function useCreateShake() {
-  const {register, handleSubmit,reset} = useForm()
-  const router = useRouter();
-  
-  const onSubmit = async (formData) => {
-    const payload = {...formData}
-    const promise =  axios.post("/api/Posts/CadShakeTrue/shakeTrue", payload);
-
-    toast.promise(
-      promise,
-      {
-        pending: "Cadastrando shake...",
-        success: "Shake cadastrado com sucesso!",
-        error: "Erro ao cadastrar o shake.",
-      }
-    );
-
-    try {
-      await promise;
-      reset()
-      router.push(`/Telas/ShakeOptions2`);  
-    } catch (error) {
-      console.error("Erro ao cadastrar o shake :", error);
-    }
-  };
-
-  return { onSubmit,register,handleSubmit };
-}
+// Este hook foi unificado em hook/CreateShake/hook.jsx
+// Use: import useCreateShake from "../../hook/CreateShake/hook"
+export { default } from '../CreateShake/hook';
  

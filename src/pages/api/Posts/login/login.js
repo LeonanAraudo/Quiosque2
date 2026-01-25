@@ -9,7 +9,6 @@ export default async function handler(req, res) {
       const { nome, senha } = req.body;
       const nomeInput = typeof nome === 'string' ? nome.trim() : '';
 
-      // Busca tolerante a maiúsculas/minúsculas
       const user = await usuario.findOne({ where: { nome: { [Op.iLike]: nomeInput } } });
       if (!user) {
         return res.status(404).json({ error: 'Usuário não encontrado' });
@@ -20,13 +19,11 @@ export default async function handler(req, res) {
         return res.status(401).json({ error: 'Senha incorreta' });
       }
         const token = jwt.sign(
-        { usuario_id: user.usuario_id, nome: user.nome },  // payload
-        process.env.JWT_SECRET || "chave_secreta",         // chave secreta
-        { expiresIn: "1h" }                                // expira em 1 hora
+        { usuario_id: user.usuario_id, nome: user.nome },  
+        process.env.JWT_SECRET || "chave_secreta",         
+        { expiresIn: "1h" }                              
       );
 
-      // Enviar token via cookie HttpOnly
-      // Enviar token via cookies para compatibilidade com o middleware
       const isProd = process.env.NODE_ENV === 'production';
       const cookieBase = `HttpOnly; Path=/; Max-Age=3600; SameSite=Strict${isProd ? '; Secure' : ''}`;
       res.setHeader("Set-Cookie", [
@@ -34,7 +31,6 @@ export default async function handler(req, res) {
         `token=${token}; ${cookieBase}`,
       ]);
 
-      // Opcionalmente, também retornar o token no corpo da resposta (útil para testes)
       return res.status(200).json({ message: "Login bem sucedido", token });
 
     } catch (error) {
