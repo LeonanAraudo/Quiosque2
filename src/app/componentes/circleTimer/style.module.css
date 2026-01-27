@@ -32,3 +32,18 @@
     width: 80%;
     height: 1px;
 }
+@media (min-width: 1024px) {
+ .circle{
+    right: 0px;
+ }
+ .agoraC{
+    margin-left: 0px;
+    margin-top: 0px;
+}
+.agoraB{
+    margin-left: 0px;
+}
+.agoraA{
+    margin-left: 0px;
+}
+}
