@@ -6,6 +6,7 @@ import '../models/comanda/comanda.js'
 import  '../models/item_comanda/produtoComanda.js'
 import '../models/cascadeComanda/cascade.js'
 import '../models/cascadeProduto/cascade.js'
+import '../models/Ficha/ficha.js'
 const syncDb = async () => {
   try {
     await sequelize.authenticate();
