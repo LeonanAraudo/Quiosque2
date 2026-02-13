@@ -61,9 +61,8 @@ export default function FichasComponent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+    <div className="min-h-screen bg-white p-6">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="mb-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div>
@@ -80,15 +79,13 @@ export default function FichasComponent() {
             </div>
             <button
               onClick={() => setShowCadastro(true)}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="bg-black text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               <PackagePlus className="w-5 h-5" />
               Nova Ficha
             </button>
           </div>
         </div>
-
-        {/* Fichas Grid */}
         {fichas.length === 0 ? (
           <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
             <Ticket className="w-20 h-20 text-gray-300 mx-auto mb-4" />
@@ -113,8 +110,7 @@ export default function FichasComponent() {
                 key={ficha.ficha_id}
                 className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
               >
-                {/* Card Header */}
-                <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4">
+                <div className="bg-black p-2">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-2 flex-1">
                       <Ticket className="w-5 h-5 text-white flex-shrink-0" />
@@ -136,9 +132,7 @@ export default function FichasComponent() {
                     </button>
                   </div>
                 </div>
-
-                {/* Card Body */}
-                <div className="p-6">
+                <div className="p-4">
                   <div className="flex items-center justify-center gap-4">
                     <button
                       onClick={() =>
@@ -164,7 +158,6 @@ export default function FichasComponent() {
                         {ficha.quantidade}
                       </span>
                     </div>
-
                     <button
                       onClick={() =>
                         handleUpdateQuantidade(
@@ -178,8 +171,6 @@ export default function FichasComponent() {
                       <Plus className="w-5 h-5" />
                     </button>
                   </div>
-
-                  {/* Data cadastro */}
                   <div className="mt-4 pt-4 border-t border-gray-200 text-center">
                     <p className="text-xs text-gray-500">
                       Cadastrado em{" "}
@@ -194,8 +185,6 @@ export default function FichasComponent() {
           </div>
         )}
       </div>
-
-      {/* Modal de Cadastro */}
       {showCadastro && (
         <CadFichasComponent
           onClose={() => setShowCadastro(false)}

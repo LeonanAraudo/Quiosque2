@@ -11,6 +11,8 @@ export async function middleware(request: NextRequest) {
     "/Telas/Login",
     "/api/login",
     "/api/Posts/login",
+    "/api/Posts/logout",
+    "/api/Posts/CadUser/cadUser",
     "/api/Gets/GetTrueShakes/getTruesShakes",
   
   ];

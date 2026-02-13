@@ -16,11 +16,14 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import BlenderIcon from '@mui/icons-material/Blender';
 import TableRestaurantIcon from '@mui/icons-material/TableRestaurant';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useLogout } from '../../../../hook/useLogout';
 
 export default function Header({ linkDestino }) {
   const [state, setState] = React.useState({
     right: false,
   });
+  const { logout, isLoading } = useLogout();
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -91,6 +94,20 @@ export default function Header({ linkDestino }) {
                 <ListItemText primary="Cozinha" />
               </ListItemButton>
             </Link>
+          </ListItem>
+      </List>
+      <Divider />
+      <List>
+          <ListItem disablePadding>
+            <ListItemButton onClick={logout} disabled={isLoading}>
+              <ListItemIcon>
+                <LogoutIcon sx={{ color: '#ef4444' }} />
+              </ListItemIcon>
+              <ListItemText 
+                primary={isLoading ? "Saindo..." : "Sair"} 
+                sx={{ color: '#ef4444' }}
+              />
+            </ListItemButton>
           </ListItem>
       </List>
     </Box>

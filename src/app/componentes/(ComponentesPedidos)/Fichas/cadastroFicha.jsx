@@ -30,8 +30,7 @@ export default function CadFichasComponent({ onClose, onSuccess }) {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all">
-                {/* Header */}
-                <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 rounded-t-2xl">
+                <div className="bg-black p-6 rounded-t-xl">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <div className="bg-white bg-opacity-20 p-2 rounded-lg">
@@ -49,8 +48,6 @@ export default function CadFichasComponent({ onClose, onSuccess }) {
                         )}
                     </div>
                 </div>
-
-                {/* Form */}
                 <form onSubmit={handleSubmit} className="p-6 space-y-5">
                     {error && (
                         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
@@ -88,8 +85,6 @@ export default function CadFichasComponent({ onClose, onSuccess }) {
                             disabled={isLoading}
                         />
                     </div>
-
-                    {/* Buttons */}
                     <div className="flex gap-3 pt-4">
                         {onClose && (
                             <button
